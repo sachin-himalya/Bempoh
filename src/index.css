@@ -1,0 +1,197 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --bg-primary: #FFFFFF;
+    --bg-secondary: #FAFAFC;
+    --gold-1: #8C5B0D;
+    --gold-2: #A97622;
+    --gold-3: #C99B3C;
+    --gold-4: #D4A338;
+    --text-primary: #0C0D12;
+    --text-secondary: #50515C;
+    --border-subtle: rgba(0, 0, 0, 0.08);
+    --gold-border: rgba(169, 118, 34, 0.35);
+  }
+
+  body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: 'Manrope', 'Inter', sans-serif;
+    overflow-x: hidden;
+    transition: background-color 0.5s ease, color 0.5s ease;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Manrope', sans-serif;
+    letter-spacing: -0.02em;
+    color: #0C0D12;
+  }
+
+  .font-serif-display {
+    font-family: 'Instrument Serif', serif;
+  }
+}
+
+/* Metallic Gold Text Gradients for White Background */
+.text-gold-gradient {
+  background: linear-gradient(135deg, #B57E1E 0%, #8C5B0D 50%, #5E3C05 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gold-bright {
+  background: linear-gradient(180deg, #C99B3C 0%, #A97622 50%, #8C5B0D 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Elegant Gold Outline & Border Utilities for Headings */
+.heading-gold-outline {
+  -webkit-text-stroke: 1.2px #C99B3C;
+  color: transparent;
+}
+
+.heading-gold-border {
+  border-bottom: 2px solid #C99B3C;
+  display: inline-block;
+  padding-bottom: 4px;
+}
+
+.bg-gold-gradient {
+  background: linear-gradient(135deg, #F4DE84 0%, #C99B3C 50%, #A97622 100%);
+}
+
+.bg-gold-glass {
+  background: rgba(201, 155, 60, 0.08);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(169, 118, 34, 0.25);
+}
+
+.border-gold-subtle {
+  border-color: rgba(169, 118, 34, 0.3);
+}
+
+.shadow-gold-glow {
+  box-shadow: 0 10px 40px -10px rgba(201, 155, 60, 0.2);
+}
+
+.shadow-gold-intense {
+  box-shadow: 0 10px 50px 0px rgba(169, 118, 34, 0.25);
+}
+
+/* Glassmorphism Surface for White Theme */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+/* Grid & Ambient Backgrounds */
+.bg-grid-pattern {
+  background-size: 60px 60px;
+  background-image: 
+    linear-gradient(to right, rgba(201, 155, 60, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(201, 155, 60, 0.06) 1px, transparent 1px);
+}
+
+.bg-radial-gold {
+  background: radial-gradient(circle at 50% 30%, rgba(201, 155, 60, 0.12) 0%, rgba(255, 255, 255, 0) 70%);
+}
+
+.bg-radial-bottom {
+  background: radial-gradient(circle at 50% 100%, rgba(201, 155, 60, 0.15) 0%, rgba(255, 255, 255, 0) 70%);
+}
+
+/* DARK CONTAINER PRESERVATION SYSTEM (.keep-dark) */
+/* Ensures elements like book covers, dark mockups, and dark consoles preserve their rich dark background & white text */
+.keep-dark {
+  background-color: #0B0C10 !important;
+  color: #FFFFFF !important;
+  border-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+.keep-dark * {
+  color: inherit;
+}
+
+.keep-dark .text-white {
+  color: #FFFFFF !important;
+}
+
+.keep-dark .text-white\/80,
+.keep-dark .text-white\/90 {
+  color: rgba(255, 255, 255, 0.85) !important;
+}
+
+.keep-dark .text-white\/10 {
+  color: rgba(255, 255, 255, 0.15) !important;
+}
+
+.keep-dark .text-\[\#A7A7A7\] {
+  color: #A7A7A7 !important;
+}
+
+.keep-dark .text-\[\#C99B3C\] {
+  color: #C99B3C !important;
+}
+
+.keep-dark .text-\[\#E2C268\] {
+  color: #E2C268 !important;
+}
+
+.keep-dark .text-\[\#F4DE84\] {
+  color: #F4DE84 !important;
+}
+
+.keep-dark .text-gold-gradient {
+  background: linear-gradient(135deg, #F4DE84 0%, #E2C268 30%, #C99B3C 70%, #A97622 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #FFFFFF;
+}
+::-webkit-scrollbar-thumb {
+  background: #C99B3C;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #A97622;
+}
+
+/* Keyframes */
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(1deg); }
+}
+
+@keyframes pulse-slow {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(1.05); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 8s ease-in-out infinite;
+}
+
+.shimmer-gold {
+  background: linear-gradient(90deg, rgba(140,91,13,0) 0%, rgba(201, 155, 60, 0.8) 50%, rgba(140,91,13,0) 100%);
+  background-size: 200% 100%;
+  animation: shimmer 4s infinite;
+}

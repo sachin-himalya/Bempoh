@@ -1,0 +1,109 @@
+import React from 'react';
+import Logo from './Logo';
+import { BookOpen, ArrowUpRight, Sparkles } from 'lucide-react';
+
+export default function BooksSection({ onExploreBooks }) {
+  return (
+    <section id="books" className="relative w-full bg-white py-28 sm:py-36 px-6 border-t border-black/[0.08] overflow-hidden">
+      {/* Background Glow */}
+      <div className="absolute top-1/3 right-1/4 w-[500px] h-[500px] bg-[#C99B3C]/10 blur-[140px] rounded-full pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          {/* Left Column: Floating 3D Metallic Book Cover Mockup (Intentionally Dark Design Preserved) */}
+          <div className="lg:col-span-5 flex justify-center order-2 lg:order-1">
+            <div className="relative group perspective-[1000px] cursor-pointer" onClick={onExploreBooks}>
+              {/* Book Hardcover Mockup Container */}
+              <div className="keep-dark relative w-[280px] sm:w-[320px] aspect-[3/4.5] rounded-r-2xl !bg-[#0B0C10] border-y border-r border-white/20 border-l-4 border-l-[#C99B3C] p-8 shadow-[0_30px_60px_rgba(0,0,0,0.5)] transform group-hover:rotate-y-[-12deg] group-hover:rotate-x-[6deg] group-hover:scale-105 transition-all duration-700 flex flex-col justify-between select-none text-white">
+                {/* Book Spine Texture Lines */}
+                <div className="absolute left-1 top-0 bottom-0 w-2 bg-gradient-to-r from-black/60 to-transparent" />
+
+                {/* Top Book Header */}
+                <div className="flex items-center justify-between border-b border-white/10 pb-4">
+                  <span className="text-[10px] tracking-[0.3em] uppercase text-[#C99B3C] font-semibold">
+                    BEMPOH BOOKS
+                  </span>
+                  <Sparkles className="w-3.5 h-3.5 text-[#F4DE84]" />
+                </div>
+
+                {/* Book Title & Author Center */}
+                <div className="my-auto py-6">
+                  <div className="text-xs uppercase tracking-[0.25em] text-[#A7A7A7] mb-2 font-mono">
+                    PUBLICATION
+                  </div>
+                  <h3 className="text-3xl font-extrabold tracking-tight text-white leading-tight uppercase">
+                    THE UNIVERSAL <br />
+                    <span className="text-gold-gradient font-serif-display italic font-normal text-4xl block mt-1">
+                      ANTIDOTE
+                    </span>
+                  </h3>
+                  <div className="w-12 h-[2px] bg-[#C99B3C] my-4" />
+                  <p className="text-xs uppercase tracking-[0.2em] text-[#E2C268] font-bold">
+                    BY E.K. BEMPOH
+                  </p>
+                </div>
+
+                {/* Bottom Book Footer */}
+                <div className="pt-4 border-t border-white/10 flex items-center justify-between">
+                  <Logo size="sm" showWordmark={false} glow={false} />
+                  <span className="text-[9px] uppercase tracking-widest text-[#A7A7A7]">
+                    FIRST EDITION
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Right Column: Editorial Copy */}
+          <div className="lg:col-span-7 order-1 lg:order-2">
+            <div className="flex items-center gap-2 mb-6">
+              <BookOpen className="w-4 h-4 text-[#8C5B0D]" />
+              <span className="text-xs uppercase tracking-[0.35em] text-[#8C5B0D] font-bold">
+                BEMPOH BOOKS
+              </span>
+            </div>
+
+            <h2 className="text-4xl sm:text-6xl md:text-7xl font-extrabold text-[#0C0D12] tracking-tight leading-none uppercase">
+              IDEAS MADE <br />
+              <span className="text-gold-gradient font-serif-display italic font-normal text-5xl sm:text-7xl md:text-8xl">
+                PERMANENT.
+              </span>
+            </h2>
+
+            <p className="mt-8 text-base sm:text-lg text-[#50515C] font-normal leading-relaxed">
+              Bempoh Books is the publishing and ideas division of the Bempoh ecosystem, bringing original perspectives, analytical works, and literature into published form.
+            </p>
+
+            {/* Featured Book Details Card */}
+            <div className="mt-8 p-6 rounded-2xl bg-[#FAFAFC] border border-black/10 shadow-sm">
+              <div className="text-xs font-bold text-[#8C5B0D] uppercase tracking-widest mb-1">
+                FEATURED PUBLICATION
+              </div>
+              <div className="text-xl font-extrabold text-[#0C0D12] uppercase">
+                THE UNIVERSAL ANTIDOTE
+              </div>
+              <div className="text-xs text-[#8C5B0D] font-semibold mt-0.5">
+                AUTHOR: E.K. BEMPOH
+              </div>
+              <p className="text-sm text-[#50515C] font-normal mt-3 leading-relaxed">
+                A published work exploring complex human choices, systemic problems, and philosophical approaches to resolution. Distributed globally through online book platforms.
+              </p>
+            </div>
+
+            {/* CTA */}
+            <div className="mt-10">
+              <button
+                type="button"
+                onClick={onExploreBooks}
+                className="px-8 py-4 rounded-full bg-gradient-to-r from-[#F4DE84] via-[#C99B3C] to-[#A97622] text-black font-extrabold text-xs uppercase tracking-[0.2em] hover:shadow-[0_4px_30px_rgba(201,155,60,0.5)] transition-all flex items-center gap-3 transform hover:-translate-y-1 cursor-pointer"
+              >
+                <span>Explore Books</span>
+                <ArrowUpRight className="w-4 h-4 text-black stroke-[2.5]" />
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}

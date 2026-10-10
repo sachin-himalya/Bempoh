@@ -1,0 +1,118 @@
+import React, { useState, useEffect } from 'react';
+import Logo from './Logo';
+import { Menu, X, ArrowUpRight } from 'lucide-react';
+
+export default function Navbar({ onExploreClick }) {
+  const [scrolled, setScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const navLinks = [
+    { label: 'Home', href: '#hero' },
+    { label: 'Vision', href: '#manifesto' },
+    { label: 'Companies', href: '#ecosystem' },
+    { label: 'Orbit', href: '#orbit' },
+    { label: 'FAQ', href: '#faq' },
+  ];
+
+  return (
+    <>
+      {/* 100% Full-Width Ultra-Slim Edge-to-Edge Pure White Header Bar */}
+      <header
+        className={`fixed top-0 left-0 right-0 w-full z-50 transition-all duration-300 border-b border-black/[0.08] bg-white/95 backdrop-blur-2xl text-[#111111] ${
+          scrolled ? 'py-0.5 shadow-md' : 'py-1 shadow-sm'
+        }`}
+      >
+        <div className="w-full max-w-7xl mx-auto px-6 sm:px-10 lg:px-12 flex items-center justify-between h-11 sm:h-12">
+          {/* LEFT: Compact Logo */}
+          <a href="#hero" className="flex items-center gap-2 group shrink-0">
+            <Logo size="sm" className="max-h-7 sm:max-h-8 w-auto" />
+          </a>
+
+          {/* CENTER: Desktop Nav Links */}
+          <nav className="hidden md:flex items-center gap-8 lg:gap-10">
+            {navLinks.map((link) => (
+              <a
+                key={link.label}
+                href={link.href}
+                className="text-[11px] uppercase tracking-[0.2em] font-semibold text-[#111111] hover:text-[#C99B3C] transition-colors duration-300 relative py-0.5 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-[#C99B3C] hover:after:w-full after:transition-all after:duration-300"
+              >
+                {link.label}
+              </a>
+            ))}
+          </nav>
+
+          {/* RIGHT: Compact Gold CTA Button & Mobile Toggle */}
+          <div className="flex items-center gap-3 sm:gap-4 shrink-0">
+            <button
+              type="button"
+              onClick={onExploreClick}
+              className="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full text-[10px] uppercase tracking-widest font-bold text-black bg-gradient-to-r from-[#F4DE84] via-[#C99B3C] to-[#A97622] hover:shadow-[0_0_15px_rgba(201,155,60,0.5)] transition-all duration-300 cursor-pointer"
+            >
+              <span>Explore Bempoh</span>
+              <ArrowUpRight className="w-3 h-3 text-black stroke-[2.5]" />
+            </button>
+
+            {/* Mobile Menu Button */}
+            <button
+              type="button"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="md:hidden p-1 rounded-lg border focus:outline-none text-[#111111] bg-black/5 border-black/10 cursor-pointer"
+              aria-label="Toggle Menu"
+            >
+              {mobileMenuOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
+            </button>
+          </div>
+        </div>
+      </header>
+
+      {/* Mobile Navigation Drawer */}
+      <div
+        className={`fixed inset-0 z-40 backdrop-blur-2xl transition-all duration-500 md:hidden flex flex-col justify-between px-8 py-24 bg-white/98 text-[#111111] ${
+          mobileMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+        }`}
+      >
+        <div className="flex flex-col space-y-6 mt-8">
+          <div className="text-xs uppercase tracking-[0.3em] text-[#8C5B0D] font-bold mb-2">
+            Navigation
+          </div>
+          {navLinks.map((link) => (
+            <a
+              key={link.label}
+              href={link.href}
+              onClick={() => setMobileMenuOpen(false)}
+              className="text-2xl font-normal tracking-wide text-[#111111] hover:text-[#C99B3C] transition-colors"
+            >
+              {link.label}
+            </a>
+          ))}
+        </div>
+
+        <div className="pt-8 border-t border-black/10 flex flex-col gap-4">
+          <button
+            type="button"
+            onClick={() => {
+              setMobileMenuOpen(false);
+              onExploreClick();
+            }}
+            className="w-full py-4 rounded-full text-sm uppercase tracking-widest font-semibold text-black bg-gradient-to-r from-[#F4DE84] via-[#C99B3C] to-[#A97622] flex items-center justify-center gap-2 cursor-pointer"
+          >
+            <span>Explore Ecosystem</span>
+            <ArrowUpRight className="w-4 h-4" />
+          </button>
+
+          <p className="text-center text-xs tracking-widest uppercase mt-2 text-[#50515C] font-semibold">
+            BEMPOH INC — FROM FUTURE TO NOW
+          </p>
+        </div>
+      </div>
+    </>
+  );
+}
