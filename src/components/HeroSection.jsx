@@ -3,20 +3,110 @@ import Logo from './Logo';
 import GoldParticlesCanvas from './GoldParticlesCanvas';
 import { ArrowRight, ChevronDown } from 'lucide-react';
 
-export default function HeroSection({ onExploreClick, onDiscoverClick }) {
-  const [headlineIndex, setHeadlineIndex] = useState(0);
+const HEADINGS = [
+  { primary: 'FROM HEAVEN', secondary: 'TO EARTH.' },
+  { primary: 'FROM FUTURE', secondary: 'TO NOW.' },
+];
 
-  const headlines = [
-    { primary: 'FROM HEAVEN', secondary: 'TO EARTH.' },
-    { primary: 'FROM FUTURE', secondary: 'TO NOW.' },
-  ];
+export default function HeroSection({ onExploreClick, onDiscoverClick }) {
+  const [reducedMotion, setReducedMotion] = useState(() => {
+    if (typeof window !== 'undefined' && window.matchMedia) {
+      return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    }
+    return false;
+  });
+
+  const [headingIndex, setHeadingIndex] = useState(0);
+  const [line1Text, setLine1Text] = useState(() => (reducedMotion ? HEADINGS[0].primary : ''));
+  const [line2Text, setLine2Text] = useState(() => (reducedMotion ? HEADINGS[0].secondary : ''));
+  const [cursorLine, setCursorLine] = useState(() => (reducedMotion ? null : 1));
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      setHeadlineIndex((prev) => (prev === 0 ? 1 : 0));
-    }, 4500);
-    return () => clearInterval(timer);
-  }, []);
+    if (reducedMotion) {
+      const timer = setInterval(() => {
+        setHeadingIndex((prev) => (prev === 0 ? 1 : 0));
+      }, 4500);
+      return () => clearInterval(timer);
+    }
+
+    const mediaQuery = window.matchMedia?.('(prefers-reduced-motion: reduce)');
+    const handleMotionChange = (e) => {
+      setReducedMotion(e.matches);
+    };
+    mediaQuery?.addEventListener?.('change', handleMotionChange);
+
+    let isCancelled = false;
+    let timerId = null;
+
+    const delay = (ms) =>
+      new Promise((resolve) => {
+        timerId = setTimeout(resolve, ms);
+      });
+
+    const runAnimation = async () => {
+      let currentIndex = 0;
+
+      while (!isCancelled) {
+        const current = HEADINGS[currentIndex];
+        setHeadingIndex(currentIndex);
+
+        // Phase 1: Type Line 1 ("FROM HEAVEN" or "FROM FUTURE")
+        setCursorLine(1);
+        setLine2Text('');
+        for (let i = 1; i <= current.primary.length; i++) {
+          if (isCancelled) return;
+          setLine1Text(current.primary.slice(0, i));
+          await delay(100);
+        }
+
+        // Phase 2: Type Line 2 ("TO EARTH." or "TO NOW.")
+        setCursorLine(2);
+        for (let i = 1; i <= current.secondary.length; i++) {
+          if (isCancelled) return;
+          setLine2Text(current.secondary.slice(0, i));
+          await delay(100);
+        }
+
+        // Phase 3: Pause for 2000ms after complete heading
+        await delay(2000);
+        if (isCancelled) return;
+
+        // Phase 4: Backspace Line 2 (60ms)
+        for (let i = current.secondary.length - 1; i >= 0; i--) {
+          if (isCancelled) return;
+          setLine2Text(current.secondary.slice(0, i));
+          await delay(60);
+        }
+
+        // Move cursor back to Line 1
+        setCursorLine(1);
+        await delay(100);
+        if (isCancelled) return;
+
+        // Phase 5: Backspace Line 1 (60ms)
+        for (let i = current.primary.length - 1; i >= 0; i--) {
+          if (isCancelled) return;
+          setLine1Text(current.primary.slice(0, i));
+          await delay(60);
+        }
+
+        // Brief pause before typing next heading
+        await delay(300);
+        if (isCancelled) return;
+
+        // Advance to next heading
+        currentIndex = (currentIndex + 1) % HEADINGS.length;
+      }
+    };
+
+    runAnimation();
+
+    return () => {
+      isCancelled = true;
+      if (timerId) clearTimeout(timerId);
+      mediaQuery?.removeEventListener?.('change', handleMotionChange);
+    };
+  }, [reducedMotion]);
 
   return (
     <section
@@ -40,12 +130,46 @@ export default function HeroSection({ onExploreClick, onDiscoverClick }) {
 
         {/* Animated Cinematic Headline */}
         <div className="min-h-[140px] sm:min-h-[180px] md:min-h-[220px] flex flex-col items-center justify-center relative">
-          <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold tracking-tight leading-[1.05] transition-all duration-1000 uppercase font-sans">
+          <h1
+            className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold tracking-tight leading-[1.05] uppercase font-sans text-center"
+            aria-label={`${HEADINGS[headingIndex].primary} ${HEADINGS[headingIndex].secondary}`}
+          >
+            {/* Line 1 */}
             <span className="block text-[#0C0D12] dark:text-white transition-colors duration-300">
-              {headlines[headlineIndex].primary}
+              <span className="hero-typewriter-grid">
+                {/* Ghost placeholder reserves width to prevent layout shifts */}
+                <span className="hero-typewriter-ghost" aria-hidden="true">
+                  FROM HEAVEN
+                </span>
+
+                {/* Active animated text container */}
+                <span className="hero-typewriter-active" aria-hidden="true">
+                  {reducedMotion ? HEADINGS[headingIndex].primary : line1Text}
+                  {!reducedMotion && cursorLine === 1 && (
+                    <span className="typed-cursor">|</span>
+                  )}
+                </span>
+              </span>
             </span>
+
+            {/* Line 2 */}
             <span className="block text-gold-gradient mt-1">
-              {headlines[headlineIndex].secondary}
+              <span className="hero-typewriter-grid">
+                {/* Ghost placeholder reserves width of longest second line ("TO EARTH.") */}
+                <span className="hero-typewriter-ghost" aria-hidden="true">
+                  TO EARTH.
+                </span>
+
+                {/* Active animated text container */}
+                <span className="hero-typewriter-active" aria-hidden="true">
+                  <span className="text-gold-gradient">
+                    {reducedMotion ? HEADINGS[headingIndex].secondary : line2Text}
+                  </span>
+                  {!reducedMotion && cursorLine === 2 && (
+                    <span className="typed-cursor">|</span>
+                  )}
+                </span>
+              </span>
             </span>
           </h1>
         </div>

@@ -1,9 +1,50 @@
 import React, { useState, useEffect, useRef } from 'react';
+import Typed from 'typed.js';
 import { Play, Pause, ExternalLink, Music, Radio, Disc } from 'lucide-react';
 
 export default function MusicSection({ onPlatformClick }) {
   const [isPlaying, setIsPlaying] = useState(false);
   const canvasRef = useRef(null);
+  const typedEl = useRef(null);
+  const typedInstance = useRef(null);
+  const [reducedMotion, setReducedMotion] = useState(() => {
+    if (typeof window !== 'undefined' && window.matchMedia) {
+      return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    }
+    return false;
+  });
+
+  useEffect(() => {
+    if (reducedMotion) return;
+
+    const mediaQuery = window.matchMedia?.('(prefers-reduced-motion: reduce)');
+    const handleMotionChange = (e) => {
+      setReducedMotion(e.matches);
+    };
+
+    mediaQuery?.addEventListener?.('change', handleMotionChange);
+
+    if (typedEl.current) {
+      typedInstance.current = new Typed(typedEl.current, {
+        strings: ['CAN HEAR.'],
+        typeSpeed: 100,
+        backSpeed: 60,
+        backDelay: 2000,
+        loop: true,
+        showCursor: true,
+        cursorChar: '|',
+        autoInsertCss: false,
+      });
+    }
+
+    return () => {
+      mediaQuery?.removeEventListener?.('change', handleMotionChange);
+      if (typedInstance.current) {
+        typedInstance.current.destroy();
+        typedInstance.current = null;
+      }
+    };
+  }, [reducedMotion]);
 
   // Animated Audio Frequency Waveform Visualizer
   useEffect(() => {
@@ -76,10 +117,31 @@ export default function MusicSection({ onPlatformClick }) {
               </span>
             </div>
 
-            <h2 className="text-4xl sm:text-6xl md:text-7xl font-extrabold text-[#0C0D12] dark:text-white tracking-tight leading-none uppercase transition-colors duration-300">
+            <h2
+              className="text-4xl sm:text-6xl md:text-7xl font-extrabold text-[#0C0D12] dark:text-white tracking-tight leading-none uppercase transition-colors duration-300"
+              aria-label="IDEAS YOU CAN HEAR."
+            >
               IDEAS YOU <br />
-              <span className="text-gold-gradient font-serif-display italic font-normal text-5xl sm:text-7xl md:text-8xl">
-                CAN HEAR.
+              <span className="faq-typewriter-grid">
+                {/* Ghost placeholder reserves exact width & height preventing layout shifts */}
+                <span
+                  className="faq-typewriter-ghost text-gold-gradient font-serif-display italic font-normal text-5xl sm:text-7xl md:text-8xl"
+                  aria-hidden="true"
+                >
+                  CAN HEAR.
+                </span>
+
+                {/* Animated typewriter text container */}
+                <span className="faq-typewriter-active font-serif-display italic font-normal text-5xl sm:text-7xl md:text-8xl">
+                  {reducedMotion ? (
+                    <span className="text-gold-gradient">CAN HEAR.</span>
+                  ) : (
+                    <span
+                      ref={typedEl}
+                      className="text-gold-gradient"
+                    />
+                  )}
+                </span>
               </span>
             </h2>
 

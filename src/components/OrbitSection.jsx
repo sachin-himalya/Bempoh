@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import Typed from 'typed.js';
 import {
   Cpu,
   Gamepad2,
@@ -67,6 +68,47 @@ const SECTOR_CAROUSEL_IMAGES = {
 };
 
 export default function OrbitSection() {
+  const typedEl = useRef(null);
+  const typedInstance = useRef(null);
+  const [reducedMotion, setReducedMotion] = useState(() => {
+    if (typeof window !== 'undefined' && window.matchMedia) {
+      return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    }
+    return false;
+  });
+
+  useEffect(() => {
+    if (reducedMotion) return;
+
+    const mediaQuery = window.matchMedia?.('(prefers-reduced-motion: reduce)');
+    const handleMotionChange = (e) => {
+      setReducedMotion(e.matches);
+    };
+
+    mediaQuery?.addEventListener?.('change', handleMotionChange);
+
+    if (typedEl.current) {
+      typedInstance.current = new Typed(typedEl.current, {
+        strings: ['CONSTELLATION.'],
+        typeSpeed: 100,
+        backSpeed: 60,
+        backDelay: 2000,
+        loop: true,
+        showCursor: true,
+        cursorChar: '|',
+        autoInsertCss: false,
+      });
+    }
+
+    return () => {
+      mediaQuery?.removeEventListener?.('change', handleMotionChange);
+      if (typedInstance.current) {
+        typedInstance.current.destroy();
+        typedInstance.current = null;
+      }
+    };
+  }, [reducedMotion]);
+
   const sectors = [
     {
       id: 'tech',
@@ -230,21 +272,36 @@ export default function OrbitSection() {
       <div className="max-w-7xl mx-auto relative z-10">
         {/* TOP TWO-COLUMN DESKTOP LAYOUT (MATCHING GLOBAL VISION STRUCTURE) */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center mb-12 sm:mb-16 lg:mb-20">
-          {/* LEFT COLUMN (40-45% => lg:col-span-5): BADGE, HEADINGS & SUBTITLE */}
+          {/* LEFT COLUMN (40-45% => lg:col-span-5): HEADINGS & SUBTITLE */}
           <div className="lg:col-span-5 text-left flex flex-col justify-center">
-            {/* INDUSTRY ORBIT Badge */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#C99B3C]/10 border border-[#C99B3C]/30 mb-6 self-start">
-              <Sparkles className="w-3.5 h-3.5 text-[#8C5B0D] dark:text-[#E2C268]" />
-              <span className="text-[11px] font-bold tracking-[0.3em] text-[#8C5B0D] dark:text-[#E2C268] uppercase">
-                INDUSTRY ORBIT
-              </span>
-            </div>
-
             {/* Main Heading & Gold Italic Heading (Strictly Two Lines on Desktop) */}
-            <h2 className="text-3xl sm:text-4xl lg:text-[2.5rem] xl:text-[2.85rem] font-extrabold text-[#0C0D12] dark:text-white tracking-tight leading-[1.12] transition-colors duration-300">
-              <span className="block lg:whitespace-nowrap">An Interconnected</span>
-              <span className="text-gold-gradient block font-serif-display italic font-normal text-3xl sm:text-4xl lg:text-[2.75rem] xl:text-[3.25rem] mt-1 sm:mt-1.5">
-                Constellation.
+            <h2
+              className="text-3xl sm:text-4xl lg:text-[2.5rem] xl:text-[2.85rem] font-extrabold text-[#0C0D12] dark:text-white tracking-tight leading-[1.12] transition-colors duration-300"
+              aria-label="AN INTERCONNECTED CONSTELLATION."
+            >
+              <span className="block lg:whitespace-nowrap">AN INTERCONNECTED</span>
+              <span className="block mt-1 sm:mt-1.5">
+                <span className="faq-typewriter-grid">
+                  {/* Ghost placeholder reserves exact width & height preventing layout shifts */}
+                  <span
+                    className="faq-typewriter-ghost text-gold-gradient font-serif-display italic font-normal text-3xl sm:text-4xl lg:text-[2.75rem] xl:text-[3.25rem]"
+                    aria-hidden="true"
+                  >
+                    CONSTELLATION.
+                  </span>
+
+                  {/* Animated typewriter text container */}
+                  <span className="faq-typewriter-active font-serif-display italic font-normal text-3xl sm:text-4xl lg:text-[2.75rem] xl:text-[3.25rem]">
+                    {reducedMotion ? (
+                      <span className="text-gold-gradient">CONSTELLATION.</span>
+                    ) : (
+                      <span
+                        ref={typedEl}
+                        className="text-gold-gradient"
+                      />
+                    )}
+                  </span>
+                </span>
               </span>
             </h2>
 

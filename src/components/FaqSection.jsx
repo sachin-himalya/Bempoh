@@ -1,8 +1,49 @@
-import React, { useState } from 'react';
-import { Plus, Minus, HelpCircle } from 'lucide-react';
+import React, { useState, useEffect, useRef } from 'react';
+import Typed from 'typed.js';
+import { Plus, Minus } from 'lucide-react';
 
 export default function FaqSection() {
   const [openIndex, setOpenIndex] = useState(null);
+  const typedEl = useRef(null);
+  const typedInstance = useRef(null);
+  const [reducedMotion, setReducedMotion] = useState(() => {
+    if (typeof window !== 'undefined' && window.matchMedia) {
+      return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    }
+    return false;
+  });
+
+  useEffect(() => {
+    if (reducedMotion) return;
+
+    const mediaQuery = window.matchMedia?.('(prefers-reduced-motion: reduce)');
+    const handleMotionChange = (e) => {
+      setReducedMotion(e.matches);
+    };
+
+    mediaQuery?.addEventListener?.('change', handleMotionChange);
+
+    if (typedEl.current) {
+      typedInstance.current = new Typed(typedEl.current, {
+        strings: ['QUESTIONS'],
+        typeSpeed: 100,
+        backSpeed: 60,
+        backDelay: 2000,
+        loop: true,
+        showCursor: true,
+        cursorChar: '|',
+        autoInsertCss: false,
+      });
+    }
+
+    return () => {
+      mediaQuery?.removeEventListener?.('change', handleMotionChange);
+      if (typedInstance.current) {
+        typedInstance.current.destroy();
+        typedInstance.current = null;
+      }
+    };
+  }, [reducedMotion]);
 
   const faqs = [
     {
@@ -50,19 +91,35 @@ export default function FaqSection() {
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#C99B3C]/10 blur-[140px] rounded-full pointer-events-none" />
 
       <div className="max-w-4xl mx-auto relative z-10">
-        {/* Eyebrow & Header */}
+        {/* Header */}
         <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#C99B3C]/10 border border-[#C99B3C]/30 mb-6">
-            <HelpCircle className="w-3.5 h-3.5 text-[#8C5B0D] dark:text-[#E2C268]" />
-            <span className="text-[10px] sm:text-xs font-bold tracking-[0.3em] text-[#8C5B0D] dark:text-[#E2C268] uppercase">
-              GOT QUESTIONS?
-            </span>
-          </div>
-
-          <h2 className="text-4xl sm:text-6xl font-extrabold text-[#0C0D12] dark:text-white tracking-tight leading-none uppercase transition-colors duration-300">
+          <h2
+            className="text-4xl sm:text-6xl font-extrabold text-[#0C0D12] dark:text-white tracking-tight leading-none uppercase transition-colors duration-300"
+            aria-label="FREQUENTLY ASKED QUESTIONS"
+          >
             FREQUENTLY ASKED{' '}
-            <span className="text-gold-gradient font-serif-display italic font-normal text-5xl sm:text-7xl block sm:inline">
-              QUESTIONS
+            <span className="block sm:inline">
+              <span className="faq-typewriter-grid">
+                {/* Ghost placeholder reserves exact width & height preventing layout shifts */}
+                <span
+                  className="faq-typewriter-ghost text-gold-gradient font-serif-display italic font-normal text-5xl sm:text-7xl"
+                  aria-hidden="true"
+                >
+                  QUESTIONS
+                </span>
+
+                {/* Animated typewriter text container */}
+                <span className="faq-typewriter-active font-serif-display italic font-normal text-5xl sm:text-7xl">
+                  {reducedMotion ? (
+                    <span className="text-gold-gradient">QUESTIONS</span>
+                  ) : (
+                    <span
+                      ref={typedEl}
+                      className="text-gold-gradient"
+                    />
+                  )}
+                </span>
+              </span>
             </span>
           </h2>
 

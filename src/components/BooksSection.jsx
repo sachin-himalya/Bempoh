@@ -1,8 +1,49 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import Typed from 'typed.js';
 import Logo from './Logo';
 import { BookOpen, ArrowUpRight, Sparkles } from 'lucide-react';
 
 export default function BooksSection({ onExploreBooks }) {
+  const typedEl = useRef(null);
+  const typedInstance = useRef(null);
+  const [reducedMotion, setReducedMotion] = useState(() => {
+    if (typeof window !== 'undefined' && window.matchMedia) {
+      return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    }
+    return false;
+  });
+
+  useEffect(() => {
+    if (reducedMotion) return;
+
+    const mediaQuery = window.matchMedia?.('(prefers-reduced-motion: reduce)');
+    const handleMotionChange = (e) => {
+      setReducedMotion(e.matches);
+    };
+
+    mediaQuery?.addEventListener?.('change', handleMotionChange);
+
+    if (typedEl.current) {
+      typedInstance.current = new Typed(typedEl.current, {
+        strings: ['PERMANENT.'],
+        typeSpeed: 100,
+        backSpeed: 60,
+        backDelay: 2000,
+        loop: true,
+        showCursor: true,
+        cursorChar: '|',
+        autoInsertCss: false,
+      });
+    }
+
+    return () => {
+      mediaQuery?.removeEventListener?.('change', handleMotionChange);
+      if (typedInstance.current) {
+        typedInstance.current.destroy();
+        typedInstance.current = null;
+      }
+    };
+  }, [reducedMotion]);
   return (
     <section id="books" className="relative w-full bg-white dark:bg-[#070709] py-28 sm:py-36 px-6 border-t border-black/[0.08] dark:border-white/10 overflow-hidden transition-colors duration-300">
       {/* Background Glow */}
@@ -63,10 +104,31 @@ export default function BooksSection({ onExploreBooks }) {
               </span>
             </div>
 
-            <h2 className="text-4xl sm:text-6xl md:text-7xl font-extrabold text-[#0C0D12] dark:text-white tracking-tight leading-none uppercase transition-colors duration-300">
+            <h2
+              className="text-4xl sm:text-6xl md:text-7xl font-extrabold text-[#0C0D12] dark:text-white tracking-tight leading-none uppercase transition-colors duration-300"
+              aria-label="IDEAS MADE PERMANENT."
+            >
               IDEAS MADE <br />
-              <span className="text-gold-gradient font-serif-display italic font-normal text-5xl sm:text-7xl md:text-8xl">
-                PERMANENT.
+              <span className="faq-typewriter-grid">
+                {/* Ghost placeholder reserves exact width & height preventing layout shifts */}
+                <span
+                  className="faq-typewriter-ghost text-gold-gradient font-serif-display italic font-normal text-5xl sm:text-7xl md:text-8xl"
+                  aria-hidden="true"
+                >
+                  PERMANENT.
+                </span>
+
+                {/* Animated typewriter text container */}
+                <span className="faq-typewriter-active font-serif-display italic font-normal text-5xl sm:text-7xl md:text-8xl">
+                  {reducedMotion ? (
+                    <span className="text-gold-gradient">PERMANENT.</span>
+                  ) : (
+                    <span
+                      ref={typedEl}
+                      className="text-gold-gradient"
+                    />
+                  )}
+                </span>
               </span>
             </h2>
 

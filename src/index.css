@@ -234,3 +234,106 @@
   background-size: 200% 100%;
   animation: shimmer 4s infinite;
 }
+
+/* FAQ Heading Typewriter Layout */
+.faq-typewriter-grid {
+  display: inline-grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  vertical-align: baseline;
+  text-align: left;
+}
+
+.faq-typewriter-ghost {
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
+  visibility: hidden;
+  user-select: none;
+  pointer-events: none;
+}
+
+.faq-typewriter-active {
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
+  text-align: left;
+  white-space: nowrap;
+}
+
+/* Principle Section Typewriter Layout */
+.principle-typewriter-grid {
+  display: inline-grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  vertical-align: baseline;
+  text-align: center;
+}
+
+.principle-typewriter-ghost {
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
+  visibility: hidden;
+  user-select: none;
+  pointer-events: none;
+}
+
+.principle-typewriter-active {
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
+  text-align: center;
+}
+
+/* Hero Section Typewriter Layout */
+.hero-typewriter-grid {
+  display: inline-grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  vertical-align: baseline;
+  text-align: center;
+}
+
+.hero-typewriter-ghost {
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
+  visibility: hidden;
+  user-select: none;
+  pointer-events: none;
+}
+
+.hero-typewriter-active {
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
+  text-align: center;
+}
+
+/* Typed.js Cursor Styling for FAQ Heading */
+.typed-cursor {
+  font-style: normal !important;
+  font-family: inherit;
+  font-weight: 200 !important;
+  color: #C99B3C;
+  -webkit-text-fill-color: #C99B3C !important;
+  margin-left: 2px;
+  display: inline-block;
+  vertical-align: baseline;
+  animation: typedCursorBlink 0.8s infinite;
+}
+
+.dark .typed-cursor {
+  color: #F4DE84;
+  -webkit-text-fill-color: #F4DE84 !important;
+}
+
+@keyframes typedCursorBlink {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .typed-cursor {
+    display: none !important;
+  }
+}

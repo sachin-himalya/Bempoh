@@ -17,8 +17,8 @@ export default function Navbar({ onExploreClick, theme = 'light', toggleTheme })
   const navLinks = [
     { label: 'Home', href: '#hero' },
     { label: 'Vision', href: '#manifesto' },
-    { label: 'Companies', href: '#ecosystem' },
-    { label: 'Orbit', href: '#orbit' },
+    { label: 'Services', href: '#ecosystem' },
+    { label: 'Ecosystem', href: '#orbit' },
     { label: 'FAQ', href: '#faq' },
   ];
 
