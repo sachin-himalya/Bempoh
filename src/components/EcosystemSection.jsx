@@ -9,7 +9,7 @@ export default function EcosystemSection({ onSelectVenture }) {
       title: 'BEMPOH TECHNOLOGIES',
       description: 'Digital products and technologies built to solve real-world problems.',
       status: 'ACTIVE',
-      statusColor: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+      statusColor: 'bg-emerald-50 text-emerald-700 border-emerald-200 dark:bg-emerald-950/40 dark:text-emerald-400 dark:border-emerald-700/50',
       icon: Cpu,
       anchor: '#udlivery',
     },
@@ -19,7 +19,7 @@ export default function EcosystemSection({ onSelectVenture }) {
       title: 'BEMPOH GAMES',
       description: 'Creating interactive worlds, experiences and next-generation entertainment.',
       status: 'COMING SOON',
-      statusColor: 'bg-amber-50 text-[#8C5B0D] border-amber-300',
+      statusColor: 'bg-amber-50 text-[#8C5B0D] border-amber-300 dark:bg-amber-950/40 dark:text-[#E2C268] dark:border-amber-700/50',
       icon: Gamepad2,
       anchor: '#ecosystem',
     },
@@ -29,7 +29,7 @@ export default function EcosystemSection({ onSelectVenture }) {
       title: 'BEMPOH MUSIC',
       description: 'Music and audio experiences distributed to audiences around the world.',
       status: 'EXPLORE',
-      statusColor: 'bg-black/5 text-[#0C0D12] border-black/10',
+      statusColor: 'bg-black/5 text-[#0C0D12] border-black/10 dark:bg-white/5 dark:text-zinc-200 dark:border-white/15',
       icon: Music,
       anchor: '#music',
     },
@@ -39,7 +39,7 @@ export default function EcosystemSection({ onSelectVenture }) {
       title: 'BEMPOH BOOKS',
       description: 'Ideas, perspectives and knowledge brought into published form.',
       status: 'EXPLORE',
-      statusColor: 'bg-black/5 text-[#0C0D12] border-black/10',
+      statusColor: 'bg-black/5 text-[#0C0D12] border-black/10 dark:bg-white/5 dark:text-zinc-200 dark:border-white/15',
       icon: BookOpen,
       anchor: '#books',
     },
@@ -49,7 +49,7 @@ export default function EcosystemSection({ onSelectVenture }) {
       title: 'BEMPOH RINGTONES',
       description: 'Distinctive digital sounds and audio experiences for everyday devices.',
       status: 'EXPLORE',
-      statusColor: 'bg-black/5 text-[#0C0D12] border-black/10',
+      statusColor: 'bg-black/5 text-[#0C0D12] border-black/10 dark:bg-white/5 dark:text-zinc-200 dark:border-white/15',
       icon: Bell,
       anchor: '#ringtones',
     },
@@ -59,7 +59,7 @@ export default function EcosystemSection({ onSelectVenture }) {
       title: 'BEMPOH ENTERTAINMENT',
       description: 'Immersive media productions, creative arts, and digital content for global audiences.',
       status: 'EXPLORE',
-      statusColor: 'bg-black/5 text-[#0C0D12] border-black/10',
+      statusColor: 'bg-black/5 text-[#0C0D12] border-black/10 dark:bg-white/5 dark:text-zinc-200 dark:border-white/15',
       icon: Clapperboard,
       anchor: '#ecosystem',
     },
@@ -75,7 +75,7 @@ export default function EcosystemSection({ onSelectVenture }) {
   };
 
   return (
-    <section id="ecosystem" className="relative w-full bg-white py-28 px-6 border-t border-black/[0.08]">
+    <section id="ecosystem" className="relative w-full bg-white dark:bg-[#070709] py-28 px-6 border-t border-black/[0.08] dark:border-white/10 transition-colors duration-300">
       {/* Background Accent */}
       <div className="absolute top-1/3 right-0 w-[500px] h-[500px] bg-[#C99B3C]/10 blur-3xl rounded-full pointer-events-none" />
 
@@ -83,17 +83,17 @@ export default function EcosystemSection({ onSelectVenture }) {
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
           <div>
-            <div className="text-xs uppercase tracking-[0.35em] text-[#8C5B0D] font-bold mb-3">
+            <div className="text-xs uppercase tracking-[0.35em] text-[#8C5B0D] dark:text-[#E2C268] font-bold mb-3">
               BEMPOH ECOSYSTEM
             </div>
-            <h2 className="text-4xl sm:text-6xl font-extrabold text-[#0C0D12] tracking-tight leading-none">
+            <h2 className="text-4xl sm:text-6xl font-extrabold text-[#0C0D12] dark:text-white tracking-tight leading-none transition-colors duration-300">
               One Vision.{' '}
               <span className="text-gold-gradient block sm:inline font-serif-display italic font-normal">
                 Multiple Worlds.
               </span>
             </h2>
           </div>
-          <p className="max-w-md text-base sm:text-lg text-[#50515C] font-normal leading-relaxed">
+          <p className="max-w-md text-base sm:text-lg text-[#50515C] dark:text-zinc-400 font-normal leading-relaxed transition-colors duration-300">
             Bempoh operates across industries connected by one ambition — creating what comes next.
           </p>
         </div>
@@ -110,7 +110,7 @@ export default function EcosystemSection({ onSelectVenture }) {
                 onMouseMove={(e) => handleMouseMove(e, venture.id)}
                 onMouseLeave={() => setMousePos({ x: 0, y: 0, activeCard: null })}
                 onClick={() => onSelectVenture(venture)}
-                className="group relative rounded-2xl bg-white border border-black/[0.08] p-8 transition-all duration-500 hover:border-[#C99B3C]/60 hover:-translate-y-2 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_20px_40px_rgba(201,155,60,0.15)] overflow-hidden cursor-pointer flex flex-col justify-between min-h-[320px]"
+                className="group relative rounded-2xl bg-white dark:bg-[#0E0F14] border border-black/[0.08] dark:border-white/10 p-8 transition-all duration-500 hover:border-[#C99B3C]/60 dark:hover:border-[#C99B3C]/80 hover:-translate-y-2 shadow-[0_4px_20px_rgba(0,0,0,0.03)] dark:shadow-[0_4px_20px_rgba(0,0,0,0.5)] hover:shadow-[0_20px_40px_rgba(201,155,60,0.15)] dark:hover:shadow-[0_20px_40px_rgba(201,155,60,0.2)] overflow-hidden cursor-pointer flex flex-col justify-between min-h-[320px]"
               >
                 {/* Mouse Cursor Spotlight Effect */}
                 {isHovered && (
@@ -124,7 +124,7 @@ export default function EcosystemSection({ onSelectVenture }) {
 
                 {/* Top Row: Faded Number & Status Tag */}
                 <div className="flex items-center justify-between relative z-10">
-                  <span className="text-4xl font-extrabold text-black/10 group-hover:text-[#C99B3C]/40 transition-colors font-mono">
+                  <span className="text-4xl font-extrabold text-black/10 dark:text-white/10 group-hover:text-[#C99B3C]/40 transition-colors font-mono">
                     {venture.number}
                   </span>
 
@@ -137,23 +137,23 @@ export default function EcosystemSection({ onSelectVenture }) {
 
                 {/* Middle Content */}
                 <div className="relative z-10 my-6">
-                  <div className="w-10 h-10 rounded-xl bg-[#F4DE84]/25 border border-[#C99B3C]/40 flex items-center justify-center text-[#8C5B0D] mb-4 group-hover:scale-110 group-hover:bg-[#C99B3C] group-hover:text-black transition-all duration-500">
+                  <div className="w-10 h-10 rounded-xl bg-[#F4DE84]/25 dark:bg-[#C99B3C]/20 border border-[#C99B3C]/40 flex items-center justify-center text-[#8C5B0D] dark:text-[#E2C268] mb-4 group-hover:scale-110 group-hover:bg-[#C99B3C] group-hover:text-black transition-all duration-500">
                     <Icon className="w-5 h-5" />
                   </div>
 
-                  <h3 className="text-xl sm:text-2xl font-bold text-[#0C0D12] tracking-wide group-hover:text-[#8C5B0D] transition-colors">
+                  <h3 className="text-xl sm:text-2xl font-bold text-[#0C0D12] dark:text-white tracking-wide group-hover:text-[#8C5B0D] dark:group-hover:text-[#E2C268] transition-colors">
                     {venture.title}
                   </h3>
 
-                  <p className="text-sm text-[#50515C] font-normal mt-3 leading-relaxed">
+                  <p className="text-sm text-[#50515C] dark:text-zinc-400 font-normal mt-3 leading-relaxed transition-colors">
                     {venture.description}
                   </p>
                 </div>
 
                 {/* Bottom Row: Gold Arrow */}
-                <div className="relative z-10 pt-4 border-t border-black/[0.06] flex items-center justify-between text-xs font-semibold text-[#50515C] group-hover:text-[#0C0D12] transition-colors">
+                <div className="relative z-10 pt-4 border-t border-black/[0.06] dark:border-white/10 flex items-center justify-between text-xs font-semibold text-[#50515C] dark:text-zinc-400 group-hover:text-[#0C0D12] dark:group-hover:text-white transition-colors">
                   <span className="uppercase tracking-widest text-[11px] font-bold">Explore Venture</span>
-                  <div className="w-8 h-8 rounded-full bg-black/5 group-hover:bg-[#C99B3C] group-hover:text-black flex items-center justify-center transition-all duration-300 transform group-hover:translate-x-1">
+                  <div className="w-8 h-8 rounded-full bg-black/5 dark:bg-white/10 group-hover:bg-[#C99B3C] group-hover:text-black flex items-center justify-center transition-all duration-300 transform group-hover:translate-x-1">
                     <ArrowUpRight className="w-4 h-4" />
                   </div>
                 </div>

@@ -44,7 +44,7 @@ export default function FaqSection() {
   return (
     <section
       id="faq"
-      className="relative w-full bg-white py-28 sm:py-36 px-6 border-t border-black/[0.08] overflow-hidden"
+      className="relative w-full bg-white dark:bg-[#070709] py-28 sm:py-36 px-6 border-t border-black/[0.08] dark:border-white/10 overflow-hidden transition-colors duration-300"
     >
       {/* Background Ambient Glows */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#C99B3C]/10 blur-[140px] rounded-full pointer-events-none" />
@@ -53,20 +53,20 @@ export default function FaqSection() {
         {/* Eyebrow & Header */}
         <div className="text-center mb-16">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#C99B3C]/10 border border-[#C99B3C]/30 mb-6">
-            <HelpCircle className="w-3.5 h-3.5 text-[#8C5B0D]" />
-            <span className="text-[10px] sm:text-xs font-bold tracking-[0.3em] text-[#8C5B0D] uppercase">
+            <HelpCircle className="w-3.5 h-3.5 text-[#8C5B0D] dark:text-[#E2C268]" />
+            <span className="text-[10px] sm:text-xs font-bold tracking-[0.3em] text-[#8C5B0D] dark:text-[#E2C268] uppercase">
               GOT QUESTIONS?
             </span>
           </div>
 
-          <h2 className="text-4xl sm:text-6xl font-extrabold text-[#0C0D12] tracking-tight leading-none uppercase">
+          <h2 className="text-4xl sm:text-6xl font-extrabold text-[#0C0D12] dark:text-white tracking-tight leading-none uppercase transition-colors duration-300">
             FREQUENTLY ASKED{' '}
             <span className="text-gold-gradient font-serif-display italic font-normal text-5xl sm:text-7xl block sm:inline">
               QUESTIONS
             </span>
           </h2>
 
-          <p className="mt-4 text-base sm:text-lg text-[#50515C] font-normal tracking-wide">
+          <p className="mt-4 text-base sm:text-lg text-[#50515C] dark:text-zinc-400 font-normal tracking-wide transition-colors duration-300">
             Everything you need to know about Bempoh.
           </p>
         </div>
@@ -79,10 +79,10 @@ export default function FaqSection() {
             return (
               <div
                 key={faq.question}
-                className={`group rounded-2xl bg-white border transition-all duration-300 overflow-hidden ${
+                className={`group rounded-2xl bg-white dark:bg-[#0E0F14] border transition-all duration-300 overflow-hidden ${
                   isOpen
-                    ? 'border-[#C99B3C]/60 shadow-[0_10px_30px_rgba(201,155,60,0.12)]'
-                    : 'border-black/[0.08] hover:border-[#C99B3C]/40 shadow-sm'
+                    ? 'border-[#C99B3C]/60 dark:border-[#C99B3C]/70 shadow-[0_10px_30px_rgba(201,155,60,0.12)] dark:shadow-[0_10px_30px_rgba(201,155,60,0.2)]'
+                    : 'border-black/[0.08] dark:border-white/10 hover:border-[#C99B3C]/40 shadow-sm'
                 }`}
               >
                 <button
@@ -93,7 +93,9 @@ export default function FaqSection() {
                 >
                   <span
                     className={`text-base sm:text-lg md:text-xl font-bold transition-colors ${
-                      isOpen ? 'text-[#8C5B0D]' : 'text-[#0C0D12] group-hover:text-[#8C5B0D]'
+                      isOpen
+                        ? 'text-[#8C5B0D] dark:text-[#E2C268]'
+                        : 'text-[#0C0D12] dark:text-white group-hover:text-[#8C5B0D] dark:group-hover:text-[#E2C268]'
                     }`}
                   >
                     {faq.question}
@@ -103,7 +105,7 @@ export default function FaqSection() {
                     className={`w-8 h-8 sm:w-9 sm:h-9 rounded-full flex items-center justify-center shrink-0 border transition-all duration-300 ${
                       isOpen
                         ? 'bg-gradient-to-r from-[#F4DE84] via-[#C99B3C] to-[#A97622] text-black border-[#F4DE84] shadow-[0_0_15px_rgba(201,155,60,0.5)]'
-                        : 'bg-black/5 text-[#8C5B0D] border-black/10 group-hover:bg-[#C99B3C] group-hover:text-black'
+                        : 'bg-black/5 dark:bg-white/10 text-[#8C5B0D] dark:text-[#E2C268] border-black/10 dark:border-white/15 group-hover:bg-[#C99B3C] group-hover:text-black'
                     }`}
                   >
                     {isOpen ? (
@@ -121,7 +123,7 @@ export default function FaqSection() {
                   }`}
                 >
                   <div className="overflow-hidden px-6 sm:px-8">
-                    <p className="text-sm sm:text-base text-[#50515C] font-normal leading-relaxed border-t border-black/[0.06] pt-4">
+                    <p className="text-sm sm:text-base text-[#50515C] dark:text-zinc-400 font-normal leading-relaxed border-t border-black/[0.06] dark:border-white/10 pt-4 transition-colors duration-300">
                       {faq.answer}
                     </p>
                   </div>

@@ -70,7 +70,7 @@ export default function App() {
   return (
     <div
       className={`relative min-h-screen font-sans overflow-x-hidden transition-colors duration-500 ${
-        theme === 'dark' ? 'bg-[#050505] text-white' : 'theme-light bg-white text-[#0C0D12]'
+        theme === 'dark' ? 'dark bg-[#070709] text-white' : 'theme-light bg-white text-[#0C0D12]'
       }`}
     >
       {/* Global Background Ambient Upward Gold Light Animation */}

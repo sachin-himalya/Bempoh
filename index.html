@@ -1,10 +1,25 @@
 <!doctype html>
-<html lang="en" class="dark scroll-smooth">
+<html lang="en" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/logo.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
+    <script>
+      (function() {
+        try {
+          const theme = localStorage.getItem('bempoh-theme');
+          if (theme === 'dark') {
+            document.documentElement.classList.add('dark');
+            document.documentElement.classList.remove('theme-light');
+          } else {
+            document.documentElement.classList.remove('dark');
+            document.documentElement.classList.add('theme-light');
+          }
+        } catch (e) {}
+      })();
+    </script>
+
     <!-- Primary Meta Tags -->
     <title>Bempoh Inc — From Future to Now</title>
     <meta name="title" content="Bempoh Inc — From Future to Now" />
@@ -31,7 +46,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   </head>
-  <body class="bg-[#050505] text-white selection:bg-[#C99B3C] selection:text-black antialiased overflow-x-hidden">
+  <body class="bg-white text-[#0C0D12] dark:bg-[#070709] dark:text-white selection:bg-[#C99B3C] selection:text-black antialiased overflow-x-hidden transition-colors duration-300">
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>

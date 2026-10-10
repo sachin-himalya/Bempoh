@@ -21,7 +21,7 @@ export default function HeroSection({ onExploreClick, onDiscoverClick }) {
   return (
     <section
       id="hero"
-      className="relative min-h-screen w-full flex flex-col justify-between items-center overflow-hidden bg-white pt-16 sm:pt-20 pb-8 px-6"
+      className="relative min-h-screen w-full flex flex-col justify-between items-center overflow-hidden bg-white dark:bg-[#070709] pt-16 sm:pt-20 pb-8 px-6 transition-colors duration-300"
     >
       {/* Golden Upward Light Particles */}
       <GoldParticlesCanvas count={65} interactive={true} />
@@ -41,7 +41,7 @@ export default function HeroSection({ onExploreClick, onDiscoverClick }) {
         {/* Animated Cinematic Headline */}
         <div className="min-h-[140px] sm:min-h-[180px] md:min-h-[220px] flex flex-col items-center justify-center relative">
           <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold tracking-tight leading-[1.05] transition-all duration-1000 uppercase font-sans">
-            <span className="block text-[#0C0D12]">
+            <span className="block text-[#0C0D12] dark:text-white transition-colors duration-300">
               {headlines[headlineIndex].primary}
             </span>
             <span className="block text-gold-gradient mt-1">
@@ -51,7 +51,7 @@ export default function HeroSection({ onExploreClick, onDiscoverClick }) {
         </div>
 
         {/* Supporting Copy */}
-        <p className="mt-6 max-w-2xl text-base sm:text-lg md:text-xl text-[#50515C] font-normal leading-relaxed tracking-wide px-4">
+        <p className="mt-6 max-w-2xl text-base sm:text-lg md:text-xl text-[#50515C] dark:text-zinc-400 font-normal leading-relaxed tracking-wide px-4 transition-colors duration-300">
           Building companies, experiences and ideas across technology, gaming, music, publishing and the industries of tomorrow.
         </p>
 
@@ -69,7 +69,7 @@ export default function HeroSection({ onExploreClick, onDiscoverClick }) {
           <button
             type="button"
             onClick={onDiscoverClick}
-            className="w-full sm:w-auto px-8 py-4 rounded-full text-xs sm:text-sm uppercase tracking-[0.2em] font-bold text-[#0C0D12] bg-black/[0.04] hover:bg-black/[0.08] border border-black/15 hover:border-[#C99B3C] backdrop-blur-lg transition-all duration-300 transform hover:-translate-y-1 flex items-center justify-center gap-2 cursor-pointer"
+            className="w-full sm:w-auto px-8 py-4 rounded-full text-xs sm:text-sm uppercase tracking-[0.2em] font-bold text-[#0C0D12] dark:text-white bg-black/[0.04] hover:bg-black/[0.08] dark:bg-white/[0.06] dark:hover:bg-white/[0.12] border border-black/15 dark:border-white/20 hover:border-[#C99B3C] dark:hover:border-[#C99B3C] backdrop-blur-lg transition-all duration-300 transform hover:-translate-y-1 flex items-center justify-center gap-2 cursor-pointer"
           >
             <span>Discover Bempoh</span>
           </button>
@@ -78,9 +78,9 @@ export default function HeroSection({ onExploreClick, onDiscoverClick }) {
 
       {/* Subtle Scroll Indicator */}
       <div className="relative z-10 flex flex-col items-center gap-2 pt-4 pb-2 cursor-pointer opacity-75 hover:opacity-100 transition-opacity">
-        <a href="#manifesto" className="flex flex-col items-center gap-2 text-[10px] uppercase tracking-[0.3em] text-[#50515C] font-semibold">
+        <a href="#manifesto" className="flex flex-col items-center gap-2 text-[10px] uppercase tracking-[0.3em] text-[#50515C] dark:text-zinc-400 font-semibold transition-colors duration-300">
           <span>SCROLL</span>
-          <ChevronDown className="w-4 h-4 text-[#8C5B0D] animate-bounce" />
+          <ChevronDown className="w-4 h-4 text-[#8C5B0D] dark:text-[#E2C268] animate-bounce" />
         </a>
       </div>
     </section>

@@ -24,12 +24,12 @@ export default function Modals({
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/60 backdrop-blur-md transition-all duration-300 animate-fadeIn">
       {/* Modal Surface */}
-      <div className="relative w-full max-w-2xl bg-white border border-black/10 rounded-3xl p-6 sm:p-10 shadow-[0_20px_60px_rgba(0,0,0,0.2)] text-[#0C0D12] overflow-hidden max-h-[90vh] overflow-y-auto">
+      <div className="relative w-full max-w-2xl bg-white dark:bg-[#0E0F14] border border-black/10 dark:border-white/10 rounded-3xl p-6 sm:p-10 shadow-[0_20px_60px_rgba(0,0,0,0.2)] dark:shadow-[0_20px_60px_rgba(0,0,0,0.8)] text-[#0C0D12] dark:text-white overflow-hidden max-h-[90vh] overflow-y-auto transition-colors duration-300">
         {/* Close Button */}
         <button
           type="button"
           onClick={onClose}
-          className="absolute top-6 right-6 p-2.5 rounded-full bg-black/5 border border-black/10 hover:bg-black/10 text-[#0C0D12] transition-colors cursor-pointer"
+          className="absolute top-6 right-6 p-2.5 rounded-full bg-black/5 dark:bg-white/10 border border-black/10 dark:border-white/15 hover:bg-black/10 dark:hover:bg-white/20 text-[#0C0D12] dark:text-white transition-colors cursor-pointer"
           aria-label="Close modal"
         >
           <X className="w-5 h-5" />
@@ -39,7 +39,7 @@ export default function Modals({
         {activeModal === 'venture' && modalData && (
           <div>
             <div className="flex items-center gap-3 mb-4">
-              <span className="text-xs uppercase tracking-[0.25em] text-[#8C5B0D] font-bold font-mono">
+              <span className="text-xs uppercase tracking-[0.25em] text-[#8C5B0D] dark:text-[#E2C268] font-bold font-mono">
                 VENTURE {modalData.number}
               </span>
               <span className={`text-[10px] uppercase font-bold px-3 py-0.5 rounded-full border ${modalData.statusColor}`}>
@@ -47,51 +47,51 @@ export default function Modals({
               </span>
             </div>
 
-            <h3 className="text-3xl font-extrabold text-[#0C0D12] tracking-tight uppercase">
+            <h3 className="text-3xl font-extrabold text-[#0C0D12] dark:text-white tracking-tight uppercase transition-colors duration-300">
               {modalData.title}
             </h3>
 
-            <p className="mt-4 text-base text-[#50515C] font-normal leading-relaxed">
+            <p className="mt-4 text-base text-[#50515C] dark:text-zinc-400 font-normal leading-relaxed transition-colors duration-300">
               {modalData.description}
             </p>
 
-            <div className="mt-8 p-6 rounded-2xl bg-[#FAFAFC] border border-black/10 space-y-4">
-              <h4 className="text-xs font-bold uppercase tracking-widest text-[#8C5B0D]">
+            <div className="mt-8 p-6 rounded-2xl bg-[#FAFAFC] dark:bg-[#15161E] border border-black/10 dark:border-white/10 space-y-4 transition-colors duration-300">
+              <h4 className="text-xs font-bold uppercase tracking-widest text-[#8C5B0D] dark:text-[#E2C268]">
                 Ecosystem Integration &amp; Scope
               </h4>
               {modalData.id === 'technologies' && (
-                <p className="text-sm text-[#0C0D12] font-medium leading-relaxed">
+                <p className="text-sm text-[#0C0D12] dark:text-zinc-200 font-medium leading-relaxed">
                   Focuses on building scalable digital platforms, custom mobile applications, and collegiate services including Udlivery.
                 </p>
               )}
               {modalData.id === 'games' && (
-                <p className="text-sm text-[#0C0D12] font-medium leading-relaxed">
+                <p className="text-sm text-[#0C0D12] dark:text-zinc-200 font-medium leading-relaxed">
                   Building the next world of interactive experiences and interactive entertainment. First gaming title planned for release.
                 </p>
               )}
               {modalData.id === 'music' && (
-                <p className="text-sm text-[#0C0D12] font-medium leading-relaxed">
+                <p className="text-sm text-[#0C0D12] dark:text-zinc-200 font-medium leading-relaxed">
                   Audio entertainment arm distributing sound catalogs globally across Spotify, Apple Music, YouTube, and digital platforms.
                 </p>
               )}
               {modalData.id === 'books' && (
-                <p className="text-sm text-[#0C0D12] font-medium leading-relaxed">
+                <p className="text-sm text-[#0C0D12] dark:text-zinc-200 font-medium leading-relaxed">
                   Publishing house bringing literature and thought leadership into published form, including “The Universal Antidote” by E.K. Bempoh.
                 </p>
               )}
               {modalData.id === 'ringtones' && (
-                <p className="text-sm text-[#0C0D12] font-medium leading-relaxed">
+                <p className="text-sm text-[#0C0D12] dark:text-zinc-200 font-medium leading-relaxed">
                   Digital sound assets and distinctive device audio experiences distributed on platforms such as Zedge with platform expansions planned.
                 </p>
               )}
               {modalData.id === 'entertainment' && (
-                <p className="text-sm text-[#0C0D12] font-medium leading-relaxed">
+                <p className="text-sm text-[#0C0D12] dark:text-zinc-200 font-medium leading-relaxed">
                   Immersive media productions, creative arts, and digital content ecosystems designed to connect audiences worldwide across future entertainment formats.
                 </p>
               )}
             </div>
 
-            <div className="mt-8 pt-6 border-t border-black/10 flex items-center justify-between">
+            <div className="mt-8 pt-6 border-t border-black/10 dark:border-white/10 flex items-center justify-between">
               <Logo size="sm" showWordmark={true} />
               <button
                 type="button"
@@ -107,19 +107,19 @@ export default function Modals({
         {/* 2. STORE DOWNLOAD MODAL */}
         {activeModal === 'store' && (
           <div className="text-center py-4">
-            <div className="w-16 h-16 rounded-2xl bg-[#C99B3C]/10 border border-[#C99B3C]/40 mx-auto flex items-center justify-center text-[#8C5B0D] mb-6">
+            <div className="w-16 h-16 rounded-2xl bg-[#C99B3C]/10 dark:bg-[#C99B3C]/20 border border-[#C99B3C]/40 mx-auto flex items-center justify-center text-[#8C5B0D] dark:text-[#E2C268] mb-6">
               <Globe className="w-8 h-8" />
             </div>
 
-            <h3 className="text-3xl font-black text-[#0C0D12] uppercase tracking-tight">
+            <h3 className="text-3xl font-black text-[#0C0D12] dark:text-white uppercase tracking-tight transition-colors duration-300">
               UDLIVERY APP STORE
             </h3>
 
-            <p className="mt-3 text-sm text-[#50515C] font-normal max-w-md mx-auto">
+            <p className="mt-3 text-sm text-[#50515C] dark:text-zinc-400 font-normal max-w-md mx-auto transition-colors duration-300">
               Udlivery is available publicly through mobile app platforms. You are being redirected to the official {modalData?.platform || 'App Store'} listing.
             </p>
 
-            <div className="mt-8 p-4 rounded-xl bg-[#FAFAFC] border border-black/10 text-xs text-[#8C5B0D] font-mono">
+            <div className="mt-8 p-4 rounded-xl bg-[#FAFAFC] dark:bg-[#15161E] border border-black/10 dark:border-white/10 text-xs text-[#8C5B0D] dark:text-[#E2C268] font-mono transition-colors duration-300">
               OFFICIAL STORE DESTINATION: https://udlivery.com/app
             </div>
 
@@ -140,29 +140,29 @@ export default function Modals({
         {/* 3. CONTACT FORM MODAL */}
         {activeModal === 'contact' && (
           <div>
-            <div className="flex items-center gap-2 text-xs font-bold text-[#8C5B0D] uppercase tracking-widest mb-2">
+            <div className="flex items-center gap-2 text-xs font-bold text-[#8C5B0D] dark:text-[#E2C268] uppercase tracking-widest mb-2">
               <Mail className="w-4 h-4" />
               <span>DIRECT INQUIRIES</span>
             </div>
 
-            <h3 className="text-3xl font-extrabold text-[#0C0D12] uppercase tracking-tight">
+            <h3 className="text-3xl font-extrabold text-[#0C0D12] dark:text-white uppercase tracking-tight transition-colors duration-300">
               CONNECT WITH BEMPOH INC
             </h3>
 
-            <p className="text-xs text-[#50515C] mt-1">
+            <p className="text-xs text-[#50515C] dark:text-zinc-400 mt-1 transition-colors duration-300">
               For corporate ventures, strategic partnerships, media inquiries, or institutional collaboration.
             </p>
 
             {formSubmitted ? (
-              <div className="my-10 p-8 rounded-2xl bg-emerald-50 border border-emerald-200 text-center">
-                <CheckCircle2 className="w-12 h-12 text-emerald-600 mx-auto mb-3" />
-                <h4 className="text-lg font-bold text-[#0C0D12] uppercase">Inquiry Transmitted</h4>
-                <p className="text-xs text-[#50515C] mt-1">Thank you. The Bempoh corporate team will evaluate your message.</p>
+              <div className="my-10 p-8 rounded-2xl bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800 text-center">
+                <CheckCircle2 className="w-12 h-12 text-emerald-600 dark:text-emerald-400 mx-auto mb-3" />
+                <h4 className="text-lg font-bold text-[#0C0D12] dark:text-white uppercase">Inquiry Transmitted</h4>
+                <p className="text-xs text-[#50515C] dark:text-zinc-400 mt-1">Thank you. The Bempoh corporate team will evaluate your message.</p>
               </div>
             ) : (
               <form onSubmit={handleFormSubmit} className="mt-6 space-y-4">
                 <div>
-                  <label className="block text-[10px] uppercase tracking-widest text-[#50515C] font-bold mb-1">
+                  <label className="block text-[10px] uppercase tracking-widest text-[#50515C] dark:text-zinc-400 font-bold mb-1">
                     Your Name
                   </label>
                   <input
@@ -171,12 +171,12 @@ export default function Modals({
                     value={contactData.name}
                     onChange={(e) => setContactData({ ...contactData, name: e.target.value })}
                     placeholder="E.g. Alexander Vance"
-                    className="w-full px-4 py-3 rounded-xl bg-[#FAFAFC] border border-black/15 text-[#0C0D12] focus:outline-none focus:border-[#C99B3C] text-sm"
+                    className="w-full px-4 py-3 rounded-xl bg-[#FAFAFC] dark:bg-[#15161E] border border-black/15 dark:border-white/15 text-[#0C0D12] dark:text-white placeholder:text-[#50515C]/60 dark:placeholder:text-zinc-500 focus:outline-none focus:border-[#C99B3C] text-sm transition-colors duration-300"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-[10px] uppercase tracking-widest text-[#50515C] font-bold mb-1">
+                  <label className="block text-[10px] uppercase tracking-widest text-[#50515C] dark:text-zinc-400 font-bold mb-1">
                     Email Address
                   </label>
                   <input
@@ -185,12 +185,12 @@ export default function Modals({
                     value={contactData.email}
                     onChange={(e) => setContactData({ ...contactData, email: e.target.value })}
                     placeholder="alexander@organization.com"
-                    className="w-full px-4 py-3 rounded-xl bg-[#FAFAFC] border border-black/15 text-[#0C0D12] focus:outline-none focus:border-[#C99B3C] text-sm"
+                    className="w-full px-4 py-3 rounded-xl bg-[#FAFAFC] dark:bg-[#15161E] border border-black/15 dark:border-white/15 text-[#0C0D12] dark:text-white placeholder:text-[#50515C]/60 dark:placeholder:text-zinc-500 focus:outline-none focus:border-[#C99B3C] text-sm transition-colors duration-300"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-[10px] uppercase tracking-widest text-[#50515C] font-bold mb-1">
+                  <label className="block text-[10px] uppercase tracking-widest text-[#50515C] dark:text-zinc-400 font-bold mb-1">
                     Message
                   </label>
                   <textarea
@@ -199,7 +199,7 @@ export default function Modals({
                     value={contactData.message}
                     onChange={(e) => setContactData({ ...contactData, message: e.target.value })}
                     placeholder="Detail your inquiry or proposal..."
-                    className="w-full px-4 py-3 rounded-xl bg-[#FAFAFC] border border-black/15 text-[#0C0D12] focus:outline-none focus:border-[#C99B3C] text-sm"
+                    className="w-full px-4 py-3 rounded-xl bg-[#FAFAFC] dark:bg-[#15161E] border border-black/15 dark:border-white/15 text-[#0C0D12] dark:text-white placeholder:text-[#50515C]/60 dark:placeholder:text-zinc-500 focus:outline-none focus:border-[#C99B3C] text-sm transition-colors duration-300"
                   />
                 </div>
 
@@ -218,16 +218,16 @@ export default function Modals({
         {/* 4. LEGAL DOCUMENTS MODAL */}
         {activeModal === 'legal' && (
           <div>
-            <div className="flex items-center gap-2 text-xs font-bold text-[#8C5B0D] uppercase tracking-widest mb-2">
+            <div className="flex items-center gap-2 text-xs font-bold text-[#8C5B0D] dark:text-[#E2C268] uppercase tracking-widest mb-2">
               <ShieldCheck className="w-4 h-4" />
               <span>LEGAL DISCLOSURES</span>
             </div>
 
-            <h3 className="text-3xl font-extrabold text-[#0C0D12] uppercase tracking-tight">
+            <h3 className="text-3xl font-extrabold text-[#0C0D12] dark:text-white uppercase tracking-tight transition-colors duration-300">
               {modalData?.title || 'Legal Terms'}
             </h3>
 
-            <div className="mt-6 p-6 rounded-2xl bg-[#FAFAFC] border border-black/10 text-xs text-[#50515C] space-y-4 leading-relaxed max-h-[50vh] overflow-y-auto">
+            <div className="mt-6 p-6 rounded-2xl bg-[#FAFAFC] dark:bg-[#15161E] border border-black/10 dark:border-white/10 text-xs text-[#50515C] dark:text-zinc-300 space-y-4 leading-relaxed max-h-[50vh] overflow-y-auto transition-colors duration-300">
               <p>
                 <strong>1. Overview:</strong> Bempoh Inc operates as a multi-industry holding company managing subsidiaries across technology, gaming, music, publishing, and digital media.
               </p>
@@ -243,7 +243,7 @@ export default function Modals({
               <button
                 type="button"
                 onClick={onClose}
-                className="px-6 py-2.5 rounded-full bg-black/10 text-[#0C0D12] font-bold text-xs uppercase tracking-widest hover:bg-black/20 transition-colors cursor-pointer"
+                className="px-6 py-2.5 rounded-full bg-black/10 dark:bg-white/10 text-[#0C0D12] dark:text-white font-bold text-xs uppercase tracking-widest hover:bg-black/20 dark:hover:bg-white/20 transition-colors cursor-pointer"
               >
                 Acknowledge &amp; Close
               </button>

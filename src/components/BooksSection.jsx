@@ -4,7 +4,7 @@ import { BookOpen, ArrowUpRight, Sparkles } from 'lucide-react';
 
 export default function BooksSection({ onExploreBooks }) {
   return (
-    <section id="books" className="relative w-full bg-white py-28 sm:py-36 px-6 border-t border-black/[0.08] overflow-hidden">
+    <section id="books" className="relative w-full bg-white dark:bg-[#070709] py-28 sm:py-36 px-6 border-t border-black/[0.08] dark:border-white/10 overflow-hidden transition-colors duration-300">
       {/* Background Glow */}
       <div className="absolute top-1/3 right-1/4 w-[500px] h-[500px] bg-[#C99B3C]/10 blur-[140px] rounded-full pointer-events-none" />
 
@@ -57,35 +57,35 @@ export default function BooksSection({ onExploreBooks }) {
           {/* Right Column: Editorial Copy */}
           <div className="lg:col-span-7 order-1 lg:order-2">
             <div className="flex items-center gap-2 mb-6">
-              <BookOpen className="w-4 h-4 text-[#8C5B0D]" />
-              <span className="text-xs uppercase tracking-[0.35em] text-[#8C5B0D] font-bold">
+              <BookOpen className="w-4 h-4 text-[#8C5B0D] dark:text-[#E2C268]" />
+              <span className="text-xs uppercase tracking-[0.35em] text-[#8C5B0D] dark:text-[#E2C268] font-bold">
                 BEMPOH BOOKS
               </span>
             </div>
 
-            <h2 className="text-4xl sm:text-6xl md:text-7xl font-extrabold text-[#0C0D12] tracking-tight leading-none uppercase">
+            <h2 className="text-4xl sm:text-6xl md:text-7xl font-extrabold text-[#0C0D12] dark:text-white tracking-tight leading-none uppercase transition-colors duration-300">
               IDEAS MADE <br />
               <span className="text-gold-gradient font-serif-display italic font-normal text-5xl sm:text-7xl md:text-8xl">
                 PERMANENT.
               </span>
             </h2>
 
-            <p className="mt-8 text-base sm:text-lg text-[#50515C] font-normal leading-relaxed">
+            <p className="mt-8 text-base sm:text-lg text-[#50515C] dark:text-zinc-400 font-normal leading-relaxed transition-colors duration-300">
               Bempoh Books is the publishing and ideas division of the Bempoh ecosystem, bringing original perspectives, analytical works, and literature into published form.
             </p>
 
             {/* Featured Book Details Card */}
-            <div className="mt-8 p-6 rounded-2xl bg-[#FAFAFC] border border-black/10 shadow-sm">
-              <div className="text-xs font-bold text-[#8C5B0D] uppercase tracking-widest mb-1">
+            <div className="mt-8 p-6 rounded-2xl bg-[#FAFAFC] dark:bg-[#0E0F14] border border-black/10 dark:border-white/10 shadow-sm transition-colors duration-300">
+              <div className="text-xs font-bold text-[#8C5B0D] dark:text-[#E2C268] uppercase tracking-widest mb-1">
                 FEATURED PUBLICATION
               </div>
-              <div className="text-xl font-extrabold text-[#0C0D12] uppercase">
+              <div className="text-xl font-extrabold text-[#0C0D12] dark:text-white uppercase transition-colors duration-300">
                 THE UNIVERSAL ANTIDOTE
               </div>
-              <div className="text-xs text-[#8C5B0D] font-semibold mt-0.5">
+              <div className="text-xs text-[#8C5B0D] dark:text-[#E2C268] font-semibold mt-0.5">
                 AUTHOR: E.K. BEMPOH
               </div>
-              <p className="text-sm text-[#50515C] font-normal mt-3 leading-relaxed">
+              <p className="text-sm text-[#50515C] dark:text-zinc-400 font-normal mt-3 leading-relaxed transition-colors duration-300">
                 A published work exploring complex human choices, systemic problems, and philosophical approaches to resolution. Distributed globally through online book platforms.
               </p>
             </div>

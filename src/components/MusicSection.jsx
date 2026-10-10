@@ -61,7 +61,7 @@ export default function MusicSection({ onPlatformClick }) {
   }, [isPlaying]);
 
   return (
-    <section id="music" className="relative w-full bg-white py-28 sm:py-36 px-6 border-t border-black/[0.08] overflow-hidden">
+    <section id="music" className="relative w-full bg-white dark:bg-[#070709] py-28 sm:py-36 px-6 border-t border-black/[0.08] dark:border-white/10 overflow-hidden transition-colors duration-300">
       {/* Ambient Audio Aura Glow */}
       <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[600px] h-[600px] bg-[#C99B3C]/10 blur-[140px] rounded-full pointer-events-none" />
 
@@ -70,53 +70,53 @@ export default function MusicSection({ onPlatformClick }) {
           {/* Left Column: Music Copy & Platform CTAs */}
           <div className="lg:col-span-6">
             <div className="flex items-center gap-2 mb-6">
-              <Radio className="w-4 h-4 text-[#8C5B0D]" />
-              <span className="text-xs uppercase tracking-[0.35em] text-[#8C5B0D] font-bold">
+              <Radio className="w-4 h-4 text-[#8C5B0D] dark:text-[#E2C268]" />
+              <span className="text-xs uppercase tracking-[0.35em] text-[#8C5B0D] dark:text-[#E2C268] font-bold">
                 BEMPOH MUSIC
               </span>
             </div>
 
-            <h2 className="text-4xl sm:text-6xl md:text-7xl font-extrabold text-[#0C0D12] tracking-tight leading-none uppercase">
+            <h2 className="text-4xl sm:text-6xl md:text-7xl font-extrabold text-[#0C0D12] dark:text-white tracking-tight leading-none uppercase transition-colors duration-300">
               IDEAS YOU <br />
               <span className="text-gold-gradient font-serif-display italic font-normal text-5xl sm:text-7xl md:text-8xl">
                 CAN HEAR.
               </span>
             </h2>
 
-            <p className="mt-8 text-base sm:text-lg text-[#50515C] font-normal leading-relaxed">
+            <p className="mt-8 text-base sm:text-lg text-[#50515C] dark:text-zinc-400 font-normal leading-relaxed transition-colors duration-300">
               Presenting the audio and musical expressions within the Bempoh ecosystem. Works associated with E.K. Bempoh are distributed globally across major streaming networks.
             </p>
 
             {/* Platform Badges */}
-            <div className="mt-10 pt-8 border-t border-black/[0.08] flex flex-wrap gap-4">
+            <div className="mt-10 pt-8 border-t border-black/[0.08] dark:border-white/10 flex flex-wrap gap-4">
               <button
                 type="button"
                 onClick={() => onPlatformClick('Spotify')}
-                className="px-6 py-3.5 rounded-full bg-black/5 border border-black/10 hover:border-[#C99B3C] hover:bg-[#C99B3C]/10 text-[#0C0D12] font-bold text-xs uppercase tracking-widest transition-all duration-300 flex items-center gap-3 group cursor-pointer"
+                className="px-6 py-3.5 rounded-full bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/15 hover:border-[#C99B3C] dark:hover:border-[#C99B3C] hover:bg-[#C99B3C]/10 dark:hover:bg-[#C99B3C]/15 text-[#0C0D12] dark:text-zinc-100 font-bold text-xs uppercase tracking-widest transition-all duration-300 flex items-center gap-3 group cursor-pointer"
               >
-                <Disc className="w-4 h-4 text-[#8C5B0D] group-hover:rotate-180 transition-transform duration-700" />
+                <Disc className="w-4 h-4 text-[#8C5B0D] dark:text-[#E2C268] group-hover:rotate-180 transition-transform duration-700" />
                 <span>Listen on Spotify</span>
-                <ExternalLink className="w-3.5 h-3.5 text-[#50515C]" />
+                <ExternalLink className="w-3.5 h-3.5 text-[#50515C] dark:text-zinc-400" />
               </button>
 
               <button
                 type="button"
                 onClick={() => onPlatformClick('Apple Music')}
-                className="px-6 py-3.5 rounded-full bg-black/5 border border-black/10 hover:border-[#C99B3C] hover:bg-[#C99B3C]/10 text-[#0C0D12] font-bold text-xs uppercase tracking-widest transition-all duration-300 flex items-center gap-3 group cursor-pointer"
+                className="px-6 py-3.5 rounded-full bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/15 hover:border-[#C99B3C] dark:hover:border-[#C99B3C] hover:bg-[#C99B3C]/10 dark:hover:bg-[#C99B3C]/15 text-[#0C0D12] dark:text-zinc-100 font-bold text-xs uppercase tracking-widest transition-all duration-300 flex items-center gap-3 group cursor-pointer"
               >
-                <Music className="w-4 h-4 text-[#8C5B0D]" />
+                <Music className="w-4 h-4 text-[#8C5B0D] dark:text-[#E2C268]" />
                 <span>Apple Music</span>
-                <ExternalLink className="w-3.5 h-3.5 text-[#50515C]" />
+                <ExternalLink className="w-3.5 h-3.5 text-[#50515C] dark:text-zinc-400" />
               </button>
 
               <button
                 type="button"
                 onClick={() => onPlatformClick('YouTube')}
-                className="px-6 py-3.5 rounded-full bg-black/5 border border-black/10 hover:border-[#C99B3C] hover:bg-[#C99B3C]/10 text-[#0C0D12] font-bold text-xs uppercase tracking-widest transition-all duration-300 flex items-center gap-3 group cursor-pointer"
+                className="px-6 py-3.5 rounded-full bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/15 hover:border-[#C99B3C] dark:hover:border-[#C99B3C] hover:bg-[#C99B3C]/10 dark:hover:bg-[#C99B3C]/15 text-[#0C0D12] dark:text-zinc-100 font-bold text-xs uppercase tracking-widest transition-all duration-300 flex items-center gap-3 group cursor-pointer"
               >
-                <Radio className="w-4 h-4 text-[#8C5B0D]" />
+                <Radio className="w-4 h-4 text-[#8C5B0D] dark:text-[#E2C268]" />
                 <span>YouTube</span>
-                <ExternalLink className="w-3.5 h-3.5 text-[#50515C]" />
+                <ExternalLink className="w-3.5 h-3.5 text-[#50515C] dark:text-zinc-400" />
               </button>
             </div>
           </div>

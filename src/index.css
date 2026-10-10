@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
 
 @layer base {
   :root {
@@ -14,18 +15,41 @@
     --gold-border: rgba(169, 118, 34, 0.35);
   }
 
+  .dark {
+    --bg-primary: #070709;
+    --bg-secondary: #0E0F14;
+    --gold-1: #E2C268;
+    --gold-2: #C99B3C;
+    --gold-3: #D4A338;
+    --gold-4: #F4DE84;
+    --text-primary: #FFFFFF;
+    --text-secondary: #A1A1AA;
+    --border-subtle: rgba(255, 255, 255, 0.1);
+    --gold-border: rgba(201, 155, 60, 0.45);
+  }
+
   body {
     background-color: var(--bg-primary);
     color: var(--text-primary);
     font-family: 'Manrope', 'Inter', sans-serif;
     overflow-x: hidden;
-    transition: background-color 0.5s ease, color 0.5s ease;
+    transition: background-color 0.4s ease, color 0.4s ease;
   }
 
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Manrope', sans-serif;
     letter-spacing: -0.02em;
     color: #0C0D12;
+    transition: color 0.4s ease;
+  }
+
+  .dark h1,
+  .dark h2,
+  .dark h3,
+  .dark h4,
+  .dark h5,
+  .dark h6 {
+    color: #FFFFFF;
   }
 
   .font-serif-display {
@@ -40,8 +64,20 @@
   -webkit-text-fill-color: transparent;
 }
 
+.dark .text-gold-gradient {
+  background: linear-gradient(135deg, #F4DE84 0%, #E2C268 35%, #C99B3C 70%, #A97622 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 .text-gold-bright {
   background: linear-gradient(180deg, #C99B3C 0%, #A97622 50%, #8C5B0D 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.dark .text-gold-bright {
+  background: linear-gradient(180deg, #FFF0B3 0%, #F4DE84 50%, #C99B3C 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -157,6 +193,9 @@
 }
 ::-webkit-scrollbar-track {
   background: #FFFFFF;
+}
+.dark ::-webkit-scrollbar-track {
+  background: #070709;
 }
 ::-webkit-scrollbar-thumb {
   background: #C99B3C;
