@@ -305,6 +305,81 @@
   text-align: center;
 }
 
+/* Manifesto / Philosophy Section Typewriter Layout */
+.manifesto-typewriter-grid {
+  display: inline-grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  vertical-align: baseline;
+  text-align: left;
+}
+
+.manifesto-typewriter-ghost {
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
+  visibility: hidden;
+  user-select: none;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.manifesto-typewriter-active {
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
+  text-align: left;
+  white-space: nowrap;
+}
+
+/* Vision Section Typewriter Layout */
+.vision-typewriter-grid {
+  display: inline-grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  vertical-align: baseline;
+  text-align: left;
+}
+
+.vision-typewriter-ghost {
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
+  visibility: hidden;
+  user-select: none;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.vision-typewriter-active {
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
+  text-align: left;
+  white-space: nowrap;
+}
+
+/* Ecosystem Section Typewriter Layout */
+.ecosystem-typewriter-grid {
+  display: inline-grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  vertical-align: baseline;
+  text-align: left;
+}
+
+.ecosystem-typewriter-ghost {
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
+  visibility: hidden;
+  user-select: none;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.ecosystem-typewriter-active {
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
+  text-align: left;
+  white-space: nowrap;
+}
+
 /* Typed.js Cursor Styling for FAQ Heading */
 .typed-cursor {
   font-style: normal !important;

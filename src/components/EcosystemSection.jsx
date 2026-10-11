@@ -1,5 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ArrowUpRight, Cpu, Gamepad2, Music, BookOpen, Bell, Clapperboard } from 'lucide-react';
+
+const PART_1 = 'ONE VISION.';
+const PART_2 = 'MULTIPLE WORLDS.';
 
 export default function EcosystemSection({ onSelectVenture }) {
   const ventures = [
@@ -67,6 +70,99 @@ export default function EcosystemSection({ onSelectVenture }) {
 
   const [mousePos, setMousePos] = useState({ x: 0, y: 0, activeCard: null });
 
+  const [reducedMotion, setReducedMotion] = useState(() => {
+    if (typeof window !== 'undefined' && window.matchMedia) {
+      return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    }
+    return false;
+  });
+
+  const [part1Text, setPart1Text] = useState(() => (reducedMotion ? PART_1 : ''));
+  const [part2Text, setPart2Text] = useState(() => (reducedMotion ? PART_2 : ''));
+  const [cursorPart, setCursorPart] = useState(() => (reducedMotion ? null : 1));
+
+  useEffect(() => {
+    if (reducedMotion) return;
+
+    const mediaQuery = window.matchMedia?.('(prefers-reduced-motion: reduce)');
+    const handleMotionChange = (e) => {
+      setReducedMotion(e.matches);
+    };
+    mediaQuery?.addEventListener?.('change', handleMotionChange);
+
+    let isCancelled = false;
+    let timerId = null;
+
+    const delay = (ms) =>
+      new Promise((resolve) => {
+        timerId = setTimeout(resolve, ms);
+      });
+
+    const runAnimation = async () => {
+      while (!isCancelled) {
+        // Reset state at start of cycle
+        setCursorPart(1);
+        setPart1Text('');
+        setPart2Text('');
+        await delay(200);
+        if (isCancelled) return;
+
+        // Sequence 1: Type "ONE VISION." character by character (100ms)
+        setCursorPart(1);
+        for (let i = 1; i <= PART_1.length; i++) {
+          if (isCancelled) return;
+          setPart1Text(PART_1.slice(0, i));
+          await delay(100);
+        }
+        if (isCancelled) return;
+
+        // Sequence 2: Immediately after, type "MULTIPLE WORLDS." character by character (100ms)
+        setCursorPart(2);
+        for (let i = 1; i <= PART_2.length; i++) {
+          if (isCancelled) return;
+          setPart2Text(PART_2.slice(0, i));
+          await delay(100);
+        }
+        if (isCancelled) return;
+
+        // Sequence 3: Keep complete heading visible for 2 seconds (2000ms)
+        await delay(2000);
+        if (isCancelled) return;
+
+        // Sequence 4: Delete "MULTIPLE WORLDS." character by character (60ms)
+        setCursorPart(2);
+        for (let i = PART_2.length - 1; i >= 0; i--) {
+          if (isCancelled) return;
+          setPart2Text(PART_2.slice(0, i));
+          await delay(60);
+        }
+        if (isCancelled) return;
+
+        // Sequence 5: Then delete "ONE VISION." character by character (60ms)
+        setCursorPart(1);
+        await delay(60);
+        if (isCancelled) return;
+        for (let i = PART_1.length - 1; i >= 0; i--) {
+          if (isCancelled) return;
+          setPart1Text(PART_1.slice(0, i));
+          await delay(60);
+        }
+        if (isCancelled) return;
+
+        // Sequence 6: Brief pause before restarting loop
+        await delay(300);
+      }
+    };
+
+    runAnimation();
+
+    return () => {
+      isCancelled = true;
+      if (timerId) clearTimeout(timerId);
+      mediaQuery?.removeEventListener?.('change', handleMotionChange);
+    };
+  }, [reducedMotion]);
+
   const handleMouseMove = (e, cardId) => {
     const rect = e.currentTarget.getBoundingClientRect();
     const x = e.clientX - rect.left;
@@ -86,10 +182,40 @@ export default function EcosystemSection({ onSelectVenture }) {
             <div className="text-xs uppercase tracking-[0.35em] text-[#8C5B0D] dark:text-[#E2C268] font-bold mb-3">
               BEMPOH ECOSYSTEM
             </div>
-            <h2 className="text-4xl sm:text-6xl font-extrabold text-[#0C0D12] dark:text-white tracking-tight leading-none transition-colors duration-300">
-              One Vision.{' '}
-              <span className="text-gold-gradient block sm:inline font-serif-display italic font-normal">
-                Multiple Worlds.
+            <h2
+              className="text-4xl sm:text-6xl font-extrabold text-[#0C0D12] dark:text-white tracking-tight leading-none uppercase transition-colors duration-300"
+              aria-label="ONE VISION. MULTIPLE WORLDS."
+            >
+              {/* Part 1: One Vision. */}
+              <span className="ecosystem-typewriter-grid">
+                <span className="ecosystem-typewriter-ghost" aria-hidden="true">
+                  {PART_1}
+                </span>
+                <span className="ecosystem-typewriter-active" aria-hidden="true">
+                  {reducedMotion ? PART_1 : part1Text}
+                  {!reducedMotion && cursorPart === 1 && (
+                    <span className="typed-cursor" aria-hidden="true">|</span>
+                  )}
+                </span>
+              </span>{' '}
+              {/* Part 2: Multiple Worlds. */}
+              <span className="block sm:inline font-serif-display italic font-normal">
+                <span className="ecosystem-typewriter-grid">
+                  <span
+                    className="ecosystem-typewriter-ghost text-gold-gradient"
+                    aria-hidden="true"
+                  >
+                    {PART_2}
+                  </span>
+                  <span className="ecosystem-typewriter-active" aria-hidden="true">
+                    <span className="text-gold-gradient">
+                      {reducedMotion ? PART_2 : part2Text}
+                    </span>
+                    {!reducedMotion && cursorPart === 2 && (
+                      <span className="typed-cursor" aria-hidden="true">|</span>
+                    )}
+                  </span>
+                </span>
               </span>
             </h2>
           </div>
