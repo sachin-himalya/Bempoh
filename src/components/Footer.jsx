@@ -39,8 +39,8 @@ export default function Footer({ onOpenLegalModal, onOpenContactModal }) {
               </div>
               <ul className="space-y-3 text-xs sm:text-sm text-[#50515C] dark:text-zinc-400 font-medium">
                 <li><a href="#hero" className="hover:text-[#0C0D12] dark:hover:text-white transition-colors">Home</a></li>
-                <li><a href="#vision" className="hover:text-[#0C0D12] dark:hover:text-white transition-colors">Vision</a></li>
                 <li><a href="#ecosystem" className="hover:text-[#0C0D12] dark:hover:text-white transition-colors">Services</a></li>
+                <li><a href="#vision" className="hover:text-[#0C0D12] dark:hover:text-white transition-colors">Vision</a></li>
                 <li>
                   <button type="button" onClick={onOpenContactModal} className="hover:text-[#0C0D12] dark:hover:text-white transition-colors text-left cursor-pointer">
                     Contact
