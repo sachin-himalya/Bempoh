@@ -215,7 +215,7 @@ export default function MusicSection({ onPlatformClick }) {
                 </div>
 
                 <a
-                  href="https://www.zedge.net/profiles/a9e221fe-f556-488a-b47b-2d1c4b071907"
+                  href="https://open.spotify.com/artist/4RYcGrNjODBc5CN4HcvFQF"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="px-6 py-2.5 rounded-full bg-gradient-to-r from-[#F4DE84] to-[#C99B3C] text-black font-extrabold text-xs uppercase tracking-widest hover:shadow-[0_0_25px_rgba(201,155,60,0.5)] transition-all flex items-center gap-2 cursor-pointer"
