@@ -109,21 +109,25 @@ export default function UdliverySection({ onStoreClick }) {
 
             {/* Store Buttons */}
             <div className="mt-4 flex flex-col sm:flex-row items-center gap-3">
-              <button
-                onClick={() => onStoreClick('App Store')}
-                className="w-full sm:w-1/2 py-3.5 px-5 rounded-xl bg-white text-black font-bold text-xs uppercase tracking-widest hover:bg-[#F4DE84] transition-colors flex items-center justify-center gap-2 shadow-lg"
+              <a
+                href="https://apps.apple.com/us/app/udlivery/id6443650358"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full sm:w-1/2 py-3.5 px-5 rounded-xl bg-white text-black font-bold text-xs uppercase tracking-widest hover:bg-[#F4DE84] transition-colors flex items-center justify-center gap-2 shadow-lg cursor-pointer"
               >
                 <Smartphone className="w-4 h-4" />
                 <span>View on App Store</span>
-              </button>
+              </a>
 
-              <button
-                onClick={() => onStoreClick('Google Play')}
-                className="w-full sm:w-1/2 py-3.5 px-5 rounded-xl bg-white/10 text-white font-bold text-xs uppercase tracking-widest hover:bg-white/20 border border-white/20 transition-colors flex items-center justify-center gap-2"
+              <a
+                href="https://play.google.com/store/apps/dev?id=7747807589744614244&hl=en_SG"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full sm:w-1/2 py-3.5 px-5 rounded-xl bg-white/10 text-white font-bold text-xs uppercase tracking-widest hover:bg-white/20 border border-white/20 transition-colors flex items-center justify-center gap-2 cursor-pointer"
               >
                 <Smartphone className="w-4 h-4 text-[#C99B3C]" />
                 <span>Get it on Google Play</span>
-              </button>
+              </a>
             </div>
           </div>
 

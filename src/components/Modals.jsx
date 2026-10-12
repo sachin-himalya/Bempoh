@@ -60,29 +60,118 @@ export default function Modals({
                 Ecosystem Integration &amp; Scope
               </h4>
               {modalData.id === 'technologies' && (
-                <p className="text-sm text-[#0C0D12] dark:text-zinc-200 font-medium leading-relaxed">
-                  Focuses on building scalable digital platforms, custom mobile applications, and collegiate services including Udlivery.
-                </p>
+                <div>
+                  <p className="text-sm text-[#0C0D12] dark:text-zinc-200 font-medium leading-relaxed">
+                    Focuses on building scalable digital platforms, custom mobile applications, and collegiate services including Udlivery.
+                  </p>
+                  <div className="mt-4 flex flex-wrap items-center gap-3">
+                    <a
+                      href="https://apps.apple.com/us/app/udlivery/id6443650358"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="px-5 py-2.5 rounded-full bg-black dark:bg-white text-white dark:text-black font-bold text-xs uppercase tracking-wider flex items-center gap-2 hover:opacity-90 transition-opacity cursor-pointer"
+                    >
+                      <span>Apple App Store</span>
+                      <ArrowUpRight className="w-3.5 h-3.5" />
+                    </a>
+                    <a
+                      href="https://play.google.com/store/apps/dev?id=7747807589744614244&hl=en_SG"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="px-5 py-2.5 rounded-full bg-black/5 dark:bg-white/10 text-[#0C0D12] dark:text-white border border-black/15 dark:border-white/15 font-bold text-xs uppercase tracking-wider flex items-center gap-2 hover:border-[#C99B3C] transition-colors cursor-pointer"
+                    >
+                      <span>Google Play Store</span>
+                      <ArrowUpRight className="w-3.5 h-3.5" />
+                    </a>
+                  </div>
+                </div>
               )}
               {modalData.id === 'games' && (
-                <p className="text-sm text-[#0C0D12] dark:text-zinc-200 font-medium leading-relaxed">
-                  Building the next world of interactive experiences and interactive entertainment. First gaming title planned for release.
-                </p>
+                <div>
+                  <p className="text-sm text-[#0C0D12] dark:text-zinc-200 font-medium leading-relaxed">
+                    Building the next world of interactive experiences and interactive entertainment. First gaming title planned for release.
+                  </p>
+                  <div className="mt-4 flex items-center gap-3">
+                    <span className="px-4 py-2 rounded-full bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 text-xs uppercase tracking-wider text-[#50515C] dark:text-zinc-400 font-semibold flex items-center gap-1.5 cursor-not-allowed">
+                      App Store (Coming Soon)
+                    </span>
+                  </div>
+                </div>
               )}
               {modalData.id === 'music' && (
-                <p className="text-sm text-[#0C0D12] dark:text-zinc-200 font-medium leading-relaxed">
-                  Audio entertainment arm distributing sound catalogs globally across Spotify, Apple Music, YouTube, and digital platforms.
-                </p>
+                <div>
+                  <p className="text-sm text-[#0C0D12] dark:text-zinc-200 font-medium leading-relaxed">
+                    Audio entertainment arm distributing sound catalogs globally across Spotify, Apple Music, YouTube, and digital platforms.
+                  </p>
+                  <div className="mt-4 flex flex-wrap items-center gap-3">
+                    <a
+                      href="https://open.spotify.com/artist/4RYcGrNjODBc5CN4HcvFQF?si=D13hZ-gUSmCn0HkNTySjTg&utm_source=copy-link"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="px-5 py-2.5 rounded-full bg-black/5 dark:bg-white/10 text-[#0C0D12] dark:text-white border border-black/15 dark:border-white/15 font-bold text-xs uppercase tracking-wider flex items-center gap-2 hover:border-[#C99B3C] transition-colors cursor-pointer"
+                    >
+                      <span>Spotify</span>
+                      <ArrowUpRight className="w-3.5 h-3.5" />
+                    </a>
+                    <a
+                      href="https://music.apple.com/us/artist/e-k-bempoh/1591440094"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="px-5 py-2.5 rounded-full bg-black/5 dark:bg-white/10 text-[#0C0D12] dark:text-white border border-black/15 dark:border-white/15 font-bold text-xs uppercase tracking-wider flex items-center gap-2 hover:border-[#C99B3C] transition-colors cursor-pointer"
+                    >
+                      <span>Apple Music</span>
+                      <ArrowUpRight className="w-3.5 h-3.5" />
+                    </a>
+                    <a
+                      href="https://youtube.com/@ekbempoh?si=q4IL2itt_rGP6eNV"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="px-5 py-2.5 rounded-full bg-black/5 dark:bg-white/10 text-[#0C0D12] dark:text-white border border-black/15 dark:border-white/15 font-bold text-xs uppercase tracking-wider flex items-center gap-2 hover:border-[#C99B3C] transition-colors cursor-pointer"
+                    >
+                      <span>YouTube</span>
+                      <ArrowUpRight className="w-3.5 h-3.5" />
+                    </a>
+                  </div>
+                </div>
               )}
               {modalData.id === 'books' && (
-                <p className="text-sm text-[#0C0D12] dark:text-zinc-200 font-medium leading-relaxed">
-                  Publishing house bringing literature and thought leadership into published form, including “The Universal Antidote” by E.K. Bempoh.
-                </p>
+                <div>
+                  <p className="text-sm text-[#0C0D12] dark:text-zinc-200 font-medium leading-relaxed">
+                    Publishing house bringing literature and thought leadership into published form, including “The Universal Antidote” by E.K. Bempoh.
+                  </p>
+                  <div className="mt-4 flex items-center gap-3">
+                    <a
+                      href="https://www.amazon.com/stores/author/B09K6FRZNG"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="px-5 py-2.5 rounded-full bg-gradient-to-r from-[#F4DE84] to-[#C99B3C] text-black font-bold text-xs uppercase tracking-wider flex items-center gap-2 hover:shadow-md transition-all cursor-pointer"
+                    >
+                      <span>Amazon Author Page</span>
+                      <ArrowUpRight className="w-3.5 h-3.5" />
+                    </a>
+                  </div>
+                </div>
               )}
               {modalData.id === 'ringtones' && (
-                <p className="text-sm text-[#0C0D12] dark:text-zinc-200 font-medium leading-relaxed">
-                  Digital sound assets and distinctive device audio experiences distributed on platforms such as Zedge with platform expansions planned.
-                </p>
+                <div>
+                  <p className="text-sm text-[#0C0D12] dark:text-zinc-200 font-medium leading-relaxed">
+                    Digital sound assets and distinctive device audio experiences distributed on platforms such as Zedge with platform expansions planned.
+                  </p>
+                  <div className="mt-4 flex flex-wrap items-center gap-3">
+                    <a
+                      href="https://www.zedge.net/profiles/a9e221fe-f556-488a-b47b-2d1c4b071907"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="px-5 py-2.5 rounded-full bg-gradient-to-r from-[#F4DE84] to-[#C99B3C] text-black font-bold text-xs uppercase tracking-wider flex items-center gap-2 hover:shadow-md transition-all cursor-pointer"
+                    >
+                      <span>Listen on Zedge</span>
+                      <ArrowUpRight className="w-3.5 h-3.5" />
+                    </a>
+                    <span className="px-4 py-2 rounded-full bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 text-xs uppercase tracking-wider text-[#50515C] dark:text-zinc-400 font-semibold flex items-center gap-1.5 cursor-not-allowed">
+                      iTunes (Coming Soon)
+                    </span>
+                  </div>
+                </div>
               )}
               {modalData.id === 'entertainment' && (
                 <p className="text-sm text-[#0C0D12] dark:text-zinc-200 font-medium leading-relaxed">
@@ -112,25 +201,31 @@ export default function Modals({
             </div>
 
             <h3 className="text-3xl font-black text-[#0C0D12] dark:text-white uppercase tracking-tight transition-colors duration-300">
-              UDLIVERY APP STORE
+              UDLIVERY APP DOWNLOAD
             </h3>
 
             <p className="mt-3 text-sm text-[#50515C] dark:text-zinc-400 font-normal max-w-md mx-auto transition-colors duration-300">
-              Udlivery is available publicly through mobile app platforms. You are being redirected to the official {modalData?.platform || 'App Store'} listing.
+              Udlivery is available publicly through mobile app platforms. Download from the official store listings below.
             </p>
 
-            <div className="mt-8 p-4 rounded-xl bg-[#FAFAFC] dark:bg-[#15161E] border border-black/10 dark:border-white/10 text-xs text-[#8C5B0D] dark:text-[#E2C268] font-mono transition-colors duration-300">
-              OFFICIAL STORE DESTINATION: https://udlivery.com/app
-            </div>
-
-            <div className="mt-8 flex gap-4 justify-center">
+            <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
               <a
-                href="https://udlivery.com"
+                href="https://apps.apple.com/us/app/udlivery/id6443650358"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-8 py-3.5 rounded-full bg-gradient-to-r from-[#F4DE84] to-[#C99B3C] text-black font-bold text-xs uppercase tracking-widest hover:shadow-lg transition-all flex items-center gap-2"
+                className="px-8 py-3.5 rounded-full bg-gradient-to-r from-[#F4DE84] to-[#C99B3C] text-black font-bold text-xs uppercase tracking-widest hover:shadow-lg transition-all flex items-center justify-center gap-2"
               >
-                <span>Launch App Download</span>
+                <span>Apple App Store</span>
+                <ArrowUpRight className="w-4 h-4" />
+              </a>
+
+              <a
+                href="https://play.google.com/store/apps/dev?id=7747807589744614244&hl=en_SG"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-8 py-3.5 rounded-full bg-black/5 dark:bg-white/10 border border-black/15 dark:border-white/20 text-[#0C0D12] dark:text-white font-bold text-xs uppercase tracking-widest hover:border-[#C99B3C] transition-all flex items-center justify-center gap-2"
+              >
+                <span>Google Play Store</span>
                 <ArrowUpRight className="w-4 h-4" />
               </a>
             </div>

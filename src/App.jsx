@@ -107,7 +107,7 @@ export default function App() {
       <MusicSection onPlatformClick={(platform) => handleStoreClick(platform)} />
 
       {/* SECTION 08 — Bempoh Books */}
-      <BooksSection onExploreBooks={() => scrollToSection('#books')} />
+      <BooksSection onExploreBooks={() => window.open('https://www.amazon.com/stores/author/B09K6FRZNG', '_blank', 'noopener,noreferrer')} />
 
       {/* SECTION 09 — The Bempoh Principle */}
       <PrincipleSection />

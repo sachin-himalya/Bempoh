@@ -38,7 +38,7 @@ export default function Footer({ onOpenLegalModal, onOpenContactModal }) {
                 COMPANY
               </div>
               <ul className="space-y-3 text-xs sm:text-sm text-[#50515C] dark:text-zinc-400 font-medium">
-                <li><a href="#hero" className="hover:text-[#0C0D12] dark:hover:text-white transition-colors">About</a></li>
+                <li><a href="#hero" className="hover:text-[#0C0D12] dark:hover:text-white transition-colors">Home</a></li>
                 <li><a href="#vision" className="hover:text-[#0C0D12] dark:hover:text-white transition-colors">Vision</a></li>
                 <li><a href="#ecosystem" className="hover:text-[#0C0D12] dark:hover:text-white transition-colors">Services</a></li>
                 <li>
@@ -59,7 +59,7 @@ export default function Footer({ onOpenLegalModal, onOpenContactModal }) {
                 <li><a href="#ecosystem" className="hover:text-[#0C0D12] dark:hover:text-white transition-colors">Games</a></li>
                 <li><a href="#music" className="hover:text-[#0C0D12] dark:hover:text-white transition-colors">Music</a></li>
                 <li><a href="#books" className="hover:text-[#0C0D12] dark:hover:text-white transition-colors">Books</a></li>
-                <li><a href="#ecosystem" className="hover:text-[#0C0D12] dark:hover:text-white transition-colors">Ringtones</a></li>
+                <li><a href="https://www.zedge.net/profiles/a9e221fe-f556-488a-b47b-2d1c4b071907" target="_blank" rel="noopener noreferrer" className="hover:text-[#0C0D12] dark:hover:text-white transition-colors">Ringtones</a></li>
               </ul>
             </div>
 
@@ -83,19 +83,19 @@ export default function Footer({ onOpenLegalModal, onOpenContactModal }) {
               </div>
               <ul className="space-y-3 text-xs sm:text-sm text-[#50515C] dark:text-zinc-400 font-medium">
                 <li>
-                  <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="hover:text-[#0C0D12] dark:hover:text-white transition-colors inline-flex items-center gap-1.5">
+                  <a href="https://youtube.com/@ekbempoh?si=q4IL2itt_rGP6eNV" target="_blank" rel="noopener noreferrer" className="hover:text-[#0C0D12] dark:hover:text-white transition-colors inline-flex items-center gap-1.5">
                     <span>YouTube</span>
                     <ArrowUpRight className="w-3 h-3 text-[#8C5B0D] dark:text-[#E2C268]" />
                   </a>
                 </li>
                 <li>
-                  <a href="https://spotify.com" target="_blank" rel="noopener noreferrer" className="hover:text-[#0C0D12] dark:hover:text-white transition-colors inline-flex items-center gap-1.5">
+                  <a href="https://open.spotify.com/artist/4RYcGrNjODBc5CN4HcvFQF?si=D13hZ-gUSmCn0HkNTySjTg&utm_source=copy-link" target="_blank" rel="noopener noreferrer" className="hover:text-[#0C0D12] dark:hover:text-white transition-colors inline-flex items-center gap-1.5">
                     <span>Spotify</span>
                     <ArrowUpRight className="w-3 h-3 text-[#8C5B0D] dark:text-[#E2C268]" />
                   </a>
                 </li>
                 <li>
-                  <a href="https://apple.com" target="_blank" rel="noopener noreferrer" className="hover:text-[#0C0D12] dark:hover:text-white transition-colors inline-flex items-center gap-1.5">
+                  <a href="https://music.apple.com/us/artist/e-k-bempoh/1591440094" target="_blank" rel="noopener noreferrer" className="hover:text-[#0C0D12] dark:hover:text-white transition-colors inline-flex items-center gap-1.5">
                     <span>Apple Music</span>
                     <ArrowUpRight className="w-3 h-3 text-[#8C5B0D] dark:text-[#E2C268]" />
                   </a>

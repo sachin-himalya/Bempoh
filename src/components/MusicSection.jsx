@@ -151,35 +151,38 @@ export default function MusicSection({ onPlatformClick }) {
 
             {/* Platform Badges */}
             <div className="mt-10 pt-8 border-t border-black/[0.08] dark:border-white/10 flex flex-wrap gap-4">
-              <button
-                type="button"
-                onClick={() => onPlatformClick('Spotify')}
+              <a
+                href="https://open.spotify.com/artist/4RYcGrNjODBc5CN4HcvFQF?si=D13hZ-gUSmCn0HkNTySjTg&utm_source=copy-link"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="px-6 py-3.5 rounded-full bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/15 hover:border-[#C99B3C] dark:hover:border-[#C99B3C] hover:bg-[#C99B3C]/10 dark:hover:bg-[#C99B3C]/15 text-[#0C0D12] dark:text-zinc-100 font-bold text-xs uppercase tracking-widest transition-all duration-300 flex items-center gap-3 group cursor-pointer"
               >
                 <Disc className="w-4 h-4 text-[#8C5B0D] dark:text-[#E2C268] group-hover:rotate-180 transition-transform duration-700" />
                 <span>Listen on Spotify</span>
                 <ExternalLink className="w-3.5 h-3.5 text-[#50515C] dark:text-zinc-400" />
-              </button>
+              </a>
 
-              <button
-                type="button"
-                onClick={() => onPlatformClick('Apple Music')}
+              <a
+                href="https://music.apple.com/us/artist/e-k-bempoh/1591440094"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="px-6 py-3.5 rounded-full bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/15 hover:border-[#C99B3C] dark:hover:border-[#C99B3C] hover:bg-[#C99B3C]/10 dark:hover:bg-[#C99B3C]/15 text-[#0C0D12] dark:text-zinc-100 font-bold text-xs uppercase tracking-widest transition-all duration-300 flex items-center gap-3 group cursor-pointer"
               >
                 <Music className="w-4 h-4 text-[#8C5B0D] dark:text-[#E2C268]" />
                 <span>Apple Music</span>
                 <ExternalLink className="w-3.5 h-3.5 text-[#50515C] dark:text-zinc-400" />
-              </button>
+              </a>
 
-              <button
-                type="button"
-                onClick={() => onPlatformClick('YouTube')}
+              <a
+                href="https://youtube.com/@ekbempoh?si=q4IL2itt_rGP6eNV"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="px-6 py-3.5 rounded-full bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/15 hover:border-[#C99B3C] dark:hover:border-[#C99B3C] hover:bg-[#C99B3C]/10 dark:hover:bg-[#C99B3C]/15 text-[#0C0D12] dark:text-zinc-100 font-bold text-xs uppercase tracking-widest transition-all duration-300 flex items-center gap-3 group cursor-pointer"
               >
                 <Radio className="w-4 h-4 text-[#8C5B0D] dark:text-[#E2C268]" />
                 <span>YouTube</span>
                 <ExternalLink className="w-3.5 h-3.5 text-[#50515C] dark:text-zinc-400" />
-              </button>
+              </a>
             </div>
           </div>
 
@@ -211,23 +214,15 @@ export default function MusicSection({ onPlatformClick }) {
                   Toggle interactive frequency test
                 </div>
 
-                <button
-                  type="button"
-                  onClick={() => setIsPlaying(!isPlaying)}
+                <a
+                  href="https://www.zedge.net/profiles/a9e221fe-f556-488a-b47b-2d1c4b071907"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="px-6 py-2.5 rounded-full bg-gradient-to-r from-[#F4DE84] to-[#C99B3C] text-black font-extrabold text-xs uppercase tracking-widest hover:shadow-[0_0_25px_rgba(201,155,60,0.5)] transition-all flex items-center gap-2 cursor-pointer"
                 >
-                  {isPlaying ? (
-                    <>
-                      <Pause className="w-4 h-4 fill-black" />
-                      <span>Pause Spectrum</span>
-                    </>
-                  ) : (
-                    <>
-                      <Play className="w-4 h-4 fill-black" />
-                      <span>Play Spectrum</span>
-                    </>
-                  )}
-                </button>
+                  <Play className="w-4 h-4 fill-black" />
+                  <span>Play Spectrum</span>
+                </a>
               </div>
             </div>
           </div>

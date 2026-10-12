@@ -53,7 +53,12 @@ export default function BooksSection({ onExploreBooks }) {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           {/* Left Column: Floating 3D Metallic Book Cover Mockup (Intentionally Dark Design Preserved) */}
           <div className="lg:col-span-5 flex justify-center order-2 lg:order-1">
-            <div className="relative group perspective-[1000px] cursor-pointer" onClick={onExploreBooks}>
+            <a
+              href="https://www.amazon.com/stores/author/B09K6FRZNG"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="relative group perspective-[1000px] cursor-pointer block"
+            >
               {/* Book Hardcover Mockup Container */}
               <div className="keep-dark relative w-[280px] sm:w-[320px] aspect-[3/4.5] rounded-r-2xl !bg-[#0B0C10] border-y border-r border-white/20 border-l-4 border-l-[#C99B3C] p-8 shadow-[0_30px_60px_rgba(0,0,0,0.5)] transform group-hover:rotate-y-[-12deg] group-hover:rotate-x-[6deg] group-hover:scale-105 transition-all duration-700 flex flex-col justify-between select-none text-white">
                 {/* Book Spine Texture Lines */}
@@ -92,7 +97,7 @@ export default function BooksSection({ onExploreBooks }) {
                   </span>
                 </div>
               </div>
-            </div>
+            </a>
           </div>
 
           {/* Right Column: Editorial Copy */}
@@ -133,7 +138,7 @@ export default function BooksSection({ onExploreBooks }) {
             </h2>
 
             <p className="mt-8 text-base sm:text-lg text-[#50515C] dark:text-zinc-400 font-normal leading-relaxed transition-colors duration-300">
-              Bempoh Books is the publishing and ideas division of the Bempoh ecosystem, bringing original perspectives, analytical works, and literature into published form.
+              Bempoh Books is the publishing and ideas division of the Bempoh ecosystem, bringing original perspectives, spiritual truths, and literature into published form.
             </p>
 
             {/* Featured Book Details Card */}
@@ -154,14 +159,15 @@ export default function BooksSection({ onExploreBooks }) {
 
             {/* CTA */}
             <div className="mt-10">
-              <button
-                type="button"
-                onClick={onExploreBooks}
-                className="px-8 py-4 rounded-full bg-gradient-to-r from-[#F4DE84] via-[#C99B3C] to-[#A97622] text-black font-extrabold text-xs uppercase tracking-[0.2em] hover:shadow-[0_4px_30px_rgba(201,155,60,0.5)] transition-all flex items-center gap-3 transform hover:-translate-y-1 cursor-pointer"
+              <a
+                href="https://www.amazon.com/stores/author/B09K6FRZNG"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-8 py-4 rounded-full bg-gradient-to-r from-[#F4DE84] via-[#C99B3C] to-[#A97622] text-black font-extrabold text-xs uppercase tracking-[0.2em] hover:shadow-[0_4px_30px_rgba(201,155,60,0.5)] transition-all flex items-center gap-3 transform hover:-translate-y-1 cursor-pointer inline-flex"
               >
                 <span>Explore Books</span>
                 <ArrowUpRight className="w-4 h-4 text-black stroke-[2.5]" />
-              </button>
+              </a>
             </div>
           </div>
         </div>

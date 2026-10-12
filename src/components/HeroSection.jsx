@@ -181,22 +181,24 @@ export default function HeroSection({ onExploreClick, onDiscoverClick }) {
 
         {/* CTAs */}
         <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto px-4">
-          <button
-            type="button"
-            onClick={onExploreClick}
+          <a
+            href="https://open.spotify.com/artist/4RYcGrNjODBc5CN4HcvFQF"
+            target="_blank"
+            rel="noopener noreferrer"
             className="w-full sm:w-auto px-8 py-4 rounded-full text-xs sm:text-sm uppercase tracking-[0.2em] font-extrabold text-black bg-gradient-to-r from-[#F4DE84] via-[#C99B3C] to-[#A97622] hover:shadow-[0_4px_30px_rgba(201,155,60,0.5)] transition-all duration-300 transform hover:-translate-y-1 flex items-center justify-center gap-3 cursor-pointer"
           >
-            <span>Explore Our World</span>
+            <span>EXPLORE OUR MUSICS</span>
             <ArrowRight className="w-4 h-4 text-black stroke-[2.5]" />
-          </button>
+          </a>
 
-          <button
-            type="button"
-            onClick={onDiscoverClick}
-            className="w-full sm:w-auto px-8 py-4 rounded-full text-xs sm:text-sm uppercase tracking-[0.2em] font-bold text-[#0C0D12] dark:text-white bg-black/[0.04] hover:bg-black/[0.08] dark:bg-white/[0.06] dark:hover:bg-white/[0.12] border border-black/15 dark:border-white/20 hover:border-[#C99B3C] dark:hover:border-[#C99B3C] backdrop-blur-lg transition-all duration-300 transform hover:-translate-y-1 flex items-center justify-center gap-2 cursor-pointer"
+          <a
+            href="https://www.amazon.com/stores/author/B09K6FRZNG"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full sm:w-auto px-8 py-4 rounded-full text-xs sm:text-sm uppercase tracking-[0.2em] font-bold text-[#0C0D12] dark:text-white hover:text-black dark:hover:text-black bg-black/[0.04] hover:bg-gradient-to-r hover:from-[#F4DE84] hover:via-[#C99B3C] hover:to-[#A97622] dark:bg-white/[0.06] border border-black/15 dark:border-white/20 hover:border-[#C99B3C] dark:hover:border-[#C99B3C] hover:shadow-[0_4px_30px_rgba(201,155,60,0.5)] backdrop-blur-lg transition-all duration-300 transform hover:-translate-y-1 flex items-center justify-center gap-2 cursor-pointer"
           >
-            <span>Discover Bempoh</span>
-          </button>
+            <span>EXPLORE OUR BOOKS</span>
+          </a>
         </div>
       </div>
 
