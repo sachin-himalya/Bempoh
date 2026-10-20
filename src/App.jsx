@@ -262,11 +262,7 @@ export default function App() {
                       href={selectedVenture.scopeLink}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className={`px-5 py-2.5 rounded-full font-bold text-xs uppercase tracking-wider flex items-center gap-2 cursor-pointer ${
-                        selectedVenture.status === 'ACTIVE'
-                          ? 'bg-black dark:bg-white text-white dark:text-black hover:opacity-90 transition-opacity'
-                          : 'bg-gradient-to-r from-[#F4DE84] to-[#C99B3C] text-black hover:shadow-md transition-all'
-                      }`}
+                      className="px-5 py-2.5 rounded-full bg-[#C99B3C] text-black font-bold text-xs uppercase tracking-wider flex items-center gap-2 hover:bg-[#D4A338] transition-colors cursor-pointer"
                     >
                       <span>{selectedVenture.scopeLinkText}</span>
                       <ArrowUpRight className="w-3.5 h-3.5" />
@@ -276,7 +272,7 @@ export default function App() {
                         href={selectedVenture.scopeLink2}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="px-5 py-2.5 rounded-full bg-black/5 dark:bg-white/10 text-[#0C0D12] dark:text-white border border-black/15 dark:border-white/15 font-bold text-xs uppercase tracking-wider flex items-center gap-2 hover:border-[#C99B3C] transition-colors cursor-pointer"
+                        className="px-5 py-2.5 rounded-full bg-[#C99B3C] text-black font-bold text-xs uppercase tracking-wider flex items-center gap-2 hover:bg-[#D4A338] transition-colors cursor-pointer"
                       >
                         <span>{selectedVenture.scopeLinkText2}</span>
                         <ArrowUpRight className="w-3.5 h-3.5" />
@@ -287,7 +283,7 @@ export default function App() {
                         href={selectedVenture.scopeLink3}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="px-5 py-2.5 rounded-full bg-black/5 dark:bg-white/10 text-[#0C0D12] dark:text-white border border-black/15 dark:border-white/15 font-bold text-xs uppercase tracking-wider flex items-center gap-2 hover:border-[#C99B3C] transition-colors cursor-pointer"
+                        className="px-5 py-2.5 rounded-full bg-[#C99B3C] text-black font-bold text-xs uppercase tracking-wider flex items-center gap-2 hover:bg-[#D4A338] transition-colors cursor-pointer"
                       >
                         <span>{selectedVenture.scopeLinkText3}</span>
                         <ArrowUpRight className="w-3.5 h-3.5" />

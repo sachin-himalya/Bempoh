@@ -198,7 +198,7 @@ export default function HeroSection({ onExploreClick, onDiscoverClick }) {
             className="w-full sm:w-auto px-8 py-4 rounded-full text-xs sm:text-sm uppercase tracking-[0.2em] font-bold text-[#0C0D12] dark:text-white hover:text-black dark:hover:text-black bg-black/[0.04] hover:bg-gradient-to-r hover:from-[#F4DE84] hover:via-[#C99B3C] hover:to-[#A97622] dark:bg-white/[0.06] border border-black/15 dark:border-white/20 hover:border-[#C99B3C] dark:hover:border-[#C99B3C] hover:shadow-[0_4px_30px_rgba(201,155,60,0.5)] backdrop-blur-lg transition-all duration-300 transform hover:-translate-y-1 flex items-center justify-center gap-2 cursor-pointer"
           >
             <span>EXPLORE OUR BOOKS</span>
-          </a>
+            <ArrowRight className="w-4 h-4 stroke-[2.5]" /></a>
         </div>
       </div>
 

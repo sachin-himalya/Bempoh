@@ -108,11 +108,7 @@ export default function Modals({
                     href={modalData.scopeLink}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`px-5 py-2.5 rounded-full font-bold text-xs uppercase tracking-wider flex items-center gap-2 cursor-pointer ${
-                      modalData.status === 'ACTIVE'
-                        ? 'bg-black dark:bg-white text-white dark:text-black hover:opacity-90 transition-opacity'
-                        : 'bg-gradient-to-r from-[#F4DE84] to-[#C99B3C] text-black hover:shadow-md transition-all'
-                    }`}
+                    className="px-5 py-2.5 rounded-full bg-[#C99B3C] text-black font-bold text-xs uppercase tracking-wider flex items-center gap-2 hover:bg-[#D4A338] transition-colors cursor-pointer"
                   >
                     <span>{modalData.scopeLinkText}</span>
                     <ArrowUpRight className="w-3.5 h-3.5" />
@@ -122,7 +118,7 @@ export default function Modals({
                       href={modalData.scopeLink2}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="px-5 py-2.5 rounded-full bg-black/5 dark:bg-white/10 text-[#0C0D12] dark:text-white border border-black/15 dark:border-white/15 font-bold text-xs uppercase tracking-wider flex items-center gap-2 hover:border-[#C99B3C] transition-colors cursor-pointer"
+                      className="px-5 py-2.5 rounded-full bg-[#C99B3C] text-black font-bold text-xs uppercase tracking-wider flex items-center gap-2 hover:bg-[#D4A338] transition-colors cursor-pointer"
                     >
                       <span>{modalData.scopeLinkText2}</span>
                       <ArrowUpRight className="w-3.5 h-3.5" />
@@ -176,7 +172,7 @@ export default function Modals({
                 href="https://apps.apple.com/us/app/udlivery/id6443650358"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-8 py-3.5 rounded-full bg-gradient-to-r from-[#F4DE84] to-[#C99B3C] text-black font-bold text-xs uppercase tracking-widest hover:shadow-lg transition-all flex items-center justify-center gap-2"
+                className="px-8 py-3.5 rounded-full bg-[#C99B3C] text-black font-bold text-xs uppercase tracking-widest hover:bg-[#D4A338] transition-all flex items-center justify-center gap-2"
               >
                 <span>Apple App Store</span>
                 <ArrowUpRight className="w-4 h-4" />
@@ -186,7 +182,7 @@ export default function Modals({
                 href="https://play.google.com/store/apps/dev?id=7747807589744614244&hl=en_SG"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-8 py-3.5 rounded-full bg-black/5 dark:bg-white/10 border border-black/15 dark:border-white/20 text-[#0C0D12] dark:text-white font-bold text-xs uppercase tracking-widest hover:border-[#C99B3C] transition-all flex items-center justify-center gap-2"
+                className="px-8 py-3.5 rounded-full bg-[#C99B3C] text-black font-bold text-xs uppercase tracking-widest hover:bg-[#D4A338] transition-all flex items-center justify-center gap-2"
               >
                 <span>Google Play Store</span>
                 <ArrowUpRight className="w-4 h-4" />
