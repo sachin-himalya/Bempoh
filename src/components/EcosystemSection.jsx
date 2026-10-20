@@ -413,7 +413,7 @@ export default function EcosystemSection({ onSelectVenture, onOpenMobileSheet })
                   </span>
                   <button
                     type="button"
-                    className="w-9 h-9 rounded-full bg-black/5 dark:bg-white/10 text-[#0C0D12] dark:text-white flex items-center justify-center"
+                    className="w-9 h-9 rounded-full bg-gradient-to-r from-[#F4DE84] via-[#C99B3C] to-[#A97622] text-black flex items-center justify-center"
                     tabIndex={-1}
                     onClick={(e) => { e.stopPropagation(); onOpenMobileSheet(venture); }}
                   >
