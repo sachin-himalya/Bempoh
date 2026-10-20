@@ -25,6 +25,10 @@ import {
   Video,
   Atom,
   Zap,
+  Home,
+  Building2,
+  KeyRound,
+  Landmark,
 } from 'lucide-react';
 import Logo from './Logo';
 
@@ -64,6 +68,12 @@ const SECTOR_CAROUSEL_IMAGES = {
     '/sectors/future-1.jpg',
     '/sectors/future-2.jpg',
     '/sectors/future-3.jpg',
+  ],
+  // Real-Estate sector images (pillar order: Develop → Invest → Own)
+  homes: [
+    '/sectors/realestate-1.jpg', // Modern apartment building — Develop
+    '/sectors/realestate-2.jpg', // Aerial residential neighbourhood — Invest
+    '/sectors/realestate-3.jpg', // Modern home exterior — Own
   ],
 };
 
@@ -222,6 +232,23 @@ export default function OrbitSection() {
       ],
       carouselImages: SECTOR_CAROUSEL_IMAGES.future,
     },
+    {
+      id: 'homes',
+      num: '08',
+      label: 'REAL-ESTATE',
+      icon: Home,
+      tagline: 'Properties, Land & Real-Estate Solutions',
+      details:
+        'Building a trusted real-estate venture for residential and commercial properties, land and rentals, with quality homes and transparent solutions for the modern buyer.',
+      highlight: 'TRUSTED REAL-ESTATE VENTURES',
+      features: [
+        { title: 'Develop', sub: 'Premium Properties', icon: Building2 },
+        { title: 'Invest', sub: 'Real Estate Assets', icon: Landmark },
+        { title: 'Own', sub: 'Your Perfect Home', icon: KeyRound },
+      ],
+      carouselImages: SECTOR_CAROUSEL_IMAGES.homes,
+      comingSoon: true,
+    },
   ];
 
   // Default selected sector is MUSIC (Sector 03) to match reference screenshot
@@ -262,6 +289,7 @@ export default function OrbitSection() {
     { id: 'media', label: 'DIGITAL MEDIA', top: '88%', left: '38%' },
     { id: 'entertainment', label: 'ENTERTAINMENT', top: '55%', left: '12%' },
     { id: 'future', label: 'FUTURE VENTURES', top: '22%', left: '20%' },
+    { id: 'homes', label: 'REAL-ESTATE', top: '5%', left: '35%' },
   ];
 
   return (
@@ -332,7 +360,7 @@ export default function OrbitSection() {
                 </div>
               </div>
 
-              {/* 7 Orbiting Sector Nodes */}
+              {/* 8 Orbiting Sector Nodes */}
               {sectors.map((sec, idx) => {
                 const Icon = sec.icon;
                 const radius = 175;
@@ -350,7 +378,7 @@ export default function OrbitSection() {
                     style={{
                       transform: `translate(${x}px, ${y}px)`,
                     }}
-                    className="absolute z-30 cursor-pointer flex flex-col items-center group transition-all duration-500"
+                    className="absolute z-30 flex flex-col items-center group transition-all duration-500 cursor-pointer"
                   >
                     {/* Node Circular Icon Container */}
                     <div
@@ -415,9 +443,16 @@ export default function OrbitSection() {
                     <ActiveIcon className="w-6 h-6 stroke-[2]" />
                   </div>
                   <div>
-                    <span className="text-[11px] font-mono font-bold uppercase tracking-widest text-[#8C5B0D] dark:text-[#E2C268]">
-                      SECTOR {activeSector.num}
-                    </span>
+                    <div className="flex items-center gap-2 flex-wrap">
+                      <span className="text-[11px] font-mono font-bold uppercase tracking-widest text-[#8C5B0D] dark:text-[#E2C268]">
+                        SECTOR {activeSector.num}
+                      </span>
+                      {activeSector.comingSoon && (
+                        <span className="text-[9px] font-bold uppercase tracking-widest px-2 py-0.5 rounded-full bg-[#C99B3C]/15 border border-[#C99B3C]/40 text-[#8C5B0D] dark:text-[#E2C268]">
+                          COMING SOON
+                        </span>
+                      )}
+                    </div>
                     <h3 className="text-3xl sm:text-4xl font-extrabold text-[#0C0D12] dark:text-white uppercase tracking-tight leading-none transition-colors duration-300">
                       {activeSector.label}
                     </h3>

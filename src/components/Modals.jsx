@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Logo from './Logo';
 import { X, Send, ArrowUpRight, CheckCircle2, ShieldCheck, Mail, Globe } from 'lucide-react';
 
@@ -9,6 +9,17 @@ export default function Modals({
 }) {
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [contactData, setContactData] = useState({ name: '', email: '', message: '', venture: 'General' });
+
+  // Handle Escape key to close modal
+  useEffect(() => {
+    const handleEscape = (e) => {
+      if (e.key === 'Escape' && activeModal) {
+        onClose();
+      }
+    };
+    window.addEventListener('keydown', handleEscape);
+    return () => window.removeEventListener('keydown', handleEscape);
+  }, [activeModal, onClose]);
 
   if (!activeModal) return null;
 
@@ -22,9 +33,15 @@ export default function Modals({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/60 backdrop-blur-md transition-all duration-300 animate-fadeIn">
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/60 backdrop-blur-md transition-all duration-300 animate-fadeIn"
+      onClick={onClose}
+    >
       {/* Modal Surface */}
-      <div className="relative w-full max-w-2xl bg-white dark:bg-[#0E0F14] border border-black/10 dark:border-white/10 rounded-3xl p-6 sm:p-10 shadow-[0_20px_60px_rgba(0,0,0,0.2)] dark:shadow-[0_20px_60px_rgba(0,0,0,0.8)] text-[#0C0D12] dark:text-white overflow-hidden max-h-[90vh] overflow-y-auto transition-colors duration-300">
+      <div
+        className="relative w-full max-w-2xl bg-white dark:bg-[#0E0F14] border border-black/10 dark:border-white/10 rounded-3xl p-6 sm:p-10 shadow-[0_20px_60px_rgba(0,0,0,0.2)] dark:shadow-[0_20px_60px_rgba(0,0,0,0.8)] text-[#0C0D12] dark:text-white overflow-hidden max-h-[90vh] overflow-y-auto transition-colors duration-300"
+        onClick={(e) => e.stopPropagation()}
+      >
         {/* Close Button */}
         <button
           type="button"
@@ -59,124 +76,70 @@ export default function Modals({
               <h4 className="text-xs font-bold uppercase tracking-widest text-[#8C5B0D] dark:text-[#E2C268]">
                 Ecosystem Integration &amp; Scope
               </h4>
-              {modalData.id === 'technologies' && (
-                <div>
-                  <p className="text-sm text-[#0C0D12] dark:text-zinc-200 font-medium leading-relaxed">
-                    Focuses on building scalable digital platforms, custom mobile applications, and collegiate services including Udlivery.
-                  </p>
-                  <div className="mt-4 flex flex-wrap items-center gap-3">
-                    <a
-                      href="https://apps.apple.com/us/app/udlivery/id6443650358"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="px-5 py-2.5 rounded-full bg-black dark:bg-white text-white dark:text-black font-bold text-xs uppercase tracking-wider flex items-center gap-2 hover:opacity-90 transition-opacity cursor-pointer"
-                    >
-                      <span>Apple App Store</span>
-                      <ArrowUpRight className="w-3.5 h-3.5" />
-                    </a>
-                    <a
-                      href="https://play.google.com/store/apps/dev?id=7747807589744614244&hl=en_SG"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="px-5 py-2.5 rounded-full bg-black/5 dark:bg-white/10 text-[#0C0D12] dark:text-white border border-black/15 dark:border-white/15 font-bold text-xs uppercase tracking-wider flex items-center gap-2 hover:border-[#C99B3C] transition-colors cursor-pointer"
-                    >
-                      <span>Google Play Store</span>
-                      <ArrowUpRight className="w-3.5 h-3.5" />
-                    </a>
-                  </div>
-                </div>
-              )}
-              {modalData.id === 'games' && (
-                <div>
-                  <p className="text-sm text-[#0C0D12] dark:text-zinc-200 font-medium leading-relaxed">
-                    Building the next world of interactive experiences and interactive entertainment. First gaming title planned for release.
-                  </p>
-                  <div className="mt-4 flex items-center gap-3">
-                    <span className="px-4 py-2 rounded-full bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 text-xs uppercase tracking-wider text-[#50515C] dark:text-zinc-400 font-semibold flex items-center gap-1.5 cursor-not-allowed">
-                      App Store (Coming Soon)
-                    </span>
-                  </div>
-                </div>
-              )}
-              {modalData.id === 'music' && (
-                <div>
-                  <p className="text-sm text-[#0C0D12] dark:text-zinc-200 font-medium leading-relaxed">
-                    Audio entertainment arm distributing sound catalogs globally across Spotify, Apple Music, YouTube, and digital platforms.
-                  </p>
-                  <div className="mt-4 flex flex-wrap items-center gap-3">
-                    <a
-                      href="https://open.spotify.com/artist/4RYcGrNjODBc5CN4HcvFQF?si=D13hZ-gUSmCn0HkNTySjTg&utm_source=copy-link"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="px-5 py-2.5 rounded-full bg-black/5 dark:bg-white/10 text-[#0C0D12] dark:text-white border border-black/15 dark:border-white/15 font-bold text-xs uppercase tracking-wider flex items-center gap-2 hover:border-[#C99B3C] transition-colors cursor-pointer"
-                    >
-                      <span>Spotify</span>
-                      <ArrowUpRight className="w-3.5 h-3.5" />
-                    </a>
-                    <a
-                      href="https://music.apple.com/us/artist/e-k-bempoh/1591440094"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="px-5 py-2.5 rounded-full bg-black/5 dark:bg-white/10 text-[#0C0D12] dark:text-white border border-black/15 dark:border-white/15 font-bold text-xs uppercase tracking-wider flex items-center gap-2 hover:border-[#C99B3C] transition-colors cursor-pointer"
-                    >
-                      <span>Apple Music</span>
-                      <ArrowUpRight className="w-3.5 h-3.5" />
-                    </a>
-                    <a
-                      href="https://youtube.com/@ekbempoh?si=q4IL2itt_rGP6eNV"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="px-5 py-2.5 rounded-full bg-black/5 dark:bg-white/10 text-[#0C0D12] dark:text-white border border-black/15 dark:border-white/15 font-bold text-xs uppercase tracking-wider flex items-center gap-2 hover:border-[#C99B3C] transition-colors cursor-pointer"
-                    >
-                      <span>YouTube</span>
-                      <ArrowUpRight className="w-3.5 h-3.5" />
-                    </a>
-                  </div>
-                </div>
-              )}
-              {modalData.id === 'books' && (
-                <div>
-                  <p className="text-sm text-[#0C0D12] dark:text-zinc-200 font-medium leading-relaxed">
-                    Publishing house bringing literature and thought leadership into published form, including “The Universal Antidote” by E.K. Bempoh.
-                  </p>
-                  <div className="mt-4 flex items-center gap-3">
-                    <a
-                      href="https://www.amazon.com/stores/author/B09K6FRZNG"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="px-5 py-2.5 rounded-full bg-gradient-to-r from-[#F4DE84] to-[#C99B3C] text-black font-bold text-xs uppercase tracking-wider flex items-center gap-2 hover:shadow-md transition-all cursor-pointer"
-                    >
-                      <span>Amazon Author Page</span>
-                      <ArrowUpRight className="w-3.5 h-3.5" />
-                    </a>
-                  </div>
-                </div>
-              )}
-              {modalData.id === 'ringtones' && (
-                <div>
-                  <p className="text-sm text-[#0C0D12] dark:text-zinc-200 font-medium leading-relaxed">
-                    Digital sound assets and distinctive device audio experiences distributed on platforms such as Zedge with platform expansions planned.
-                  </p>
-                  <div className="mt-4 flex flex-wrap items-center gap-3">
-                    <a
-                      href="https://www.zedge.net/profiles/a9e221fe-f556-488a-b47b-2d1c4b071907"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="px-5 py-2.5 rounded-full bg-gradient-to-r from-[#F4DE84] to-[#C99B3C] text-black font-bold text-xs uppercase tracking-wider flex items-center gap-2 hover:shadow-md transition-all cursor-pointer"
-                    >
-                      <span>Listen on Zedge</span>
-                      <ArrowUpRight className="w-3.5 h-3.5" />
-                    </a>
-                    <span className="px-4 py-2 rounded-full bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 text-xs uppercase tracking-wider text-[#50515C] dark:text-zinc-400 font-semibold flex items-center gap-1.5 cursor-not-allowed">
-                      iTunes (Coming Soon)
-                    </span>
-                  </div>
-                </div>
-              )}
-              {modalData.id === 'entertainment' && (
+              {modalData.scopeText ? (
                 <p className="text-sm text-[#0C0D12] dark:text-zinc-200 font-medium leading-relaxed">
-                  Immersive media productions, creative arts, and digital content ecosystems designed to connect audiences worldwide across future entertainment formats.
+                  {modalData.scopeText}
                 </p>
+              ) : (
+                <>
+                  {console.warn(`Missing scopeText for venture: ${modalData.title}`)}
+                  <p className="text-sm text-[#50515C] dark:text-zinc-400 italic">
+                    Details coming soon.
+                  </p>
+                </>
+              )}
+              {modalData.scopePillText && (
+                <div className="mt-4 flex items-center gap-3">
+                  <span className="px-4 py-2 rounded-full bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 text-xs uppercase tracking-wider text-[#50515C] dark:text-zinc-400 font-semibold flex items-center gap-1.5 cursor-not-allowed">
+                    {modalData.scopePillText}
+                  </span>
+                </div>
+              )}
+              {modalData.scopePillText2 && (
+                <div className="mt-4 flex items-center gap-3">
+                  <span className="px-4 py-2 rounded-full bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 text-xs uppercase tracking-wider text-[#50515C] dark:text-zinc-400 font-semibold flex items-center gap-1.5 cursor-not-allowed">
+                    {modalData.scopePillText2}
+                  </span>
+                </div>
+              )}
+              {modalData.scopeLink && (
+                <div className="mt-4 flex flex-wrap items-center gap-3">
+                  <a
+                    href={modalData.scopeLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`px-5 py-2.5 rounded-full font-bold text-xs uppercase tracking-wider flex items-center gap-2 cursor-pointer ${
+                      modalData.status === 'ACTIVE'
+                        ? 'bg-black dark:bg-white text-white dark:text-black hover:opacity-90 transition-opacity'
+                        : 'bg-gradient-to-r from-[#F4DE84] to-[#C99B3C] text-black hover:shadow-md transition-all'
+                    }`}
+                  >
+                    <span>{modalData.scopeLinkText}</span>
+                    <ArrowUpRight className="w-3.5 h-3.5" />
+                  </a>
+                  {modalData.scopeLink2 && (
+                    <a
+                      href={modalData.scopeLink2}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="px-5 py-2.5 rounded-full bg-black/5 dark:bg-white/10 text-[#0C0D12] dark:text-white border border-black/15 dark:border-white/15 font-bold text-xs uppercase tracking-wider flex items-center gap-2 hover:border-[#C99B3C] transition-colors cursor-pointer"
+                    >
+                      <span>{modalData.scopeLinkText2}</span>
+                      <ArrowUpRight className="w-3.5 h-3.5" />
+                    </a>
+                  )}
+                  {modalData.scopeLink3 && (
+                    <a
+                      href={modalData.scopeLink3}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="px-5 py-2.5 rounded-full bg-black/5 dark:bg-white/10 text-[#0C0D12] dark:text-white border border-black/15 dark:border-white/15 font-bold text-xs uppercase tracking-wider flex items-center gap-2 hover:border-[#C99B3C] transition-colors cursor-pointer"
+                    >
+                      <span>{modalData.scopeLinkText3}</span>
+                      <ArrowUpRight className="w-3.5 h-3.5" />
+                    </a>
+                  )}
+                </div>
               )}
             </div>
 
@@ -327,7 +290,7 @@ export default function Modals({
                 <strong>1. Overview:</strong> Bempoh Inc operates as a multi-industry holding company managing subsidiaries across technology, gaming, music, publishing, and digital media.
               </p>
               <p>
-                <strong>2. Intellectual Property:</strong> All brand identity assets, logos, trademarks, and publications associated with Bempoh, Bempoh Technologies, Udlivery, Bempoh Games, Bempoh Music, Bempoh Books, and “The Universal Antidote” are protected by applicable trademark and copyright laws.
+                <strong>2. Intellectual Property:</strong> All brand identity assets, logos, trademarks, and publications associated with Bempoh, Bempoh Technologies, Udlivery, Bempoh Games, Bempoh Music, Bempoh Books, and "The Universal Antidote" are protected by applicable trademark and copyright laws.
               </p>
               <p>
                 <strong>3. Privacy Standard:</strong> Bempoh respects user privacy and complies with modern data protection guidelines. Personal information collected through inquiries is strictly utilized for corporate communications.

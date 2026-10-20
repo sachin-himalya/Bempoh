@@ -56,7 +56,8 @@ export default function Footer({ onOpenLegalModal, onOpenContactModal }) {
               </div>
               <ul className="space-y-3 text-xs sm:text-sm text-[#50515C] dark:text-zinc-400 font-medium">
                 <li><a href="#ecosystem" className="hover:text-[#0C0D12] dark:hover:text-white transition-colors">Technologies</a></li>
-                <li><a href="#ecosystem" className="hover:text-[#0C0D12] dark:hover:text-white transition-colors">Games</a></li>
+                <li><a href="#ecosystem" className="hover:text-[#0C0D12] dark:hover:text-white transition-colors inline-flex items-center gap-1.5">Games <span className="text-[10px] text-[#8C5B0D] dark:text-[#E2C268]">(Coming Soon)</span></a></li>
+                <li><a href="#ecosystem" className="hover:text-[#0C0D12] dark:hover:text-white transition-colors inline-flex items-center gap-1.5">Real-Estate <span className="text-[10px] text-[#8C5B0D] dark:text-[#E2C268]">(Coming Soon)</span></a></li>
                 <li><a href="#music" className="hover:text-[#0C0D12] dark:hover:text-white transition-colors">Music</a></li>
                 <li><a href="#books" className="hover:text-[#0C0D12] dark:hover:text-white transition-colors">Books</a></li>
                 <li><a href="https://www.zedge.net/profiles/a9e221fe-f556-488a-b47b-2d1c4b071907" target="_blank" rel="noopener noreferrer" className="hover:text-[#0C0D12] dark:hover:text-white transition-colors">Ringtones</a></li>

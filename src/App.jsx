@@ -12,6 +12,8 @@ import FaqSection from './components/FaqSection';
 import Footer from './components/Footer';
 import Modals from './components/Modals';
 import GoldParticlesCanvas from './components/GoldParticlesCanvas';
+import Logo from './components/Logo';
+import { X, ArrowUpRight } from 'lucide-react';
 
 export default function App() {
   const [theme, setTheme] = useState(() => {
@@ -20,6 +22,9 @@ export default function App() {
 
   const [activeModal, setActiveModal] = useState(null);
   const [modalData, setModalData] = useState(null);
+  const [mobileSheetOpen, setMobileSheetOpen] = useState(false);
+  const [selectedVenture, setSelectedVenture] = useState(null);
+  const [touchStart, setTouchStart] = useState(0);
 
   useEffect(() => {
     localStorage.setItem('bempoh-theme', theme);
@@ -60,6 +65,39 @@ export default function App() {
     setModalData(null);
   };
 
+  const handleOpenMobileSheet = (venture) => {
+    setSelectedVenture(venture);
+    setMobileSheetOpen(true);
+  };
+
+  const handleCloseMobileSheet = () => {
+    setMobileSheetOpen(false);
+    setSelectedVenture(null);
+  };
+
+  // Lock body scroll when mobile sheet is open
+  useEffect(() => {
+    if (mobileSheetOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [mobileSheetOpen]);
+
+  // Handle Escape key to close mobile sheet
+  useEffect(() => {
+    const handleEscape = (e) => {
+      if (e.key === 'Escape' && mobileSheetOpen) {
+        handleCloseMobileSheet();
+      }
+    };
+    window.addEventListener('keydown', handleEscape);
+    return () => window.removeEventListener('keydown', handleEscape);
+  }, [mobileSheetOpen]);
+
   const scrollToSection = (id) => {
     const el = document.querySelector(id);
     if (el) {
@@ -69,9 +107,10 @@ export default function App() {
 
   return (
     <div
-      className={`relative min-h-screen font-sans overflow-x-hidden transition-colors duration-500 ${
+      className={`relative min-h-screen font-sans transition-colors duration-500 ${
         theme === 'dark' ? 'dark bg-[#070709] text-white' : 'theme-light bg-white text-[#0C0D12]'
       }`}
+      style={{ overflowX: 'clip' }}
     >
       {/* Global Background Ambient Upward Gold Light Animation */}
       <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
@@ -95,7 +134,7 @@ export default function App() {
       <ManifestoSection />
 
       {/* SECTION 03 — Bempoh Ecosystem */}
-      <EcosystemSection onSelectVenture={handleSelectVenture} />
+      <EcosystemSection onSelectVenture={handleSelectVenture} onOpenMobileSheet={handleOpenMobileSheet} />
 
       {/* SECTION 04 — Vision */}
       <VisionSection />
@@ -127,6 +166,152 @@ export default function App() {
         modalData={modalData}
         onClose={handleCloseModal}
       />
+
+      {/* Mobile Bottom Sheet */}
+      {mobileSheetOpen && selectedVenture && (
+        <>
+          {/* Backdrop */}
+          <div
+            className="fixed inset-0 bg-black/60 backdrop-blur-md z-50 md:hidden"
+            onClick={handleCloseMobileSheet}
+          />
+          {/* Sheet */}
+          <div
+            className="fixed bottom-0 left-0 right-0 bg-white dark:bg-[#0E0F14] border-t border-black/10 dark:border-white/10 rounded-t-3xl z-[60] md:hidden transition-transform duration-400 ease-out"
+            style={{
+              transform: mobileSheetOpen ? 'translateY(0)' : 'translateY(110%)',
+              maxHeight: '88vh',
+            }}
+            onTouchStart={(e) => setTouchStart(e.touches[0].clientY)}
+            onTouchEnd={(e) => {
+              const touchEnd = e.changedTouches[0].clientY;
+              if (touchStart - touchEnd > 100) {
+                handleCloseMobileSheet();
+              }
+            }}
+          >
+            <div className="p-6 overflow-y-auto pb-[calc(1.5rem+env(safe-area-inset-bottom))]">
+              {/* Grab Handle */}
+              <div className="w-12 h-1 bg-black/20 dark:bg-white/20 rounded-full mx-auto mb-6" />
+
+              {/* Top Row: Label, Status, X Button */}
+              <div className="flex items-center justify-between mb-4">
+                <div className="flex items-center gap-3">
+                  <span className="text-xs uppercase tracking-[0.25em] text-[#8C5B0D] dark:text-[#E2C268] font-bold font-mono">
+                    VENTURE {selectedVenture.number}
+                  </span>
+                  <span
+                    className={`text-[10px] uppercase font-bold px-3 py-0.5 rounded-full border ${selectedVenture.statusColor}`}
+                  >
+                    {selectedVenture.status}
+                  </span>
+                </div>
+                <button
+                  type="button"
+                  onClick={handleCloseMobileSheet}
+                  className="p-2 rounded-full bg-black/5 dark:bg-white/10 hover:bg-black/10 dark:hover:bg-white/20 text-[#0C0D12] dark:text-white transition-colors"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+
+              {/* Title */}
+              <h3 className="text-[20px] font-extrabold text-gold-gradient tracking-tight uppercase mb-2 transition-colors duration-300">
+                {selectedVenture.title}
+              </h3>
+
+              {/* Description */}
+              <p className="text-sm text-[#50515C] dark:text-zinc-400 font-normal leading-relaxed mb-6 transition-colors duration-300">
+                {selectedVenture.description}
+              </p>
+
+              {/* Scope Box */}
+              <div className="p-6 rounded-2xl bg-[#FAFAFC] dark:bg-[#15161E] border border-black/10 dark:border-white/10 space-y-4 transition-colors duration-300">
+                <h4 className="text-xs font-bold uppercase tracking-widest text-[#8C5B0D] dark:text-[#E2C268]">
+                  Ecosystem Integration &amp; Scope
+                </h4>
+                {selectedVenture.scopeText ? (
+                  <p className="text-sm text-[#0C0D12] dark:text-zinc-200 font-medium leading-relaxed">
+                    {selectedVenture.scopeText}
+                  </p>
+                ) : (
+                  <>
+                    {console.warn(`Missing scopeText for venture: ${selectedVenture.title}`)}
+                    <p className="text-sm text-[#50515C] dark:text-zinc-400 italic">
+                      Details coming soon.
+                    </p>
+                  </>
+                )}
+                {selectedVenture.scopePillText && (
+                  <div className="mt-4 flex items-center gap-3">
+                    <span className="px-4 py-2 rounded-full bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 text-xs uppercase tracking-wider text-[#50515C] dark:text-zinc-400 font-semibold flex items-center gap-1.5 cursor-not-allowed">
+                      {selectedVenture.scopePillText}
+                    </span>
+                  </div>
+                )}
+                {selectedVenture.scopePillText2 && (
+                  <div className="mt-4 flex items-center gap-3">
+                    <span className="px-4 py-2 rounded-full bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 text-xs uppercase tracking-wider text-[#50515C] dark:text-zinc-400 font-semibold flex items-center gap-1.5 cursor-not-allowed">
+                      {selectedVenture.scopePillText2}
+                    </span>
+                  </div>
+                )}
+                {selectedVenture.scopeLink && (
+                  <div className="mt-4 flex flex-wrap items-center gap-3">
+                    <a
+                      href={selectedVenture.scopeLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`px-5 py-2.5 rounded-full font-bold text-xs uppercase tracking-wider flex items-center gap-2 cursor-pointer ${
+                        selectedVenture.status === 'ACTIVE'
+                          ? 'bg-black dark:bg-white text-white dark:text-black hover:opacity-90 transition-opacity'
+                          : 'bg-gradient-to-r from-[#F4DE84] to-[#C99B3C] text-black hover:shadow-md transition-all'
+                      }`}
+                    >
+                      <span>{selectedVenture.scopeLinkText}</span>
+                      <ArrowUpRight className="w-3.5 h-3.5" />
+                    </a>
+                    {selectedVenture.scopeLink2 && (
+                      <a
+                        href={selectedVenture.scopeLink2}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="px-5 py-2.5 rounded-full bg-black/5 dark:bg-white/10 text-[#0C0D12] dark:text-white border border-black/15 dark:border-white/15 font-bold text-xs uppercase tracking-wider flex items-center gap-2 hover:border-[#C99B3C] transition-colors cursor-pointer"
+                      >
+                        <span>{selectedVenture.scopeLinkText2}</span>
+                        <ArrowUpRight className="w-3.5 h-3.5" />
+                      </a>
+                    )}
+                    {selectedVenture.scopeLink3 && (
+                      <a
+                        href={selectedVenture.scopeLink3}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="px-5 py-2.5 rounded-full bg-black/5 dark:bg-white/10 text-[#0C0D12] dark:text-white border border-black/15 dark:border-white/15 font-bold text-xs uppercase tracking-wider flex items-center gap-2 hover:border-[#C99B3C] transition-colors cursor-pointer"
+                      >
+                        <span>{selectedVenture.scopeLinkText3}</span>
+                        <ArrowUpRight className="w-3.5 h-3.5" />
+                      </a>
+                    )}
+                  </div>
+                )}
+              </div>
+
+              {/* Footer */}
+              <div className="mt-6 pt-6 border-t border-black/10 dark:border-white/10 flex items-center justify-between">
+                <Logo size="sm" showWordmark={true} />
+                <button
+                  type="button"
+                  onClick={handleCloseMobileSheet}
+                  className="px-6 py-2.5 rounded-full bg-[#C99B3C] text-black font-bold text-xs uppercase tracking-widest hover:bg-[#D4A338] transition-colors cursor-pointer"
+                >
+                  Close Window
+                </button>
+              </div>
+            </div>
+          </div>
+        </>
+      )}
     </div>
   );
 }

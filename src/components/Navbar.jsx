@@ -30,7 +30,7 @@ export default function Navbar({ onExploreClick, theme = 'light', toggleTheme })
           scrolled ? 'py-0.5 shadow-md' : 'py-1 shadow-sm'
         }`}
       >
-        <div className="w-full max-w-7xl mx-auto px-6 sm:px-10 lg:px-12 flex items-center justify-between h-11 sm:h-12">
+        <div className="w-full max-w-7xl mx-auto px-6 sm:px-10 lg:px-6 flex items-center justify-between h-11 sm:h-12">
           {/* LEFT: Compact Logo */}
           <a href="#hero" className="flex items-center gap-2 group shrink-0">
             <Logo size="sm" className="max-h-7 sm:max-h-8 w-auto" />
