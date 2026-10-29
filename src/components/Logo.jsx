@@ -22,7 +22,7 @@ export default function Logo({ size = 'md', className = '', glow = false }) {
         />
       )}
 
-      {/* EXACT UPLOADED OFFICIAL BEMPOH LOGO IMAGE */}
+      {/* EXACT UPLOADED OFFICIAL BEMPOH LOGO IMAGE — white bg removed via blend mode */}
       <img
         src="/bempoh-logo.png"
         alt="Bempoh Logo"
