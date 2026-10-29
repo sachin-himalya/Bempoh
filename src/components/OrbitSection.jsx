@@ -348,13 +348,13 @@ export default function OrbitSection() {
               <div className="absolute w-[230px] h-[230px] rounded-full border border-black/[0.05] dark:border-white/[0.06] pointer-events-none" />
 
               {/* Central Bempoh Emblem Core */}
-              <div className="keep-dark relative z-20 w-28 sm:w-32 h-28 sm:h-32 rounded-full bg-[#0B0B0B] border-2 border-[#C99B3C] shadow-[0_0_40px_rgba(201,155,60,0.35)] flex items-center justify-center p-3 group transition-transform duration-500 hover:scale-105">
+              <div className="keep-dark relative z-20 w-36 sm:w-40 h-36 sm:h-40 rounded-full bg-[#0B0B0B] border-2 border-[#C99B3C] shadow-[0_0_40px_rgba(201,155,60,0.35)] flex items-center justify-center group transition-transform duration-500 hover:scale-105">
                 <div className="absolute inset-0 rounded-full bg-[#C99B3C]/20 blur-lg group-hover:bg-[#C99B3C]/35 transition-all" />
-                <div className="relative z-10 w-full h-full rounded-full overflow-hidden flex items-center justify-center pointer-events-none">
+                <div className="relative z-10 w-full h-full rounded-full flex items-center justify-center pointer-events-none overflow-hidden">
                   <img
                     src="/bempoh-logo.png"
                     alt="Bempoh"
-                    className="w-[240px] sm:w-[275px] max-w-none h-auto select-none transition-transform duration-500 group-hover:scale-105"
+                    className="w-[90%] h-[90%] object-contain select-none transition-transform duration-500 group-hover:scale-105"
                     loading="eager"
                   />
                 </div>
