@@ -1,5 +1,4 @@
 import React from 'react';
-import Logo from './Logo';
 import { ArrowUpRight } from 'lucide-react';
 
 export default function Footer({ onOpenLegalModal, onOpenContactModal }) {
@@ -18,7 +17,11 @@ export default function Footer({ onOpenLegalModal, onOpenContactModal }) {
           {/* Brand Column */}
           <div className="lg:col-span-4 flex flex-col justify-between">
             <div>
-              <Logo size="md" showWordmark={true} />
+              <img
+                src="/bempoh-logo-v2.png"
+                alt="Bempoh Logo"
+                className="w-[130px] sm:w-[155px] h-auto object-contain"
+              />
 
               <p className="mt-6 text-sm text-[#50515C] dark:text-zinc-400 font-normal leading-relaxed max-w-sm transition-colors duration-300">
                 Bempoh Inc is a multi-industry holdings company building ventures across technology, gaming, music, publishing and future industries.

@@ -352,7 +352,7 @@ export default function OrbitSection() {
                 <div className="absolute inset-0 rounded-full bg-[#C99B3C]/20 blur-lg group-hover:bg-[#C99B3C]/35 transition-all" />
                 <div className="relative z-10 w-full h-full rounded-full flex items-center justify-center pointer-events-none overflow-hidden">
                   <img
-                    src="/bempoh-logo.png"
+                    src="/bempoh-logo-v2.png"
                     alt="Bempoh"
                     className="w-[90%] h-[90%] object-contain select-none transition-transform duration-500 group-hover:scale-105"
                     loading="eager"
