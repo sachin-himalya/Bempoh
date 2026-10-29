@@ -1,7 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Logo from './Logo';
 
 export default function PrincipleSection() {
+  const sectionRef = useRef(null);
+  const [step, setStep] = useState(0);
+
   const line1Full = 'FROM HEAVEN TO EARTH.';
   const line2Full = 'FROM FUTURE TO NOW.';
 
@@ -15,6 +18,25 @@ export default function PrincipleSection() {
   const [line1Text, setLine1Text] = useState(() => (reducedMotion ? line1Full : ''));
   const [line2Text, setLine2Text] = useState(() => (reducedMotion ? line2Full : ''));
   const [cursorLine, setCursorLine] = useState(() => (reducedMotion ? null : 1));
+
+  // Scroll-based step tracker for zoom animation
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!sectionRef.current) return;
+      const rect = sectionRef.current.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+      const progress = 1 - rect.bottom / (windowHeight + rect.height);
+      if (progress > 0.6) {
+        setStep(2);
+      } else if (progress > 0.3) {
+        setStep(1);
+      } else {
+        setStep(0);
+      }
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   useEffect(() => {
     if (reducedMotion) return;
@@ -95,6 +117,7 @@ export default function PrincipleSection() {
 
   return (
     <section
+      ref={sectionRef}
       id="principle"
       className="relative w-full min-h-[90vh] bg-white dark:bg-[#070709] py-36 px-6 border-t border-black/[0.08] dark:border-white/10 flex flex-col items-center justify-center text-center overflow-hidden transition-colors duration-300"
     >
@@ -108,7 +131,7 @@ export default function PrincipleSection() {
         </div>
 
         {/* Step 1: FROM HEAVEN TO EARTH. */}
-        <div className="transition-all duration-500">
+        <div className={`transition-all duration-1000 transform ${step === 0 ? 'opacity-100 scale-100 translate-y-0' : 'opacity-20 scale-95 -translate-y-4'}`}>
           <h2
             className="text-3xl sm:text-5xl md:text-6xl font-light tracking-tight text-[#0C0D12] dark:text-white uppercase transition-colors duration-300"
             aria-label="FROM HEAVEN TO EARTH."
@@ -134,7 +157,7 @@ export default function PrincipleSection() {
         </div>
 
         {/* Step 2: FROM FUTURE TO NOW. */}
-        <div className="my-8 transition-all duration-500">
+        <div className={`my-8 transition-all duration-1000 transform ${step >= 1 ? 'opacity-100 scale-100 translate-y-0' : 'opacity-20 scale-95 translate-y-4'}`}>
           <h2
             className="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight uppercase"
             aria-label="FROM FUTURE TO NOW."
@@ -162,7 +185,7 @@ export default function PrincipleSection() {
         </div>
 
         {/* Step 3: BEMPOH. */}
-        <div className="mt-12 transition-all duration-1000 transform flex flex-col items-center opacity-100 scale-100">
+        <div className={`mt-12 transition-all duration-1000 transform flex flex-col items-center ${step === 2 ? 'opacity-100 scale-110' : 'opacity-30 scale-90'}`}>
           <Logo size="hero" showWordmark={false} glow={true} className="mb-4" />
 
           <h3 className="text-5xl sm:text-7xl md:text-9xl font-black tracking-[0.2em] text-[#0C0D12] dark:text-white uppercase relative transition-colors duration-300">
