@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Logo from './Logo';
-import { X, Send, ArrowUpRight, CheckCircle2, ShieldCheck, Mail, Globe } from 'lucide-react';
+import { X, Send, ArrowUpRight, CheckCircle2, ShieldCheck, Mail, Globe, AlertCircle } from 'lucide-react';
 
 export default function Modals({
   activeModal,
@@ -8,34 +8,92 @@ export default function Modals({
   onClose,
 }) {
   const [formSubmitted, setFormSubmitted] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
   const [contactData, setContactData] = useState({ name: '', email: '', message: '', venture: 'General' });
+
+  const handleClose = () => {
+    setErrorMessage('');
+    onClose();
+  };
 
   // Handle Escape key to close modal
   useEffect(() => {
     const handleEscape = (e) => {
       if (e.key === 'Escape' && activeModal) {
-        onClose();
+        handleClose();
       }
     };
     window.addEventListener('keydown', handleEscape);
     return () => window.removeEventListener('keydown', handleEscape);
-  }, [activeModal, onClose]);
+  }, [activeModal]);
 
   if (!activeModal) return null;
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
+    setErrorMessage('');
+
+    const trimmedName = contactData.name.trim();
+    const trimmedEmail = contactData.email.trim();
+    const trimmedMessage = contactData.message.trim();
+
+    // Validation
+    if (!trimmedName) {
+      setErrorMessage('Please enter your name.');
+      return;
+    }
+
+    if (!trimmedEmail) {
+      setErrorMessage('Please enter your email address.');
+      return;
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(trimmedEmail)) {
+      setErrorMessage('Please enter a valid email address.');
+      return;
+    }
+
+    if (!trimmedMessage) {
+      setErrorMessage('Please enter your message.');
+      return;
+    }
+
+    const subject = `New Inquiry from Bempoh Website – ${trimmedName}`;
+    const body = `Name: ${trimmedName}\nEmail: ${trimmedEmail}\n\nMessage:\n${trimmedMessage}`;
+    const toEmail = 'bempohllc@gmail.com';
+
+    const encodedSubject = encodeURIComponent(subject);
+    const encodedBody = encodeURIComponent(body);
+
+    // Detect mobile vs desktop
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+      navigator.userAgent
+    );
+
+    if (isMobile) {
+      // Mobile: mailto link
+      const mailtoUrl = `mailto:${toEmail}?subject=${encodedSubject}&body=${encodedBody}`;
+      window.location.href = mailtoUrl;
+    } else {
+      // Desktop: Gmail compose in a new tab
+      const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${toEmail}&su=${encodedSubject}&body=${encodedBody}`;
+      window.open(gmailUrl, '_blank', 'noopener,noreferrer');
+    }
+
     setFormSubmitted(true);
+    setContactData({ name: '', email: '', message: '', venture: 'General' });
+
     setTimeout(() => {
       setFormSubmitted(false);
-      onClose();
+      handleClose();
     }, 2500);
   };
 
   return (
     <div
       className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/60 backdrop-blur-md transition-all duration-300 animate-fadeIn"
-      onClick={onClose}
+      onClick={handleClose}
     >
       {/* Modal Surface */}
       <div
@@ -45,7 +103,7 @@ export default function Modals({
         {/* Close Button */}
         <button
           type="button"
-          onClick={onClose}
+          onClick={handleClose}
           className="absolute top-6 right-6 p-2.5 rounded-full bg-black/5 dark:bg-white/10 border border-black/10 dark:border-white/15 hover:bg-black/10 dark:hover:bg-white/20 text-[#0C0D12] dark:text-white transition-colors cursor-pointer"
           aria-label="Close modal"
         >
@@ -208,13 +266,20 @@ export default function Modals({
             </p>
 
             {formSubmitted ? (
-              <div className="my-10 p-8 rounded-2xl bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800 text-center">
+              <div className="my-10 p-8 rounded-2xl bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800 text-center animate-fadeIn">
                 <CheckCircle2 className="w-12 h-12 text-emerald-600 dark:text-emerald-400 mx-auto mb-3" />
-                <h4 className="text-lg font-bold text-[#0C0D12] dark:text-white uppercase">Inquiry Transmitted</h4>
-                <p className="text-xs text-[#50515C] dark:text-zinc-400 mt-1">Thank you. The Bempoh corporate team will evaluate your message.</p>
+                <h4 className="text-lg font-bold text-[#0C0D12] dark:text-white uppercase">Opening your email app…</h4>
+                <p className="text-xs text-[#50515C] dark:text-zinc-400 mt-1">Directing you to compose your message to bempohllc@gmail.com.</p>
               </div>
             ) : (
               <form onSubmit={handleFormSubmit} className="mt-6 space-y-4">
+                {errorMessage && (
+                  <div className="p-3.5 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-600 dark:text-rose-400 text-xs font-medium flex items-start gap-2.5 animate-fadeIn">
+                    <AlertCircle className="w-4 h-4 shrink-0 mt-0.5 text-rose-500" />
+                    <span className="flex-1 leading-relaxed">{errorMessage}</span>
+                  </div>
+                )}
+
                 <div>
                   <label className="block text-[10px] uppercase tracking-widest text-[#50515C] dark:text-zinc-400 font-bold mb-1">
                     Your Name
@@ -223,7 +288,10 @@ export default function Modals({
                     type="text"
                     required
                     value={contactData.name}
-                    onChange={(e) => setContactData({ ...contactData, name: e.target.value })}
+                    onChange={(e) => {
+                      if (errorMessage) setErrorMessage('');
+                      setContactData({ ...contactData, name: e.target.value });
+                    }}
                     placeholder="E.g. Alexander Vance"
                     className="w-full px-4 py-3 rounded-xl bg-[#FAFAFC] dark:bg-[#15161E] border border-black/15 dark:border-white/15 text-[#0C0D12] dark:text-white placeholder:text-[#50515C]/60 dark:placeholder:text-zinc-500 focus:outline-none focus:border-[#C99B3C] text-sm transition-colors duration-300"
                   />
@@ -237,7 +305,10 @@ export default function Modals({
                     type="email"
                     required
                     value={contactData.email}
-                    onChange={(e) => setContactData({ ...contactData, email: e.target.value })}
+                    onChange={(e) => {
+                      if (errorMessage) setErrorMessage('');
+                      setContactData({ ...contactData, email: e.target.value });
+                    }}
                     placeholder="alexander@organization.com"
                     className="w-full px-4 py-3 rounded-xl bg-[#FAFAFC] dark:bg-[#15161E] border border-black/15 dark:border-white/15 text-[#0C0D12] dark:text-white placeholder:text-[#50515C]/60 dark:placeholder:text-zinc-500 focus:outline-none focus:border-[#C99B3C] text-sm transition-colors duration-300"
                   />
@@ -251,9 +322,12 @@ export default function Modals({
                     required
                     rows={4}
                     value={contactData.message}
-                    onChange={(e) => setContactData({ ...contactData, message: e.target.value })}
+                    onChange={(e) => {
+                      if (errorMessage) setErrorMessage('');
+                      setContactData({ ...contactData, message: e.target.value });
+                    }}
                     placeholder="Detail your inquiry or proposal..."
-                    className="w-full px-4 py-3 rounded-xl bg-[#FAFAFC] dark:bg-[#15161E] border border-black/15 dark:border-white/15 text-[#0C0D12] dark:text-white placeholder:text-[#50515C]/60 dark:placeholder:text-zinc-500 focus:outline-none focus:border-[#C99B3C] text-sm transition-colors duration-300"
+                    className="w-full px-4 py-3 rounded-xl bg-[#FAFAFC] dark:bg-[#15161E] border border-black/15 dark:border-white/15 text-[#0C0D12] dark:text-white placeholder:text-[#50515C]/60 dark:placeholder:text-zinc-500 focus:outline-none focus:border-[#C99B3C] text-sm transition-colors duration-300 resize-none"
                   />
                 </div>
 
