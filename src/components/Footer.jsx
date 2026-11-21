@@ -46,7 +46,7 @@ export default function Footer({ onOpenContactModal, onOpenFounder }) {
                 <li>
                   <Link
                     to="/about-us"
-                    className="text-[#8C5B0D] dark:text-[#E2C268] hover:text-[#0C0D12] dark:hover:text-white transition-colors text-left cursor-pointer font-semibold inline-block"
+                    className="hover:text-[#0C0D12] dark:hover:text-white transition-colors"
                   >
                     About us
                   </Link>
