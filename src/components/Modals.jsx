@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Logo from './Logo';
-import { X, Send, ArrowUpRight, CheckCircle2, ShieldCheck, Mail, Globe, AlertCircle } from 'lucide-react';
+import { X, Send, ArrowUpRight, CheckCircle2, Mail, Globe, AlertCircle } from 'lucide-react';
 
 export default function Modals({
   activeModal,
@@ -340,42 +340,6 @@ export default function Modals({
                 </button>
               </form>
             )}
-          </div>
-        )}
-
-        {/* 4. LEGAL DOCUMENTS MODAL */}
-        {activeModal === 'legal' && (
-          <div>
-            <div className="flex items-center gap-2 text-xs font-bold text-[#8C5B0D] dark:text-[#E2C268] uppercase tracking-widest mb-2">
-              <ShieldCheck className="w-4 h-4" />
-              <span>LEGAL DISCLOSURES</span>
-            </div>
-
-            <h3 className="text-3xl font-extrabold text-[#0C0D12] dark:text-white uppercase tracking-tight transition-colors duration-300">
-              {modalData?.title || 'Legal Terms'}
-            </h3>
-
-            <div className="mt-6 p-6 rounded-2xl bg-[#FAFAFC] dark:bg-[#15161E] border border-black/10 dark:border-white/10 text-xs text-[#50515C] dark:text-zinc-300 space-y-4 leading-relaxed max-h-[50vh] overflow-y-auto transition-colors duration-300">
-              <p>
-                <strong>1. Overview:</strong> Bempoh Inc operates as a multi-industry holding company managing subsidiaries across technology, gaming, music, publishing, and digital media.
-              </p>
-              <p>
-                <strong>2. Intellectual Property:</strong> All brand identity assets, logos, trademarks, and publications associated with Bempoh, Bempoh Technologies, Udlivery, Bempoh Games, Bempoh Music, Bempoh Books, and "The Universal Antidote" are protected by applicable trademark and copyright laws.
-              </p>
-              <p>
-                <strong>3. Privacy Standard:</strong> Bempoh respects user privacy and complies with modern data protection guidelines. Personal information collected through inquiries is strictly utilized for corporate communications.
-              </p>
-            </div>
-
-            <div className="mt-6 flex justify-end">
-              <button
-                type="button"
-                onClick={onClose}
-                className="px-6 py-2.5 rounded-full bg-black/10 dark:bg-white/10 text-[#0C0D12] dark:text-white font-bold text-xs uppercase tracking-widest hover:bg-black/20 dark:hover:bg-white/20 transition-colors cursor-pointer"
-              >
-                Acknowledge &amp; Close
-              </button>
-            </div>
           </div>
         )}
       </div>

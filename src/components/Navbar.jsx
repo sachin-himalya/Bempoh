@@ -1,10 +1,15 @@
 import React, { useState, useEffect } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import Logo from './Logo';
 import { Menu, X, ArrowUpRight, Sun, Moon } from 'lucide-react';
 
 export default function Navbar({ onExploreClick, theme = 'light', toggleTheme }) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const isLegalPage = location.pathname !== '/';
 
   useEffect(() => {
     const handleScroll = () => {
@@ -14,13 +19,29 @@ export default function Navbar({ onExploreClick, theme = 'light', toggleTheme })
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const navLinks = [
-    { label: 'Home', href: '#hero' },
-    { label: 'Services', href: '#ecosystem' },
-    { label: 'Vision', href: '#vision' },
-    { label: 'Ecosystem', href: '#orbit' },
-    { label: 'FAQ', href: '#faq' },
-  ];
+  const navLinks = isLegalPage
+    ? [
+        { label: 'Home', href: '/' },
+        { label: 'Services', href: '/#ecosystem' },
+        { label: 'Vision', href: '/#vision' },
+        { label: 'Ecosystem', href: '/#orbit' },
+        { label: 'FAQ', href: '/#faq' },
+      ]
+    : [
+        { label: 'Home', href: '#hero' },
+        { label: 'Services', href: '#ecosystem' },
+        { label: 'Vision', href: '#vision' },
+        { label: 'Ecosystem', href: '#orbit' },
+        { label: 'FAQ', href: '#faq' },
+      ];
+
+  const handleExplore = () => {
+    if (isLegalPage) {
+      navigate('/#ecosystem');
+    } else if (onExploreClick) {
+      onExploreClick();
+    }
+  };
 
   return (
     <>
@@ -32,7 +53,7 @@ export default function Navbar({ onExploreClick, theme = 'light', toggleTheme })
       >
         <div className="w-full max-w-7xl mx-auto px-6 sm:px-10 lg:px-6 flex items-center justify-between h-11 sm:h-12">
           {/* LEFT: Compact Logo */}
-          <a href="#hero" className="flex items-center gap-2 group shrink-0">
+          <a href={isLegalPage ? '/' : '#hero'} className="flex items-center gap-2 group shrink-0">
             <Logo size="sm" className="max-h-7 sm:max-h-8 w-auto" />
           </a>
 
@@ -78,7 +99,7 @@ export default function Navbar({ onExploreClick, theme = 'light', toggleTheme })
             {/* CTA Button */}
             <button
               type="button"
-              onClick={onExploreClick}
+              onClick={handleExplore}
               className="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full text-[10px] uppercase tracking-widest font-bold text-black bg-gradient-to-r from-[#F4DE84] via-[#C99B3C] to-[#A97622] hover:shadow-[0_0_15px_rgba(201,155,60,0.5)] transition-all duration-300 cursor-pointer"
             >
               <span>Explore Bempoh</span>
@@ -147,7 +168,7 @@ export default function Navbar({ onExploreClick, theme = 'light', toggleTheme })
             type="button"
             onClick={() => {
               setMobileMenuOpen(false);
-              onExploreClick();
+              handleExplore();
             }}
             className="w-full py-4 rounded-full text-sm uppercase tracking-widest font-semibold text-black bg-gradient-to-r from-[#F4DE84] via-[#C99B3C] to-[#A97622] flex items-center justify-center gap-2 cursor-pointer"
           >

@@ -1,7 +1,8 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { ArrowUpRight } from 'lucide-react';
 
-export default function Footer({ onOpenLegalModal, onOpenContactModal, onOpenFounder }) {
+export default function Footer({ onOpenContactModal, onOpenFounder }) {
   const year = new Date().getFullYear();
 
   return (
@@ -41,7 +42,7 @@ export default function Footer({ onOpenLegalModal, onOpenContactModal, onOpenFou
                 COMPANY
               </div>
               <ul className="space-y-3 text-xs sm:text-sm text-[#50515C] dark:text-zinc-400 font-medium">
-                <li><a href="#hero" className="hover:text-[#0C0D12] dark:hover:text-white transition-colors">Home</a></li>
+                <li><a href="/" className="hover:text-[#0C0D12] dark:hover:text-white transition-colors">Home</a></li>
                 <li>
                   <button
                     type="button"
@@ -51,8 +52,8 @@ export default function Footer({ onOpenLegalModal, onOpenContactModal, onOpenFou
                     About us
                   </button>
                 </li>
-                <li><a href="#ecosystem" className="hover:text-[#0C0D12] dark:hover:text-white transition-colors">Services</a></li>
-                <li><a href="#vision" className="hover:text-[#0C0D12] dark:hover:text-white transition-colors">Vision</a></li>
+                <li><a href="/#ecosystem" className="hover:text-[#0C0D12] dark:hover:text-white transition-colors">Services</a></li>
+                <li><a href="/#vision" className="hover:text-[#0C0D12] dark:hover:text-white transition-colors">Vision</a></li>
                 <li>
                   <button type="button" onClick={onOpenContactModal} className="hover:text-[#0C0D12] dark:hover:text-white transition-colors text-left cursor-pointer">
                     Contact
@@ -67,11 +68,11 @@ export default function Footer({ onOpenLegalModal, onOpenContactModal, onOpenFou
                 VENTURES
               </div>
               <ul className="space-y-3 text-xs sm:text-sm text-[#50515C] dark:text-zinc-400 font-medium">
-                <li><a href="#ecosystem" className="hover:text-[#0C0D12] dark:hover:text-white transition-colors">Technologies</a></li>
-                <li><a href="#ecosystem" className="hover:text-[#0C0D12] dark:hover:text-white transition-colors inline-flex items-center gap-1.5">Games <span className="text-[10px] text-[#8C5B0D] dark:text-[#E2C268]">(Coming Soon)</span></a></li>
-                <li><a href="#ecosystem" className="hover:text-[#0C0D12] dark:hover:text-white transition-colors inline-flex items-center gap-1.5">Real-Estate <span className="text-[10px] text-[#8C5B0D] dark:text-[#E2C268]">(Coming Soon)</span></a></li>
-                <li><a href="#music" className="hover:text-[#0C0D12] dark:hover:text-white transition-colors">Music</a></li>
-                <li><a href="#books" className="hover:text-[#0C0D12] dark:hover:text-white transition-colors">Books</a></li>
+                <li><a href="/#ecosystem" className="hover:text-[#0C0D12] dark:hover:text-white transition-colors">Technologies</a></li>
+                <li><a href="/#ecosystem" className="hover:text-[#0C0D12] dark:hover:text-white transition-colors inline-flex items-center gap-1.5">Games <span className="text-[10px] text-[#8C5B0D] dark:text-[#E2C268]">(Coming Soon)</span></a></li>
+                <li><a href="/#ecosystem" className="hover:text-[#0C0D12] dark:hover:text-white transition-colors inline-flex items-center gap-1.5">Real-Estate <span className="text-[10px] text-[#8C5B0D] dark:text-[#E2C268]">(Coming Soon)</span></a></li>
+                <li><a href="/#music" className="hover:text-[#0C0D12] dark:hover:text-white transition-colors">Music</a></li>
+                <li><a href="/#books" className="hover:text-[#0C0D12] dark:hover:text-white transition-colors">Books</a></li>
                 <li><a href="https://www.zedge.net/profiles/a9e221fe-f556-488a-b47b-2d1c4b071907" target="_blank" rel="noopener noreferrer" className="hover:text-[#0C0D12] dark:hover:text-white transition-colors">Ringtones</a></li>
               </ul>
             </div>
@@ -82,10 +83,10 @@ export default function Footer({ onOpenLegalModal, onOpenContactModal, onOpenFou
                 DISCOVER
               </div>
               <ul className="space-y-3 text-xs sm:text-sm text-[#50515C] dark:text-zinc-400 font-medium">
-                <li><a href="#ecosystem" className="hover:text-[#0C0D12] dark:hover:text-white transition-colors">Technologies</a></li>
-                <li><a href="#music" className="hover:text-[#0C0D12] dark:hover:text-white transition-colors">Audio Catalog</a></li>
-                <li><a href="#books" className="hover:text-[#0C0D12] dark:hover:text-white transition-colors">Publications</a></li>
-                <li><a href="#faq" className="hover:text-[#0C0D12] dark:hover:text-white transition-colors">FAQ</a></li>
+                <li><a href="/#ecosystem" className="hover:text-[#0C0D12] dark:hover:text-white transition-colors">Technologies</a></li>
+                <li><a href="/#music" className="hover:text-[#0C0D12] dark:hover:text-white transition-colors">Audio Catalog</a></li>
+                <li><a href="/#books" className="hover:text-[#0C0D12] dark:hover:text-white transition-colors">Publications</a></li>
+                <li><a href="/#faq" className="hover:text-[#0C0D12] dark:hover:text-white transition-colors">FAQ</a></li>
               </ul>
             </div>
 
@@ -125,12 +126,12 @@ export default function Footer({ onOpenLegalModal, onOpenContactModal, onOpenFou
           </div>
 
           <div className="flex items-center space-x-6">
-            <button type="button" onClick={() => onOpenLegalModal('Privacy Policy')} className="hover:text-[#0C0D12] dark:hover:text-white transition-colors cursor-pointer">
+            <Link to="/privacy-policy" className="hover:text-[#0C0D12] dark:hover:text-white transition-colors cursor-pointer">
               Privacy Policy
-            </button>
-            <button type="button" onClick={() => onOpenLegalModal('Terms of Service')} className="hover:text-[#0C0D12] dark:hover:text-white transition-colors cursor-pointer">
+            </Link>
+            <Link to="/terms-of-service" className="hover:text-[#0C0D12] dark:hover:text-white transition-colors cursor-pointer">
               Terms of Service
-            </button>
+            </Link>
           </div>
         </div>
       </div>

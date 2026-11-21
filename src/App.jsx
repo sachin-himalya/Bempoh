@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useLocation, Routes, Route, Navigate } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import HeroSection from './components/HeroSection';
 import ManifestoSection from './components/ManifestoSection';
@@ -14,9 +15,51 @@ import Footer from './components/Footer';
 import Modals from './components/Modals';
 import GoldParticlesCanvas from './components/GoldParticlesCanvas';
 import Logo from './components/Logo';
+import PrivacyPolicy from './pages/PrivacyPolicy';
+import TermsOfService from './pages/TermsOfService';
 import { X, ArrowUpRight } from 'lucide-react';
 
+function HomePage({ onSelectVenture, onOpenMobileSheet, onStoreClick, onExploreClick, onDiscoverClick }) {
+  return (
+    <main>
+      {/* SECTION 01 — Cinematic Hero */}
+      <HeroSection
+        onExploreClick={onExploreClick}
+        onDiscoverClick={onDiscoverClick}
+      />
+
+      {/* SECTION 02 — Brand Manifesto */}
+      <ManifestoSection />
+
+      {/* SECTION 03 — Bempoh Ecosystem */}
+      <EcosystemSection onSelectVenture={onSelectVenture} onOpenMobileSheet={onOpenMobileSheet} />
+
+      {/* SECTION 04 — Vision */}
+      <VisionSection />
+
+      {/* SECTION 06 — Industry Orbit */}
+      <OrbitSection />
+
+      {/* SECTION 07 — Bempoh Music */}
+      <MusicSection onPlatformClick={onStoreClick} />
+
+      {/* SECTION 08 — Bempoh Books */}
+      <BooksSection onExploreBooks={() => window.open('https://www.amazon.com/stores/author/B09K6FRZNG', '_blank', 'noopener,noreferrer')} />
+
+      {/* SECTION 09 — Meet Our Founder */}
+      <FounderSection />
+
+      {/* SECTION 10 — The Bempoh Principle */}
+      <PrincipleSection />
+
+      {/* SECTION 11 — Frequently Asked Questions */}
+      <FaqSection />
+    </main>
+  );
+}
+
 export default function App() {
+  const location = useLocation();
   const [theme, setTheme] = useState(() => {
     return localStorage.getItem('bempoh-theme') || 'light';
   });
@@ -60,11 +103,6 @@ export default function App() {
     scrollToSection('#founder');
   };
 
-  const handleOpenLegal = (title) => {
-    setModalData({ title });
-    setActiveModal('legal');
-  };
-
   const handleCloseModal = () => {
     setActiveModal(null);
     setModalData(null);
@@ -80,18 +118,29 @@ export default function App() {
     setSelectedVenture(null);
   };
 
-  // Handle URL hash for deep linking (e.g. #founder or #about)
+  const scrollToSection = (id) => {
+    const el = document.querySelector(id);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  // Handle URL hash / route changes for deep linking and smooth scrolling
   useEffect(() => {
-    const handleHash = () => {
-      const hash = window.location.hash.toLowerCase();
-      if (hash === '#founder' || hash === '#about' || hash === '#about-us') {
-        scrollToSection('#founder');
-      }
-    };
-    handleHash();
-    window.addEventListener('hashchange', handleHash);
-    return () => window.removeEventListener('hashchange', handleHash);
-  }, []);
+    if (location.hash) {
+      const hash = location.hash.toLowerCase();
+      const targetId = (hash === '#about' || hash === '#about-us') ? '#founder' : hash;
+      const timer = setTimeout(() => {
+        const el = document.querySelector(targetId);
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+      return () => clearTimeout(timer);
+    } else {
+      window.scrollTo(0, 0);
+    }
+  }, [location.pathname, location.hash]);
 
   // Lock body scroll when mobile sheet is open
   useEffect(() => {
@@ -116,13 +165,6 @@ export default function App() {
     return () => window.removeEventListener('keydown', handleEscape);
   }, [mobileSheetOpen]);
 
-  const scrollToSection = (id) => {
-    const el = document.querySelector(id);
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
   return (
     <div
       className={`relative min-h-screen font-sans transition-colors duration-500 ${
@@ -142,42 +184,33 @@ export default function App() {
         toggleTheme={toggleTheme}
       />
 
-      {/* SECTION 01 — Cinematic Hero */}
-      <HeroSection
-        onExploreClick={() => scrollToSection('#ecosystem')}
-        onDiscoverClick={() => scrollToSection('#manifesto')}
-      />
-
-      {/* SECTION 02 — Brand Manifesto */}
-      <ManifestoSection />
-
-      {/* SECTION 03 — Bempoh Ecosystem */}
-      <EcosystemSection onSelectVenture={handleSelectVenture} onOpenMobileSheet={handleOpenMobileSheet} />
-
-      {/* SECTION 04 — Vision */}
-      <VisionSection />
-
-      {/* SECTION 06 — Industry Orbit */}
-      <OrbitSection />
-
-      {/* SECTION 07 — Bempoh Music */}
-      <MusicSection onPlatformClick={(platform) => handleStoreClick(platform)} />
-
-      {/* SECTION 08 — Bempoh Books */}
-      <BooksSection onExploreBooks={() => window.open('https://www.amazon.com/stores/author/B09K6FRZNG', '_blank', 'noopener,noreferrer')} />
-
-      {/* SECTION 09 — Meet Our Founder */}
-      <FounderSection />
-
-      {/* SECTION 10 — The Bempoh Principle */}
-      <PrincipleSection />
-
-      {/* SECTION 11 — Frequently Asked Questions */}
-      <FaqSection />
+      {/* Dynamic Route Pages */}
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <HomePage
+              onSelectVenture={handleSelectVenture}
+              onOpenMobileSheet={handleOpenMobileSheet}
+              onStoreClick={(platform) => handleStoreClick(platform)}
+              onExploreClick={() => scrollToSection('#ecosystem')}
+              onDiscoverClick={() => scrollToSection('#manifesto')}
+            />
+          }
+        />
+        <Route
+          path="/privacy-policy"
+          element={<PrivacyPolicy onOpenContact={handleOpenContact} />}
+        />
+        <Route
+          path="/terms-of-service"
+          element={<TermsOfService onOpenContact={handleOpenContact} />}
+        />
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
 
       {/* Oversized Luxury Footer */}
       <Footer
-        onOpenLegalModal={handleOpenLegal}
         onOpenContactModal={handleOpenContact}
         onOpenFounder={handleOpenFounder}
       />
