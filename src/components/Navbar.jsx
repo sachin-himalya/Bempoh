@@ -22,18 +22,18 @@ export default function Navbar({ onExploreClick, theme = 'light', toggleTheme })
   const navLinks = isSubPage
     ? [
         { label: 'Home', href: '/' },
-        { label: 'About Us', href: '/#founder' },
         { label: 'Services', href: '/#ecosystem' },
         { label: 'Vision', href: '/#vision' },
         { label: 'Ecosystem', href: '/#orbit' },
+        { label: 'About Us', href: '/#founder' },
         { label: 'FAQ', href: '/#faq' },
       ]
     : [
         { label: 'Home', href: '#hero' },
-        { label: 'About Us', href: '#founder' },
         { label: 'Services', href: '#ecosystem' },
         { label: 'Vision', href: '#vision' },
         { label: 'Ecosystem', href: '#orbit' },
+        { label: 'About Us', href: '#founder' },
         { label: 'FAQ', href: '#faq' },
       ];
 
