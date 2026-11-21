@@ -166,11 +166,11 @@ export default function App() {
       {/* SECTION 08 — Bempoh Books */}
       <BooksSection onExploreBooks={() => window.open('https://www.amazon.com/stores/author/B09K6FRZNG', '_blank', 'noopener,noreferrer')} />
 
-      {/* SECTION 09 — The Bempoh Principle */}
-      <PrincipleSection />
-
-      {/* SECTION 10 — Meet Our Founder */}
+      {/* SECTION 09 — Meet Our Founder */}
       <FounderSection />
+
+      {/* SECTION 10 — The Bempoh Principle */}
+      <PrincipleSection />
 
       {/* SECTION 11 — Frequently Asked Questions */}
       <FaqSection />
