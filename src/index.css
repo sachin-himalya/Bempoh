@@ -2,10 +2,6 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @layer base {
-  html {
-    scroll-behavior: smooth;
-  }
-
   :root {
     --bg-primary: #FFFFFF;
     --bg-secondary: #FAFAFC;

@@ -126,7 +126,14 @@ export default function App() {
     }
   };
 
-  // Handle URL hash / route changes for deep linking and smooth scrolling
+  // Prevent browser from restoring old scroll position on route changes
+  useEffect(() => {
+    if ('scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual';
+    }
+  }, []);
+
+  // Handle URL hash / route changes for deep linking and instant top scrolling on page change
   useEffect(() => {
     if (location.hash) {
       const hash = location.hash.toLowerCase();
@@ -139,7 +146,9 @@ export default function App() {
       }, 100);
       return () => clearTimeout(timer);
     } else {
-      window.scrollTo(0, 0);
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
     }
   }, [location.pathname, location.hash]);
 

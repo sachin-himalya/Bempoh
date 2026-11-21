@@ -31,7 +31,9 @@ export default function AboutUs({ onOpenContact }) {
     }
     metaDescription.content =
       'Learn about Bempoh Inc, a multi-industry holding company building ventures across technology, gaming, music, publishing, and future industries, founded by E.K. Bempoh.';
-    window.scrollTo(0, 0);
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
   }, []);
 
   const sections = [

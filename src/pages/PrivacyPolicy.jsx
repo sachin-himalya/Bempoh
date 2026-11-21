@@ -15,7 +15,9 @@ export default function PrivacyPolicy({ onOpenContact }) {
       document.head.appendChild(metaDescription);
     }
     metaDescription.content = 'Official Privacy Policy for Bempoh Inc and its subsidiaries, including Bempoh Technologies, Udlivery, Bempoh Games, Bempoh Music, and Bempoh Books.';
-    window.scrollTo(0, 0);
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
   }, []);
 
   const sections = [
