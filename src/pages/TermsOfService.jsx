@@ -84,8 +84,8 @@ export default function TermsOfService({ onOpenContact }) {
           <span>LEGAL DISCLOSURES</span>
         </div>
 
-        <h1 className="text-4xl sm:text-6xl md:text-7xl font-black text-[#0C0D12] dark:text-white uppercase tracking-tight leading-none mb-4 transition-colors duration-300">
-          TERMS OF SERVICE
+        <h1 className="text-4xl sm:text-6xl md:text-7xl font-black uppercase tracking-tight leading-none mb-4">
+          <span className="text-gold-gradient">TERMS OF SERVICE</span>
         </h1>
 
         <p className="text-xs sm:text-sm font-mono text-[#50515C] dark:text-zinc-500">
