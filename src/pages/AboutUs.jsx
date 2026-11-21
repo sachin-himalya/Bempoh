@@ -13,7 +13,6 @@ import {
   Sparkles,
   Building2,
   Mail,
-  MapPin,
 } from 'lucide-react';
 
 export default function AboutUs({ onOpenContact }) {
@@ -480,12 +479,6 @@ export default function AboutUs({ onOpenContact }) {
                   <a href="mailto:bempohllc@gmail.com" className="text-[#8C5B0D] dark:text-[#E2C268] hover:underline">
                     bempohllc@gmail.com
                   </a>
-                </span>
-              </div>
-              <div className="flex items-center gap-2">
-                <MapPin className="w-4 h-4 text-[#8C5B0D] dark:text-[#E2C268]" />
-                <span>
-                  <strong>Headquarters:</strong> [BUSINESS_ADDRESS]
                 </span>
               </div>
               <div className="flex items-center gap-2">

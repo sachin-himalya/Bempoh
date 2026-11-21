@@ -335,10 +335,10 @@ export default function TermsOfService({ onOpenContact }) {
               10. Governing Law
             </h2>
             <p className="mb-4">
-              These Terms of Service, and any legal disputes, actions, claims, or controversies arising out of or related to your use of this website, shall be governed by, construed, and enforced in accordance with the laws of <strong>[GOVERNING_LAW_LOCATION]</strong>, without giving effect to any principles of conflicts of law.
+              These Terms of Service, and any legal disputes, actions, claims, or controversies arising out of or related to your use of this website, shall be governed by, construed, and enforced in accordance with applicable laws, without giving effect to any principles of conflicts of law.
             </p>
             <p>
-              You agree that any formal judicial proceeding arising from these Terms or the website shall be brought exclusively in the state or federal courts located within <strong>[GOVERNING_LAW_LOCATION]</strong>, and you hereby consent to the personal jurisdiction and venue thereof.
+              You agree that any formal judicial proceeding arising from these Terms or the website shall be brought exclusively in competent courts of jurisdiction, and you hereby consent to the personal jurisdiction and venue thereof.
             </p>
           </section>
 
@@ -376,12 +376,6 @@ export default function TermsOfService({ onOpenContact }) {
                 <a href="mailto:bempohllc@gmail.com" className="text-[#8C5B0D] dark:text-[#E2C268] hover:underline">
                   bempohllc@gmail.com
                 </a>
-              </div>
-              <div>
-                <strong>Corporate Office:</strong> [BUSINESS_ADDRESS]
-              </div>
-              <div>
-                <strong>Jurisdiction:</strong> [GOVERNING_LAW_LOCATION]
               </div>
             </div>
           </section>

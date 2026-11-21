@@ -375,12 +375,6 @@ export default function PrivacyPolicy({ onOpenContact }) {
                   bempohllc@gmail.com
                 </a>
               </div>
-              <div>
-                <strong>Physical Address:</strong> [BUSINESS_ADDRESS]
-              </div>
-              <div>
-                <strong>Jurisdiction:</strong> [GOVERNING_LAW_LOCATION]
-              </div>
             </div>
           </section>
 
