@@ -31,6 +31,35 @@ export default function FounderSection({
     };
   }, [historyModalOpen]);
 
+  const renderFounderPhoto = () => (
+    <div className="relative aspect-[3/4] w-full max-w-[320px] sm:max-w-[380px] rounded-3xl overflow-hidden border border-[#C99B3C]/35 bg-gradient-to-b from-[#14151D] via-[#0E0F15] to-[#0A0A0E] shadow-[0_20px_50px_rgba(0,0,0,0.4)] flex flex-col items-center justify-center text-center group mx-auto">
+      {/* Subtle Ambient Radial Light */}
+      <div className="absolute inset-0 bg-radial-gold opacity-30 pointer-events-none" />
+
+      {imageSrc && !imgError ? (
+        <>
+          <img
+            src={imageSrc}
+            alt="E.K. Bempoh"
+            className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
+            onError={() => setImgError(true)}
+          />
+          {/* Subtle Gradient Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none" />
+        </>
+      ) : (
+        <div className="relative z-10 flex flex-col items-center justify-center p-8">
+          <span className="text-5xl sm:text-6xl font-black text-[#8C5B0D] dark:text-[#E2C268] tracking-widest drop-shadow-[0_4px_24px_rgba(201,155,60,0.35)]">
+            EKB
+          </span>
+          <span className="mt-4 text-[11px] sm:text-xs uppercase tracking-[0.3em] text-[#50515C] dark:text-zinc-400 font-mono">
+            [FOUNDER PHOTO]
+          </span>
+        </div>
+      )}
+    </div>
+  );
+
   return (
     <section
       id="founder"
@@ -42,37 +71,12 @@ export default function FounderSection({
       <div className="max-w-6xl mx-auto relative z-10">
         {/* Top 2-Column Desktop Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
-          {/* Left Column: Founder Photo Frame */}
-          <div className="lg:col-span-5 flex justify-center">
-            <div className="relative aspect-[3/4] w-full max-w-[340px] sm:max-w-[380px] rounded-3xl overflow-hidden border border-[#C99B3C]/35 bg-gradient-to-b from-[#14151D] via-[#0E0F15] to-[#0A0A0E] shadow-[0_20px_50px_rgba(0,0,0,0.4)] flex flex-col items-center justify-center text-center group">
-              {/* Subtle Ambient Radial Light */}
-              <div className="absolute inset-0 bg-radial-gold opacity-30 pointer-events-none" />
-
-              {imageSrc && !imgError ? (
-                <>
-                  <img
-                    src={imageSrc}
-                    alt="E.K. Bempoh"
-                    className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
-                    onError={() => setImgError(true)}
-                  />
-                  {/* Subtle Gradient Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none" />
-                </>
-              ) : (
-                <div className="relative z-10 flex flex-col items-center justify-center p-8">
-                  <span className="text-5xl sm:text-6xl font-black text-[#8C5B0D] dark:text-[#E2C268] tracking-widest drop-shadow-[0_4px_24px_rgba(201,155,60,0.35)]">
-                    EKB
-                  </span>
-                  <span className="mt-4 text-[11px] sm:text-xs uppercase tracking-[0.3em] text-[#50515C] dark:text-zinc-400 font-mono">
-                    [FOUNDER PHOTO]
-                  </span>
-                </div>
-              )}
-            </div>
+          {/* Left Column (Desktop only): Founder Photo Frame */}
+          <div className="lg:col-span-5 hidden lg:flex justify-center">
+            {renderFounderPhoto()}
           </div>
 
-          {/* Right Column: Founder Introduction */}
+          {/* Right Column (Desktop) / Main Column (Mobile): Founder Introduction */}
           <div className="lg:col-span-7 flex flex-col justify-center">
             {/* Top Label */}
             <div className="text-xs uppercase tracking-[0.35em] text-[#8C5B0D] dark:text-[#E2C268] font-bold font-mono mb-3">
@@ -92,6 +96,11 @@ export default function FounderSection({
             {/* Tagline Subheading */}
             <div className="text-xs sm:text-sm uppercase tracking-wider text-[#50515C] dark:text-zinc-400 font-medium mb-6">
               Entrepreneur | Philanthropist | Philosopher | Author | Artist | Innovator
+            </div>
+
+            {/* Mobile-only Founder Photo — placed right after MEET OUR FOUNDER & E.K. BEMPOH text */}
+            <div className="my-8 flex justify-center lg:hidden">
+              {renderFounderPhoto()}
             </div>
 
             {/* Intro Paragraph */}
