@@ -81,6 +81,15 @@ export default function Footer({ onOpenContactModal, onOpenFounder }) {
                   </a>
                 </li>
                 <li>
+                  <a
+                    href="/#orbit"
+                    onClick={(e) => handleHashLink(e, '#orbit')}
+                    className="hover:text-[#0C0D12] dark:hover:text-white transition-colors"
+                  >
+                    Ecosystem
+                  </a>
+                </li>
+                <li>
                   <Link
                     to="/about-us"
                     className="hover:text-[#0C0D12] dark:hover:text-white transition-colors"
