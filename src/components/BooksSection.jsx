@@ -100,8 +100,13 @@ export default function BooksSection({ onExploreBooks }) {
 
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          {/* Editorial Copy */}
-          <div className="lg:col-span-7">
+          {/* Left Column (Desktop only): Floating 3D Metallic Book Cover Mockup */}
+          <div className="lg:col-span-5 hidden lg:flex justify-center lg:order-1">
+            {renderBookMockup()}
+          </div>
+
+          {/* Right Column (Desktop) / Main Column (Mobile): Editorial Copy */}
+          <div className="lg:col-span-7 lg:order-2">
             <div className="flex items-center gap-2 mb-6">
               <BookOpen className="w-4 h-4 text-[#8C5B0D] dark:text-[#E2C268]" />
               <span className="text-xs uppercase tracking-[0.35em] text-[#8C5B0D] dark:text-[#E2C268] font-bold">
@@ -174,11 +179,6 @@ export default function BooksSection({ onExploreBooks }) {
                 <ArrowUpRight className="w-4 h-4 text-black stroke-[2.5]" />
               </a>
             </div>
-          </div>
-
-          {/* Right Column (Desktop only): Floating 3D Metallic Book Cover */}
-          <div className="lg:col-span-5 hidden lg:flex justify-center">
-            {renderBookMockup()}
           </div>
         </div>
       </div>
