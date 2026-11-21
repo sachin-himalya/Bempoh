@@ -22,6 +22,7 @@ export default function Navbar({ onExploreClick, theme = 'light', toggleTheme })
   const navLinks = isSubPage
     ? [
         { label: 'Home', href: '/' },
+        { label: 'About Us', href: '/#founder' },
         { label: 'Services', href: '/#ecosystem' },
         { label: 'Vision', href: '/#vision' },
         { label: 'Ecosystem', href: '/#orbit' },
@@ -29,11 +30,23 @@ export default function Navbar({ onExploreClick, theme = 'light', toggleTheme })
       ]
     : [
         { label: 'Home', href: '#hero' },
+        { label: 'About Us', href: '#founder' },
         { label: 'Services', href: '#ecosystem' },
         { label: 'Vision', href: '#vision' },
         { label: 'Ecosystem', href: '#orbit' },
         { label: 'FAQ', href: '#faq' },
       ];
+
+  const handleNavClick = (e, href) => {
+    if (!isSubPage && href.startsWith('#')) {
+      e.preventDefault();
+      const el = document.querySelector(href);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth' });
+        window.history.pushState(null, '', href);
+      }
+    }
+  };
 
   const handleExplore = () => {
     if (isSubPage) {
@@ -58,12 +71,13 @@ export default function Navbar({ onExploreClick, theme = 'light', toggleTheme })
           </a>
 
           {/* CENTER: Desktop Nav Links */}
-          <nav className="hidden md:flex items-center gap-8 lg:gap-10">
+          <nav className="hidden md:flex items-center gap-6 lg:gap-8 xl:gap-9">
             {navLinks.map((link) => (
               <a
                 key={link.label}
                 href={link.href}
-                className="text-[11px] uppercase tracking-[0.2em] font-semibold text-[#111111] dark:text-zinc-200 hover:text-[#C99B3C] dark:hover:text-[#F4DE84] transition-colors duration-300 relative py-0.5 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-[#C99B3C] hover:after:w-full after:transition-all after:duration-300"
+                onClick={(e) => handleNavClick(e, link.href)}
+                className="text-[11px] uppercase tracking-[0.2em] font-semibold text-[#111111] dark:text-zinc-200 hover:text-[#C99B3C] dark:hover:text-[#F4DE84] transition-colors duration-300 relative py-0.5 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-[#C99B3C] hover:after:w-full after:transition-all after:duration-300 whitespace-nowrap"
               >
                 {link.label}
               </a>
@@ -155,7 +169,10 @@ export default function Navbar({ onExploreClick, theme = 'light', toggleTheme })
             <a
               key={link.label}
               href={link.href}
-              onClick={() => setMobileMenuOpen(false)}
+              onClick={(e) => {
+                setMobileMenuOpen(false);
+                handleNavClick(e, link.href);
+              }}
               className="text-2xl font-normal tracking-wide text-[#111111] dark:text-zinc-100 hover:text-[#C99B3C] dark:hover:text-[#F4DE84] transition-colors"
             >
               {link.label}
