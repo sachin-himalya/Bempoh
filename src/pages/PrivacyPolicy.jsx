@@ -83,8 +83,13 @@ export default function PrivacyPolicy({ onOpenContact }) {
           <span>LEGAL DISCLOSURES</span>
         </div>
 
-        <h1 className="text-4xl sm:text-6xl md:text-7xl font-black uppercase tracking-tight leading-none mb-4">
-          <span className="text-gold-gradient">PRIVACY POLICY</span>
+        <h1 className="text-5xl sm:text-7xl md:text-8xl font-black tracking-tight leading-[1.05] mb-6">
+          <span className="block text-gold-gradient">
+            Privacy
+          </span>
+          <span className="block text-gold-gradient font-serif-display italic font-normal">
+            Policy.
+          </span>
         </h1>
 
         <p className="text-xs sm:text-sm font-mono text-[#50515C] dark:text-zinc-500">
