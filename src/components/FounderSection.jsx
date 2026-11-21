@@ -88,19 +88,29 @@ export default function FounderSection({
               E.K. BEMPOH
             </h2>
 
-            {/* Role Subheading */}
-            <div className="text-lg sm:text-xl font-bold text-[#8C5B0D] dark:text-[#E2C268] tracking-wide mb-2">
-              Founder &amp; Chairman, Bempoh
+            {/* Desktop-only Role Subheading & Tagline */}
+            <div className="hidden lg:block">
+              <div className="text-lg sm:text-xl font-bold text-[#8C5B0D] dark:text-[#E2C268] tracking-wide mb-2">
+                Founder &amp; Chairman, Bempoh
+              </div>
+              <div className="text-xs sm:text-sm uppercase tracking-wider text-[#50515C] dark:text-zinc-400 font-medium mb-6">
+                Entrepreneur | Philanthropist | Philosopher | Author | Artist | Innovator
+              </div>
             </div>
 
-            {/* Tagline Subheading */}
-            <div className="text-xs sm:text-sm uppercase tracking-wider text-[#50515C] dark:text-zinc-400 font-medium mb-6">
-              Entrepreneur | Philanthropist | Philosopher | Author | Artist | Innovator
-            </div>
-
-            {/* Mobile-only Founder Photo — placed right after MEET OUR FOUNDER & E.K. BEMPOH text */}
-            <div className="my-8 flex justify-center lg:hidden">
+            {/* Mobile-only Founder Photo — placed right after E.K. BEMPOH heading */}
+            <div className="my-6 flex justify-center lg:hidden">
               {renderFounderPhoto()}
+            </div>
+
+            {/* Mobile-only Role Subheading & Tagline — placed after Founder Photo */}
+            <div className="block lg:hidden mb-6">
+              <div className="text-lg font-bold text-[#8C5B0D] dark:text-[#E2C268] tracking-wide mb-2">
+                Founder &amp; Chairman, Bempoh
+              </div>
+              <div className="text-xs uppercase tracking-wider text-[#50515C] dark:text-zinc-400 font-medium">
+                Entrepreneur | Philanthropist | Philosopher | Author | Artist | Innovator
+              </div>
             </div>
 
             {/* Intro Paragraph */}
