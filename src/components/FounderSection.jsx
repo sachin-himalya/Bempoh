@@ -3,9 +3,10 @@ import { X, ArrowUpRight, BookOpen, Briefcase, HeartHandshake, Compass } from 'l
 import Logo from './Logo';
 
 export default function FounderSection({
-  imageSrc = null,
+  imageSrc = '/founder.webp',
 }) {
   const [historyModalOpen, setHistoryModalOpen] = useState(false);
+  const [imgError, setImgError] = useState(false);
 
   // Close history modal on Escape key
   useEffect(() => {
@@ -43,21 +44,23 @@ export default function FounderSection({
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
           {/* Left Column: Founder Photo Frame */}
           <div className="lg:col-span-5 flex justify-center">
-            <div className="relative aspect-[3/4] w-full max-w-[340px] sm:max-w-[380px] rounded-3xl overflow-hidden border border-[#C99B3C]/35 bg-gradient-to-b from-[#14151D] via-[#0E0F15] to-[#0A0A0E] shadow-[0_20px_50px_rgba(0,0,0,0.4)] flex flex-col items-center justify-center p-8 text-center group">
+            <div className="relative aspect-[3/4] w-full max-w-[340px] sm:max-w-[380px] rounded-3xl overflow-hidden border border-[#C99B3C]/35 bg-gradient-to-b from-[#14151D] via-[#0E0F15] to-[#0A0A0E] shadow-[0_20px_50px_rgba(0,0,0,0.4)] flex flex-col items-center justify-center text-center group">
               {/* Subtle Ambient Radial Light */}
               <div className="absolute inset-0 bg-radial-gold opacity-30 pointer-events-none" />
 
-              {imageSrc ? (
-                <img
-                  src={imageSrc}
-                  alt="E.K. Bempoh"
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  onError={(e) => {
-                    e.currentTarget.style.display = 'none';
-                  }}
-                />
+              {imageSrc && !imgError ? (
+                <>
+                  <img
+                    src={imageSrc}
+                    alt="E.K. Bempoh"
+                    className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
+                    onError={() => setImgError(true)}
+                  />
+                  {/* Subtle Gradient Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none" />
+                </>
               ) : (
-                <div className="relative z-10 flex flex-col items-center justify-center">
+                <div className="relative z-10 flex flex-col items-center justify-center p-8">
                   <span className="text-5xl sm:text-6xl font-black text-[#8C5B0D] dark:text-[#E2C268] tracking-widest drop-shadow-[0_4px_24px_rgba(201,155,60,0.35)]">
                     EKB
                   </span>
@@ -194,14 +197,25 @@ export default function FounderSection({
 
             {/* Modal Header */}
             <div className="border-b border-black/10 dark:border-white/10 pb-6 mb-6">
-              <div className="text-xs uppercase tracking-[0.3em] text-[#8C5B0D] dark:text-[#E2C268] font-bold font-mono mb-2">
-                FOUNDER HISTORY &amp; BIOGRAPHY
-              </div>
-              <h3 className="text-3xl sm:text-4xl font-black text-[#0C0D12] dark:text-white uppercase tracking-tight">
-                EASTWOOD KWAKU BEMPOH
-              </h3>
-              <div className="mt-1 text-sm font-semibold text-[#8C5B0D] dark:text-[#E2C268]">
-                Founder &amp; Chairman, Bempoh Inc
+              <div className="flex items-center gap-4">
+                <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl overflow-hidden border border-[#C99B3C]/40 shrink-0 bg-black/40">
+                  <img
+                    src={imageSrc}
+                    alt="E.K. Bempoh"
+                    className="w-full h-full object-cover object-top"
+                  />
+                </div>
+                <div>
+                  <div className="text-xs uppercase tracking-[0.3em] text-[#8C5B0D] dark:text-[#E2C268] font-bold font-mono mb-1">
+                    FOUNDER HISTORY &amp; BIOGRAPHY
+                  </div>
+                  <h3 className="text-2xl sm:text-3xl font-black text-[#0C0D12] dark:text-white uppercase tracking-tight">
+                    EASTWOOD KWAKU BEMPOH
+                  </h3>
+                  <div className="mt-0.5 text-xs sm:text-sm font-semibold text-[#8C5B0D] dark:text-[#E2C268]">
+                    Founder &amp; Chairman, Bempoh Inc
+                  </div>
+                </div>
               </div>
             </div>
 
