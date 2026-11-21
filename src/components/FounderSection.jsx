@@ -3,8 +3,6 @@ import { X, ArrowUpRight, BookOpen, Briefcase, HeartHandshake, Compass } from 'l
 import Logo from './Logo';
 
 export default function FounderSection({
-  isOpen = false,
-  onClose,
   imageSrc = null,
 }) {
   const [historyModalOpen, setHistoryModalOpen] = useState(false);
@@ -32,32 +30,15 @@ export default function FounderSection({
     };
   }, [historyModalOpen]);
 
-  if (!isOpen) return null;
-
   return (
     <section
       id="founder"
-      className="relative w-full bg-white dark:bg-[#070709] py-24 sm:py-32 px-6 border-t border-black/[0.08] dark:border-white/10 overflow-hidden transition-colors duration-500 animate-fadeIn"
+      className="relative w-full bg-white dark:bg-[#070709] py-24 sm:py-32 px-6 border-t border-black/[0.08] dark:border-white/10 overflow-hidden transition-colors duration-300"
     >
       {/* Background Ambient Gold Glows */}
       <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[700px] h-[700px] bg-[#C99B3C]/10 blur-[150px] rounded-full pointer-events-none" />
 
       <div className="max-w-6xl mx-auto relative z-10">
-        {/* Optional Close / Minimize Button */}
-        {onClose && (
-          <div className="flex justify-end mb-4">
-            <button
-              type="button"
-              onClick={onClose}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-black/5 dark:bg-white/10 hover:bg-black/10 dark:hover:bg-white/20 text-xs font-mono text-[#50515C] dark:text-zinc-400 hover:text-[#0C0D12] dark:hover:text-white transition-colors cursor-pointer"
-              title="Close founder section"
-            >
-              <X className="w-3.5 h-3.5" />
-              <span>Close View</span>
-            </button>
-          </div>
-        )}
-
         {/* Top 2-Column Desktop Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
           {/* Left Column: Founder Photo Frame */}

@@ -23,7 +23,6 @@ export default function App() {
 
   const [activeModal, setActiveModal] = useState(null);
   const [modalData, setModalData] = useState(null);
-  const [founderOpen, setFounderOpen] = useState(false);
   const [mobileSheetOpen, setMobileSheetOpen] = useState(false);
   const [selectedVenture, setSelectedVenture] = useState(null);
   const [touchStart, setTouchStart] = useState(0);
@@ -58,14 +57,7 @@ export default function App() {
   };
 
   const handleOpenFounder = () => {
-    setFounderOpen(true);
-    window.history.pushState(null, '', '#founder');
-    setTimeout(() => {
-      const el = document.getElementById('founder');
-      if (el) {
-        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-    }, 100);
+    scrollToSection('#founder');
   };
 
   const handleOpenLegal = (title) => {
@@ -93,13 +85,7 @@ export default function App() {
     const handleHash = () => {
       const hash = window.location.hash.toLowerCase();
       if (hash === '#founder' || hash === '#about' || hash === '#about-us') {
-        setFounderOpen(true);
-        setTimeout(() => {
-          const el = document.getElementById('founder');
-          if (el) {
-            el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          }
-        }, 150);
+        scrollToSection('#founder');
       }
     };
     handleHash();
@@ -183,11 +169,8 @@ export default function App() {
       {/* SECTION 09 — The Bempoh Principle */}
       <PrincipleSection />
 
-      {/* SECTION 10 — Meet Our Founder (Accessible via footer 'About us' link) */}
-      <FounderSection
-        isOpen={founderOpen}
-        onClose={() => setFounderOpen(false)}
-      />
+      {/* SECTION 10 — Meet Our Founder */}
+      <FounderSection />
 
       {/* SECTION 11 — Frequently Asked Questions */}
       <FaqSection />
