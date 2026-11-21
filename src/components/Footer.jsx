@@ -5,6 +5,17 @@ import { ArrowUpRight } from 'lucide-react';
 export default function Footer({ onOpenContactModal, onOpenFounder }) {
   const year = new Date().getFullYear();
 
+  const handleHashLink = (e, targetHash) => {
+    if (window.location.pathname === '/') {
+      e.preventDefault();
+      const el = document.querySelector(targetHash);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth' });
+        window.history.pushState(null, '', targetHash);
+      }
+    }
+  };
+
   return (
     <footer className="relative w-full bg-[#FAFAFC] dark:bg-[#050505] border-t border-black/[0.08] dark:border-white/10 pt-24 pb-12 px-6 overflow-hidden transition-colors duration-300">
       {/* Large Faded BEMPOH Watermark Typography in Background */}
@@ -42,7 +53,33 @@ export default function Footer({ onOpenContactModal, onOpenFounder }) {
                 COMPANY
               </div>
               <ul className="space-y-3 text-xs sm:text-sm text-[#50515C] dark:text-zinc-400 font-medium">
-                <li><a href="/" className="hover:text-[#0C0D12] dark:hover:text-white transition-colors">Home</a></li>
+                <li>
+                  <a
+                    href="/"
+                    onClick={(e) => handleHashLink(e, '#hero')}
+                    className="hover:text-[#0C0D12] dark:hover:text-white transition-colors"
+                  >
+                    Home
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/#ecosystem"
+                    onClick={(e) => handleHashLink(e, '#ecosystem')}
+                    className="hover:text-[#0C0D12] dark:hover:text-white transition-colors"
+                  >
+                    Services
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/#vision"
+                    onClick={(e) => handleHashLink(e, '#vision')}
+                    className="hover:text-[#0C0D12] dark:hover:text-white transition-colors"
+                  >
+                    Vision
+                  </a>
+                </li>
                 <li>
                   <Link
                     to="/about-us"
@@ -51,10 +88,21 @@ export default function Footer({ onOpenContactModal, onOpenFounder }) {
                     About us
                   </Link>
                 </li>
-                <li><a href="/#ecosystem" className="hover:text-[#0C0D12] dark:hover:text-white transition-colors">Services</a></li>
-                <li><a href="/#vision" className="hover:text-[#0C0D12] dark:hover:text-white transition-colors">Vision</a></li>
                 <li>
-                  <button type="button" onClick={onOpenContactModal} className="hover:text-[#0C0D12] dark:hover:text-white transition-colors text-left cursor-pointer">
+                  <a
+                    href="/#faq"
+                    onClick={(e) => handleHashLink(e, '#faq')}
+                    className="hover:text-[#0C0D12] dark:hover:text-white transition-colors"
+                  >
+                    FAQ
+                  </a>
+                </li>
+                <li>
+                  <button
+                    type="button"
+                    onClick={onOpenContactModal}
+                    className="hover:text-[#0C0D12] dark:hover:text-white transition-colors text-left cursor-pointer"
+                  >
                     Contact
                   </button>
                 </li>
