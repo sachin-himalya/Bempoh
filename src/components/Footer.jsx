@@ -1,7 +1,7 @@
 import React from 'react';
 import { ArrowUpRight } from 'lucide-react';
 
-export default function Footer({ onOpenLegalModal, onOpenContactModal }) {
+export default function Footer({ onOpenLegalModal, onOpenContactModal, onOpenFounder }) {
   const year = new Date().getFullYear();
 
   return (
@@ -42,6 +42,15 @@ export default function Footer({ onOpenLegalModal, onOpenContactModal }) {
               </div>
               <ul className="space-y-3 text-xs sm:text-sm text-[#50515C] dark:text-zinc-400 font-medium">
                 <li><a href="#hero" className="hover:text-[#0C0D12] dark:hover:text-white transition-colors">Home</a></li>
+                <li>
+                  <button
+                    type="button"
+                    onClick={onOpenFounder}
+                    className="text-[#8C5B0D] dark:text-[#E2C268] hover:text-[#0C0D12] dark:hover:text-white transition-colors text-left cursor-pointer font-semibold"
+                  >
+                    About us
+                  </button>
+                </li>
                 <li><a href="#ecosystem" className="hover:text-[#0C0D12] dark:hover:text-white transition-colors">Services</a></li>
                 <li><a href="#vision" className="hover:text-[#0C0D12] dark:hover:text-white transition-colors">Vision</a></li>
                 <li>
@@ -116,6 +125,13 @@ export default function Footer({ onOpenLegalModal, onOpenContactModal }) {
           </div>
 
           <div className="flex items-center space-x-6">
+            <button
+              type="button"
+              onClick={onOpenFounder}
+              className="text-[#8C5B0D] dark:text-[#E2C268] hover:underline transition-colors cursor-pointer font-semibold"
+            >
+              About us
+            </button>
             <button type="button" onClick={() => onOpenLegalModal('Privacy Policy')} className="hover:text-[#0C0D12] dark:hover:text-white transition-colors cursor-pointer">
               Privacy Policy
             </button>

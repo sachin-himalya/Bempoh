@@ -8,6 +8,7 @@ import OrbitSection from './components/OrbitSection';
 import MusicSection from './components/MusicSection';
 import BooksSection from './components/BooksSection';
 import PrincipleSection from './components/PrincipleSection';
+import FounderSection from './components/FounderSection';
 import FaqSection from './components/FaqSection';
 import Footer from './components/Footer';
 import Modals from './components/Modals';
@@ -22,6 +23,7 @@ export default function App() {
 
   const [activeModal, setActiveModal] = useState(null);
   const [modalData, setModalData] = useState(null);
+  const [founderOpen, setFounderOpen] = useState(false);
   const [mobileSheetOpen, setMobileSheetOpen] = useState(false);
   const [selectedVenture, setSelectedVenture] = useState(null);
   const [touchStart, setTouchStart] = useState(0);
@@ -55,6 +57,17 @@ export default function App() {
     setActiveModal('contact');
   };
 
+  const handleOpenFounder = () => {
+    setFounderOpen(true);
+    window.history.pushState(null, '', '#founder');
+    setTimeout(() => {
+      const el = document.getElementById('founder');
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }, 100);
+  };
+
   const handleOpenLegal = (title) => {
     setModalData({ title });
     setActiveModal('legal');
@@ -74,6 +87,25 @@ export default function App() {
     setMobileSheetOpen(false);
     setSelectedVenture(null);
   };
+
+  // Handle URL hash for deep linking (e.g. #founder or #about)
+  useEffect(() => {
+    const handleHash = () => {
+      const hash = window.location.hash.toLowerCase();
+      if (hash === '#founder' || hash === '#about' || hash === '#about-us') {
+        setFounderOpen(true);
+        setTimeout(() => {
+          const el = document.getElementById('founder');
+          if (el) {
+            el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        }, 150);
+      }
+    };
+    handleHash();
+    window.addEventListener('hashchange', handleHash);
+    return () => window.removeEventListener('hashchange', handleHash);
+  }, []);
 
   // Lock body scroll when mobile sheet is open
   useEffect(() => {
@@ -151,6 +183,12 @@ export default function App() {
       {/* SECTION 09 — The Bempoh Principle */}
       <PrincipleSection />
 
+      {/* SECTION 10 — Meet Our Founder (Accessible via footer 'About us' link) */}
+      <FounderSection
+        isOpen={founderOpen}
+        onClose={() => setFounderOpen(false)}
+      />
+
       {/* SECTION 11 — Frequently Asked Questions */}
       <FaqSection />
 
@@ -158,6 +196,7 @@ export default function App() {
       <Footer
         onOpenLegalModal={handleOpenLegal}
         onOpenContactModal={handleOpenContact}
+        onOpenFounder={handleOpenFounder}
       />
 
       {/* Interactive Global Modals */}
