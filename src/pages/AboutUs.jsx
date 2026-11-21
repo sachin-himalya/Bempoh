@@ -96,8 +96,13 @@ export default function AboutUs({ onOpenContact }) {
           <span>CORPORATE PROFILE &amp; LEADERSHIP</span>
         </div>
 
-        <h1 className="text-4xl sm:text-6xl md:text-7xl font-black text-[#0C0D12] dark:text-white uppercase tracking-tight leading-none mb-4 transition-colors duration-300">
-          ABOUT BEMPOH
+        <h1 className="text-5xl sm:text-7xl md:text-8xl font-black tracking-tight leading-[1.05] mb-6">
+          <span className="block text-gold-gradient">
+            About
+          </span>
+          <span className="block text-gold-gradient font-serif-display italic font-normal">
+            Bempoh.
+          </span>
         </h1>
 
         <p className="text-base sm:text-xl font-medium text-[#50515C] dark:text-zinc-300 max-w-3xl leading-relaxed mb-4">
