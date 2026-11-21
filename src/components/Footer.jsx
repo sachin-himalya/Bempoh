@@ -125,13 +125,6 @@ export default function Footer({ onOpenLegalModal, onOpenContactModal, onOpenFou
           </div>
 
           <div className="flex items-center space-x-6">
-            <button
-              type="button"
-              onClick={onOpenFounder}
-              className="text-[#8C5B0D] dark:text-[#E2C268] hover:underline transition-colors cursor-pointer font-semibold"
-            >
-              About us
-            </button>
             <button type="button" onClick={() => onOpenLegalModal('Privacy Policy')} className="hover:text-[#0C0D12] dark:hover:text-white transition-colors cursor-pointer">
               Privacy Policy
             </button>
