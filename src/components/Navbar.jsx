@@ -9,7 +9,7 @@ export default function Navbar({ onExploreClick, theme = 'light', toggleTheme })
   const location = useLocation();
   const navigate = useNavigate();
 
-  const isLegalPage = location.pathname !== '/';
+  const isSubPage = location.pathname !== '/';
 
   useEffect(() => {
     const handleScroll = () => {
@@ -19,7 +19,7 @@ export default function Navbar({ onExploreClick, theme = 'light', toggleTheme })
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const navLinks = isLegalPage
+  const navLinks = isSubPage
     ? [
         { label: 'Home', href: '/' },
         { label: 'Services', href: '/#ecosystem' },
@@ -36,7 +36,7 @@ export default function Navbar({ onExploreClick, theme = 'light', toggleTheme })
       ];
 
   const handleExplore = () => {
-    if (isLegalPage) {
+    if (isSubPage) {
       navigate('/#ecosystem');
     } else if (onExploreClick) {
       onExploreClick();
@@ -53,7 +53,7 @@ export default function Navbar({ onExploreClick, theme = 'light', toggleTheme })
       >
         <div className="w-full max-w-7xl mx-auto px-6 sm:px-10 lg:px-6 flex items-center justify-between h-11 sm:h-12">
           {/* LEFT: Compact Logo */}
-          <a href={isLegalPage ? '/' : '#hero'} className="flex items-center gap-2 group shrink-0">
+          <a href={isSubPage ? '/' : '#hero'} className="flex items-center gap-2 group shrink-0">
             <Logo size="sm" className="max-h-7 sm:max-h-8 w-auto" />
           </a>
 

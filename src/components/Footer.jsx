@@ -44,13 +44,12 @@ export default function Footer({ onOpenContactModal, onOpenFounder }) {
               <ul className="space-y-3 text-xs sm:text-sm text-[#50515C] dark:text-zinc-400 font-medium">
                 <li><a href="/" className="hover:text-[#0C0D12] dark:hover:text-white transition-colors">Home</a></li>
                 <li>
-                  <button
-                    type="button"
-                    onClick={onOpenFounder}
-                    className="text-[#8C5B0D] dark:text-[#E2C268] hover:text-[#0C0D12] dark:hover:text-white transition-colors text-left cursor-pointer font-semibold"
+                  <Link
+                    to="/about-us"
+                    className="text-[#8C5B0D] dark:text-[#E2C268] hover:text-[#0C0D12] dark:hover:text-white transition-colors text-left cursor-pointer font-semibold inline-block"
                   >
                     About us
-                  </button>
+                  </Link>
                 </li>
                 <li><a href="/#ecosystem" className="hover:text-[#0C0D12] dark:hover:text-white transition-colors">Services</a></li>
                 <li><a href="/#vision" className="hover:text-[#0C0D12] dark:hover:text-white transition-colors">Vision</a></li>

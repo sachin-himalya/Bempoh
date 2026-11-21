@@ -409,3 +409,4 @@ export default function TermsOfService({ onOpenContact }) {
     </div>
   );
 }
+

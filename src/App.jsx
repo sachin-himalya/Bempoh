@@ -17,6 +17,7 @@ import GoldParticlesCanvas from './components/GoldParticlesCanvas';
 import Logo from './components/Logo';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import TermsOfService from './pages/TermsOfService';
+import AboutUs from './pages/AboutUs';
 import { X, ArrowUpRight } from 'lucide-react';
 
 function HomePage({ onSelectVenture, onOpenMobileSheet, onStoreClick, onExploreClick, onDiscoverClick }) {
@@ -205,6 +206,14 @@ export default function App() {
         <Route
           path="/terms-of-service"
           element={<TermsOfService onOpenContact={handleOpenContact} />}
+        />
+        <Route
+          path="/about-us"
+          element={<AboutUs onOpenContact={handleOpenContact} />}
+        />
+        <Route
+          path="/about"
+          element={<Navigate to="/about-us" replace />}
         />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
