@@ -130,10 +130,33 @@ export default function Footer({ onOpenContactModal, onOpenFounder }) {
                 DISCOVER
               </div>
               <ul className="space-y-3 text-xs sm:text-sm text-[#50515C] dark:text-zinc-400 font-medium">
-                <li><a href="/#ecosystem" className="hover:text-[#0C0D12] dark:hover:text-white transition-colors">Technologies</a></li>
-                <li><a href="/#music" className="hover:text-[#0C0D12] dark:hover:text-white transition-colors">Audio Catalog</a></li>
-                <li><a href="/#books" className="hover:text-[#0C0D12] dark:hover:text-white transition-colors">Publications</a></li>
-                <li><a href="/#faq" className="hover:text-[#0C0D12] dark:hover:text-white transition-colors">FAQ</a></li>
+                <li>
+                  <a
+                    href="/#ecosystem"
+                    onClick={(e) => handleHashLink(e, '#ecosystem')}
+                    className="hover:text-[#0C0D12] dark:hover:text-white transition-colors"
+                  >
+                    Technologies
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/#music"
+                    onClick={(e) => handleHashLink(e, '#music')}
+                    className="hover:text-[#0C0D12] dark:hover:text-white transition-colors"
+                  >
+                    Audio Catalog
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/#books"
+                    onClick={(e) => handleHashLink(e, '#books')}
+                    className="hover:text-[#0C0D12] dark:hover:text-white transition-colors"
+                  >
+                    Publications
+                  </a>
+                </li>
               </ul>
             </div>
 
